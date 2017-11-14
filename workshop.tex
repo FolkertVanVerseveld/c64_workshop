@@ -1,0 +1,458 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LATEX-TEMPLATE PRESENTATIE
+%-------------------------------------------------------------------------------
+% Voor informatie over presenterenn, zie
+% http://practicumav.nl/presenteren/presenteren.html
+% Voor readme en meest recente versie van het template, zie
+% https://gitlab-fnwi.uva.nl/informatica/LaTeX-template.git
+% Gebaseerd op een template van: http://www.LaTeXTemplates.com
+% Licentie: CC BY-NC-SA 3.0
+% (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-------------------------------------------------------------------------------
+%	PACKAGES EN CONFIGURATIE
+%-------------------------------------------------------------------------------
+
+\documentclass[aspectratio=43]{uva-inf-presentation}
+\usepackage[dutch]{babel}
+\usepackage{qtree}
+\usepackage{listings}
+
+\title{Programmeren in Beperkte Omgevingen}
+\course{C=}
+\assignment{Just 4 Fun}
+\assignmenttype{Hacking}
+\authors{Folkert van Verseveld}
+\uvanetids{11839341}
+\tutor{Teun Mathijssen}
+\mentor{}
+\docent{Robert van Wijk}
+\group{Assembly A2}
+
+\begin{document}
+
+\begin{titelframe}
+% De eerste slide is de titelpagina
+\titlepage
+
+\end{titelframe}
+
+\begin{frame}
+% Geeft een inhoudsopgave voor de presentatie
+\frametitle{Inhoudsopgave}
+\tableofcontents
+\end{frame}
+
+%-------------------------------------------------------------------------------
+%	PRESENTATIE SLIDES
+%-------------------------------------------------------------------------------
+
+% Secties zijn er om structuur in je presentatie aan te brengen
+% en worden direct in de inhoudsopgave opgenomen
+\section{Introductie}
+% Maak een subsection voor een serie slides met een gedeeld thema
+\section{Programmeeromgeving}
+
+\section{Conclusies}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Ontmoet de Moeder van de PCs}
+
+\begin{figure}
+\includegraphics[width=0.75\linewidth]{images/desk.jpg}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{De Enige Echte}
+
+\begin{figure}
+\includegraphics[width=0.6\linewidth]{images/c64.jpg}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Moderne Variant}
+
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{images/boot.png}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{De Specificaties}
+
+\begin{itemize}
+\item Ge\"introduceerd in 1982
+\item 64 kilobytes
+\item MOS 6510 met ~1 MHz kristalklok
+\item 2 joystick poorten
+\item cartridge port (games!), serial I/O, user port
+\item 16 kleuren
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Ter Vergelijking}
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline Model & RAM (KiB) & Geluid & HDD & Prijs \\
+C64 & 64 & AD Synth. & Nee & 595 \\
+Apple ][ & 8-16 & Beeper & Nee & ca. 1200 \\
+IBM PC & 16-640 & Beeper & Ja & tot 5000 \\
+ZX Spec. & 16 & Beeper & Nee & ca. 800 \\ \hline
+NES & 2 & Z80? & Nee & ca. 300 \\ \hline
+\end{tabular}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Ter Vergelijking}
+
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline Model & CPU & MHz & Geluid & Voices \\
+C64 & MOS 6510 & 1 & 8-bit SID & 3 \\
+Apple ][ & MOS 6502 & 1 & 1-bit & 0 \\
+IBM PC & i8086 & 4.04 & 1-bit & 0 \\
+ZX Spec. & Z80 & 2 & 1-bit & 0 \\ \hline
+NES & Ricoh 2A03 & 1 & 8-bit & 5 \\ \hline
+\end{tabular}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Ter Vergelijking}
+
+\begin{tabular}{|l|l|l|}
+\hline Model & Video & Kleuren \\
+C64 & VIC II & 16 \\
+Apple ][ & ??? & 1-4 \\
+IBM PC & mono of CGA & 1-4 \\
+ZX Spec. & ??? & 8 \\ \hline
+NES & Ricoh 2C02 PPU & 52 \\ \hline
+\end{tabular}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Waarom werken met Vintage PCs?}
+
+\begin{itemize}
+\item Enorme uitdaging
+\item Simpel ontwerp, simpel te begrijpen
+\item Literatuur
+\item Programmeerwedstrijden (ja, 30 jaar lang!)
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Programmeertalen}
+
+\begin{itemize}
+\item Microsoft BASIC
+\item Machine code (assembly)
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Hoe Programmeerde we vroeger?}
+
+\begin{itemize}
+\item Geen internet
+\item Literatuur (tijdschriften, boeken, \dots)
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}[fragile]{Simpel Programma}
+
+\begin{lstlisting}
+10 PRINT "HELLO VIA"
+20 GOTO 10
+\end{lstlisting}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}[fragile]{Simpel Programma}
+
+\begin{lstlisting}
+10 POKE 1024,8
+20 POKE 1025,5
+30 POKE 1026,25
+\end{lstlisting}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Audio}
+
+\begin{itemize}
+\item 3 kanalen (voices)
+\item ADSR envelope
+\end{itemize}
+
+\end{frame}
+
+%https://musictechstudent.co.uk/music-production-glossary/adsr/
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{ADSR}
+
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{images/adsr.png}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Waveforms}
+
+\begin{itemize}
+\item Sawtooth
+\item Square
+\item Sinuso\"ide
+\item Triangle
+\item Noise
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Intermezzo}
+
+\begin{block}{Muziek}
+Raad welk muziekje bij welke computer hoort!
+\end{block}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Graphics}
+
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{images/palette.png}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Graphics}
+
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{images/gfx.png}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Graphic modes}
+
+\begin{itemize}
+\item Standard Character (text) Mode
+\item Multicolor Character (text) Mode
+\item Standard Bitmap Mode
+\item Multicolor Bitmap Mode
+\item Extended Background Color Mode
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Multicolor Character Mode}
+
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{images/gary.png}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Standard Bitmap}
+
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{images/sbm_obey.png}
+\end{figure}
+
+\begin{center}
+Source: Archmage
+\end{center}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Standard Bitmap}
+
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{images/sbm_tuksu.png}
+\end{figure}
+
+\begin{center}
+Source: Duce
+\end{center}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Programmeerwedstrijden}
+
+\begin{itemize}
+\item X (in Nederland!)
+\item Revision (grootste ter wereld!)
+\item Nordlicht
+\item Under Construction
+\item \dots
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{X}
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{images/x.jpg}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{X}
+
+\begin{itemize}
+\item sinds 1995
+\item Vanaf 2004 \'e\'en keer per 2 jaar
+\item Vorig jaar ong. 400 bezoekers
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Revision}
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{images/rev2017.jpg}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Revision}
+
+\begin{itemize}
+\item sinds 2011
+\item ong. 700 bezoekers
+\item grote bedrijven bieden banen aan!
+\item seminars
+\item 30+ wedstrijden (demo, gfx, fotografie, \dots)
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Opdracht}
+
+\begin{itemize}
+\item Vorm groepen van maximaal 5
+\item Maak een demo!
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+%\begin{frame}
+%
+%\begin{block}{Typen van binaire bomen}
+%\begin{itemize}
+%\item Geworteld
+%\item Volledig
+%\item Perfect
+%\item Compleet
+%%\item[Geworteld:] wortel en elke knoop niet meer dan 2 kinderen
+%%\item[Volledig:] elke knoop heeft \'of 0 \'of 2 kinderen
+%%\item[Perfect:] elke knoop heeft precies 2 kinderen of 2 bladeren
+%%\item[Compleet:] elke level behalve laatste is kompleet gevuld
+%\end{itemize}
+%\end{block}
+%
+%\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Conclusies}
+
+%\begin{figure}
+%\includegraphics[width=0.8\linewidth]{images/bigocheatsheet.png}
+%\end{figure}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Bedankt voor jullie aandacht}
+\Large{\centerline{Zijn er nog vragen?}}
+\end{frame}
+
+\end{document}
