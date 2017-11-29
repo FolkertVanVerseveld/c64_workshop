@@ -1,0 +1,20 @@
+globaal idee:
+
+of we beginnen met wat basic voorbeelden direct in de emulator
+of we beginnen met de easy6502 tutorial
+
+Laat als eerste de emulator zien en typ een basic voorbeeld in.
+Als het lukt om een assembler monitor in de emu aan de praat te krijgen:
+  laat dan een voorbeeld zien door het in de monitor in te typen.
+  vertel dat dit toen de manier van werken was, maar dus erg onhandig.
+  laat dan de kick assembler zien en hoe programmeren daarop werkt.
+  (denk aan yellow karakter op scherm zetten, of andere simpele dingen)
+
+Als begin easy6502:
+
+Vertel wat over de CPU, aantal regs, flags etc. en vergelijk met moderne x64
+Laat de pagina zelf zien en typ wat voorbeelden in.
+
+Laat mensen 15-30 min zelf klooien?
+
+Ga vervolgens verder door wat nieuwe theorie te vertellen.
