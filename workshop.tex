@@ -260,6 +260,17 @@
 \frametitle{Eerste computers}
 
 \begin{figure}
+\includegraphics[width=0.6\linewidth]{images/vic20.jpg}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Eerste computers}
+
+\begin{figure}
 \includegraphics[width=0.6\linewidth]{images/ibm5150.jpg}
 \end{figure}
 
@@ -316,16 +327,16 @@
 \begin{frame}
 \frametitle{Ter Vergelijking}
 
-\begin{tabular}{|l|l|l|l|}
-\hline Jaar & Model & Prijs toen & Prijs nu \\ \hline
-1977 & PET & \$795 & \$3150 \\
-1980 & VIC-20 & \$299.95 & \$874 \\
-1982 & C64 & \$595 & \$1480 \\ \hline
-1977 & Apple ][ & \$1296 & \$5130 \\
-1981 & IBM PC & \$1565 & \$4130 \\
+\begin{tabular}{|l|l|l|l|l|}
+\hline Jaar & Model & Prijs toen & Prijs omg. & Prijs nu \\ \hline
+1977 & PET & \$795 & \$3150 & \$120-\$200 \\
+1980 & VIC-20 & \$299.95 & \$874 & \$80-\$110 \\
+1982 & C64 & \$595 & \$1480 & \$10-\$15 \\ \hline
+1977 & Apple ][ & \$1296 & \$5130 & \$200-\$350 \\
+1981 & IBM PC & \$1565 & \$4130 & \$1200-\$2000 \\
 %IBM PC & 16-640 & Beeper & Ja & \$1565 \\
-1982 & ZX Spec. & \pounds 175 & \pounds 567 \\ \hline
-1983 & NES & \$179 & \$433 \\ \hline
+1982 & ZX Spec. & \pounds 175 & \pounds 567 & \pounds 100 \\ \hline
+1983 & NES & \$179 & \$433 & \$40-\$80 \\ \hline
 \end{tabular}
 
 %\begin{tabular}{|l|l|l|l|l|}
@@ -350,6 +361,59 @@
 \begin{itemize}
 \item Niet nodig
 \item Te duur (+\$500/+\$2000)
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Data-opslag}
+
+\begin{itemize}
+\item programma's in RAM, firmware in ROM
+\item power loss
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Tapes!}
+
+\begin{itemize}
+\item Sequentieel magnetisch geheugen
+\item Enkele MBs
+\item Enkel-/dubbelzijdig
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Programma opzoeken}
+
+\begin{itemize}
+\item Onhandig
+\item Handmatig heen en weer zoeken
+\item Analoge file table
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Floppies!}
+
+\begin{itemize}
+\item Echt floppy
+\item 8 inch, 5.25 inch
+\item SD/DD
+\item 300-600 RPM (5-10 revs/sec)
+\item 0.1MB-2.0MB
 \end{itemize}
 
 \end{frame}
@@ -471,23 +535,6 @@ NES & Ricoh 2A03 & 1 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Ter Vergelijking}
-
-\begin{tabular}{|l|l|l|}
-\hline Model & Video & Kleuren \\
-VIC-20 & VIC I & 4-16??? \\
-C64 & VIC II & 16 \\
-Apple ][ & ??? & 1-4 \\
-IBM PC & mono of CGA & 1-4 \\
-ZX Spec. & geen (CPU) & 8 \\ \hline
-NES & Ricoh 2C02 PPU & 52 \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
 \frametitle{Wat kan een C64?}
 
 \begin{itemize}
@@ -541,7 +588,72 @@ NES & Ricoh 2C02 PPU & 52 \\ \hline
 
 %----------------------------------------------
 
-\begin{frame}[fragile]{Simpel Programma}
+\begin{frame}
+\frametitle{Wat krijg je bij een C64?}
+
+\begin{itemize}
+\item Handleiding van ca. 300 pagina's
+\item Programmeerhandleiding voor BASIC en assembly
+\item Verwijzingen naar programma's, clubs, tijdschriften
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Gebruikershandleiding}
+
+\begin{itemize}
+\item Randapparaten aansluiten
+\item Configuratie en commando's
+\item BASIC programmeren (ca. 60 commando's)
+\item Voorbeelden
+\item Tips and tricks
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Programmeerhandleiding}
+
+\begin{itemize}
+\item Geheugenlayout
+\item Assembly instructie set (151 documented)
+\item Graphics modes
+\item Sound effecten
+\item Hardware uitbreidingen
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Literatuur}
+
+\begin{figure}
+\includegraphics[width=0.75\linewidth]{images/c64schema.jpg}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Literatuur}
+
+\begin{figure}
+\includegraphics[width=0.75\linewidth]{images/c64schema2.jpg}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}[fragile]{Simpel Programma - BASIC}
 
 \begin{lstlisting}
 10 PRINT "HALLO VIA"
@@ -552,7 +664,7 @@ NES & Ricoh 2C02 PPU & 52 \\ \hline
 
 %----------------------------------------------
 
-\begin{frame}[fragile]{Simpel Programma}
+\begin{frame}[fragile]{Simpel Programma - BASIC}
 
 \begin{lstlisting}
 10 POKE 1024,8
@@ -564,7 +676,7 @@ NES & Ricoh 2C02 PPU & 52 \\ \hline
 
 %----------------------------------------------
 
-\begin{frame}[fragile]{Simpel Programma}
+\begin{frame}[fragile]{Simpel Programma - assembly}
 
 \begin{lstlisting}
 lda #$08
@@ -575,6 +687,30 @@ lda #$19
 sta $402
 rts
 \end{lstlisting}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}{Assembly}
+
+\begin{itemize}
+\item Simpel, maar diepere leercurve
+\item 151 offici\"ele instructies
+\item Kleine voorbeelden
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}{Assembly}
+
+\begin{itemize}
+\item lda \#\$10 Zet waarde \$10 in A (A = 16)
+\item sta \$400 Schrijf A naar \$400 (mem[1000] = A)
+\item rts return;
+\end{itemize}
 
 \end{frame}
 
@@ -630,6 +766,19 @@ rts
 %----------------------------------------------
 
 \begin{frame}
+\frametitle{Digitaal Audio - Speaker}
+
+\begin{itemize}
+\item Zeer ruw
+\item Aan of uit
+\item Frequentie
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
 \frametitle{Digitaal Audio}
 
 \begin{figure}
@@ -647,6 +796,7 @@ rts
 \item 's werelds eerste audio synthesizer
 \item Analoog \emph{en} Digitaal
 \item Verschillende onderscheidingen
+\item Timbaland plagiaat
 \end{itemize}
 
 \end{frame}
@@ -707,6 +857,8 @@ NES & custom & 8-bit digital & 5 \\ \hline
 
 \end{frame}
 
+% TODO laat voorbeelden horen van elke waveform
+
 %----------------------------------------------
 
 \begin{frame}
@@ -752,6 +904,23 @@ Raad welk muziekje bij welke computer/console hoort!
 \item 16 kleuren palette
 \item Maximaal 2 of 4 kleuren per 8x8 blok.
 \end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Ter Vergelijking}
+
+\begin{tabular}{|l|l|l|}
+\hline Model & Video & Kleuren \\
+VIC-20 & VIC I & 4-16??? \\
+C64 & VIC II & 16 \\
+Apple ][ & ??? & 1-4 \\
+IBM PC & mono of CGA & 1-4 \\
+ZX Spec. & geen (CPU) & 8 \\ \hline
+NES & Ricoh 2C02 PPU & 52 \\ \hline
+\end{tabular}
 
 \end{frame}
 
@@ -890,16 +1059,11 @@ Source: Duce
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{HCC}
+\frametitle{Opdracht}
 
 \begin{itemize}
-\item Nederlandse Hobby Computer Club
-\item 27 april 1977
-\item Diverse interessegroepen
-\item Elke twee maanden in Maarssen
-\item Retro (8/16 bit) computers welkom
-\item Ultimate II+
-\item Swappen
+\item Vorm groepen van maximaal 5
+\item Maak een demo!
 \end{itemize}
 
 \end{frame}
@@ -907,11 +1071,31 @@ Source: Duce
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Opdracht}
+\frametitle{Wil je een C64?}
 
 \begin{itemize}
-\item Vorm groepen van maximaal 5
-\item Maak een demo!
+\item Dat kan!
+\item Duur op ebay en marktplaats
+\item Goedkoop bij rommelmarkt
+\item Toetsenbord
+\item HCC
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{HCC}
+
+\begin{itemize}
+\item Nederlandse Hobby Computer Club
+\item Sinds 27 april 1977
+\item Diverse interessegroepen
+\item Elke twee maanden in Maarssen
+\item Retro (8/16 bit) computers welkom
+\item Ultimate II+
+\item Swappen
 \end{itemize}
 
 \end{frame}
@@ -924,7 +1108,8 @@ Source: Duce
 \begin{itemize}
 \item Demoscene
 \item Oldskool computers
-\item Enorme uitdaging
+\item Programmeerwedstrijden
+\item Cracking 'n Hacking
 \end{itemize}
 
 \end{frame}
@@ -946,13 +1131,58 @@ Source: Duce
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{Bronvermeldingen}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item archive.org
+\item c64-wiki.com
+\item codebase64.org
+\item commodore.hcc.nl
+\item csdb.dk
+\item dcs.warwick.ac.uk
+\item demoparty.net
+\item derbian.webs.com
+\item devil.iki.fi
+\item freeinfosociety.com
+\item id.scene.org
+\item ieee.org
+\end{itemize}
+\end{multicols}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Bronvermeldingen}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item musictechstudent.co.uk
+\item oldcomputers.net
+\item pagetable.com
+\item pouet.net
+\item revision-party.net
+\item scs-trc.net
+\item sta.c64.org
+\item vice.sourceforge.net
+\item wikipedia.org
+\end{itemize}
+\end{multicols}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
 \frametitle{Met dank aan}
 
 \begin{itemize}
 \item Lezingencommissie
 \item VIA
 \item CCC
-\item HCC
+\item HCC, lemon64, csdb, VICE
 \item Hobbyisten en C64 fans
 \item Scene
 \end{itemize}
@@ -964,18 +1194,22 @@ Source: Duce
 \begin{frame}
 \frametitle{Met dank aan}
 
-\begin{multicols}{2}
+\begin{multicols}{3}
 \begin{itemize}
 \item Abyss Connection
 \item Algotech
 \item Atlantis
 \item Bonzai
 \item Booze Design
+\item Byte Rapers
 \item Camelot
 \item Censor
 \item Fairlight
 \item Fossil
+\item Hoaxers
 \item House Designs
+\item Laxity
+\item LFT
 \item Maniacs of Noise
 \item Offence
 \item Onslaught
@@ -995,30 +1229,6 @@ Source: Duce
 \begin{frame}
 \frametitle{Bedankt voor jullie aandacht}
 \Large{\centerline{Zijn er nog vragen?}}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Bronvermeldingen}
-
-\begin{multicols}{2}
-\begin{itemize}
-\item 2017.revision-party.net
-\item c64-wiki.com
-\item codebase64.org
-\item commodore.hcc.nl
-\item dcs.warwick.ac.uk
-\item demoparty.net
-\item id.scene.org
-\item ieee.org
-\item pouet.net
-\item scs-trc.net
-\item sta.c64.org
-\item wikipedia.org
-\end{itemize}
-\end{multicols}
-
 \end{frame}
 
 \end{document}
