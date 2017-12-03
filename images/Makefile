@@ -5,7 +5,8 @@ GFX=\
 	c64schema.jpg c64schema2.jpg desk.jpg edsac.jpg edsac_crts.jpg gary.png \
 	ibm5150.jpg nes.jpg oxo.jpg palette.png pdp8.jpg rc3nes.png \
 	rekentabellen.jpg rev2017.jpg sbm_obey.png sbm_tuksu.png sx64.jpg \
-	terminator.jpg trs80.jpg vcs.jpg vic20.jpg x.jpg zxspectrum.jpg
+	terminator.jpg trs80.jpg vcs.jpg vic20.jpg waveforms.png x.jpg \
+	zxspectrum.jpg
 
 default: $(GFX)
 
@@ -65,6 +66,8 @@ vcs.jpg:
 	wget -O vcs.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Atari-2600-Wood-4Sw-Set.jpg/1024px-Atari-2600-Wood-4Sw-Set.jpg
 vic20.jpg:
 	wget -O vic20.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Commodore-VIC-20-FL.jpg/1024px-Commodore-VIC-20-FL.jpg
+waveforms.png:
+	wget -O waveforms.png https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Waveforms.svg/892px-Waveforms.svg.png
 x.jpg:
 	wget -O x.jpg http://www.vanverseveld.me/folkert/c64/workshop/gfx/x.jpg
 zxspectrum.jpg:
