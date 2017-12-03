@@ -1,5 +1,11 @@
 wat voorbeelden voor bij de workshop
 
+eerst wat vertellen over de primitiefste vorm: PC speaker
+laat pc_beep.au in audacity met loop horen
+en dan pc_single.au
+vertel over arpeggio, laat dan pc_arpeggio.au horen
+
+
 Commodore 64:
 -------------
 
@@ -9,8 +15,18 @@ Pulse width modulation visualisatie:
   C64 Matt gray's "Last Ninja 2 The Mansion" oscilloscope view (improved).mp4
     rond 3:10-4:00 en 4:40-5:00
 
-Sampling:
+Wisselen van kanalen:
+  C64 Jeroen Tel's "Cybernoid I and II" Oscilloscope view.mp4.download
+  drum/snare gaat van 3e naar 2e kanaal bij 0:15
+  drum/snare gaat van 2e naar 1e kanaal bij 3:03
+
+  cybernoid ii begint bij 6:44
+
+Sampling 6581:
   C64 Jeroen Tel's "Turbo Outrun" Oscilloscope view.mp4
+  C64 Jeroen Tel's Stormlord music oscilloscope view.mp4
+Sampling 8580:
+  C64 LMan's 'Vortex' oscilloscope view.mp4
 
 piano remix:
   (C64) The Great Giana Sisters (Piano Solo).mp4
