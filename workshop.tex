@@ -28,6 +28,7 @@
 \usepackage{multicol}
 \usepackage{amssymb}
 \usepackage{listings}
+\usepackage{subcaption}
 
 \title{Programmeren in Beperkte Omgevingen}
 % Easter egg: Commodore Business Machines logo
@@ -328,15 +329,15 @@
 \frametitle{Ter Vergelijking}
 
 \begin{tabular}{|l|l|l|l|l|}
-\hline Jaar & Model & Prijs toen & Prijs omg. & Prijs nu \\ \hline
-1977 & PET & \$795 & \$3150 & \$120-\$200 \\
-1980 & VIC-20 & \$299.95 & \$874 & \$80-\$110 \\
-1982 & C64 & \$595 & \$1480 & \$10-\$15 \\ \hline
-1977 & Apple ][ & \$1296 & \$5130 & \$200-\$350 \\
-1981 & IBM PC & \$1565 & \$4130 & \$1200-\$2000 \\
+\hline Jaar & Model & Toen & Omg. & Nu \\ \hline
+1977 & PET & \$795 & \$3150 & \$600-\$800 \\
+1980 & VIC-20 & \$299.95 & \$874 & \$30-\$110 \\
+1982 & C64 & \$595 & \$1480 & \$10-\$50 \\ \hline
+1977 & Apple ][ & \$1296 & \$5130 & \$200-\$750 \\
+1981 & IBM PC & \$1565 & \$4130 & \$150-\$1100 \\
 %IBM PC & 16-640 & Beeper & Ja & \$1565 \\
-1982 & ZX Spec. & \pounds 175 & \pounds 567 & \pounds 100 \\ \hline
-1983 & NES & \$179 & \$433 & \$40-\$80 \\ \hline
+1982 & ZX Spec. & \pounds 175 & \pounds 567 & \pounds 80-\pounds 120 \\ \hline
+1983 & NES & \$179 & \$433 & \$25-\$120 \\ \hline
 \end{tabular}
 
 %\begin{tabular}{|l|l|l|l|l|}
@@ -483,15 +484,15 @@
 \begin{frame}
 \frametitle{Ter Vergelijking}
 
-\begin{tabular}{|l|l|l|l|}
-\hline Model & CPU & MHz \\ \hline
-PET & MOS 6502 & 1 \\ 
-VIC-20 & MOS 6502 & 1 \\ 
-C64 & MOS 6510 & 1 \\ \hline
-Apple ][ & MOS 6502 & 1 \\
-IBM PC & i8086 & 4.04 \\
-ZX Spec. & Z80 & 3.5 \\ \hline
-NES & Ricoh 2A03 & 1 \\ \hline
+\begin{tabular}{|l|l|l|l|l|}
+\hline Model & RAM (KB) & CPU & MHz \\ \hline
+PET & 8 & MOS 6502 & 1 \\
+VIC-20 & 5 & MOS 6502 & 1.11 \\
+C64 & 64 & MOS 6510 & 0.985 \\ \hline
+Apple ][ & 4 & MOS 6502 & 1 \\
+IBM PC & 16 & i8086 & 4.04 \\
+ZX Spec. & 16 & Z80 & 3.5 \\ \hline
+NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 \end{tabular}
 
 \end{frame}
@@ -558,6 +559,17 @@ NES & Ricoh 2A03 & 1 \\ \hline
 \item Literatuur
 \item Programmeerwedstrijden (ja, 30 jaar lang!)
 \end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{C64 wordt nog steeds gebruikt!!}
+
+\begin{figure}
+\includegraphics[width=0.75\linewidth]{images/c64c_garage.jpg}
+\end{figure}
 
 \end{frame}
 
@@ -760,6 +772,22 @@ rts
 \item Stapsgewijs
 \item Duidelijk zichtbaar op oude PCs
 \end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle[fragile]{Digitaal Audio}
+
+\begin{figure}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\linewidth]{images/waveforms.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\linewidth]{images/rc3nes.png}
+	\end{subfigure}
+\end{figure}
 
 \end{frame}
 

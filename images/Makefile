@@ -2,10 +2,11 @@
 
 GFX=\
 	adsr.png appleii.jpg bender.jpeg bombe.jpg boot.png c64.jpg c64c.jpg \
-	c64schema.jpg c64schema2.jpg desk.jpg edsac.jpg edsac_crts.jpg gary.png \
-	ibm5150.jpg nes.jpg oxo.jpg palette.png pdp8.jpg rc3nes.png \
-	rekentabellen.jpg rev2017.jpg sbm_obey.png sbm_tuksu.png sx64.jpg \
-	terminator.jpg trs80.jpg vcs.jpg vic20.jpg x.jpg zxspectrum.jpg
+	c64c_garage.jpg c64schema.jpg c64schema2.jpg desk.jpg edsac.jpg \
+	edsac_crts.jpg gary.png ibm5150.jpg nes.jpg oxo.jpg palette.png pdp8.jpg \
+	rc3nes.png rekentabellen.jpg rev2017.jpg sbm_obey.png sbm_tuksu.png \
+	sx64.jpg terminator.jpg trs80.jpg vcs.jpg vic20.jpg waveforms.png x.jpg \
+	zxspectrum.jpg
 
 default: $(GFX)
 
@@ -23,6 +24,8 @@ c64.jpg:
 	wget -O c64.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Commodore-64-Computer-FL.jpg/1024px-Commodore-64-Computer-FL.jpg
 c64c.jpg:
 	wget -O c64c.jpg https://www.c64-wiki.com/images/6/6c/C64c.jpg
+c64c_garage.jpg:
+	wget -O c64c_garage.jpg https://images.hardocp.com/images/news/1475425835dxVq4ZPoJ3_1_1_l.jpg
 c64schema.jpg:
 	wget -O c64schema.jpg http://www.vanverseveld.me/folkert/c64/workshop/gfx/c64schema.jpg
 c64schema2.jpg:
