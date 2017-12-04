@@ -1,0 +1,211 @@
+\documentclass{article}
+
+\usepackage[dutch]{babel}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{eurosym}
+
+\title{Opgaven voor workshop Commodore 64}
+\author{Folkert van Verseveld}
+
+\newcounter{problem}
+\newcounter{solution}
+
+\newcommand\problem{%
+  \stepcounter{problem}%
+  \textbf{\theproblem.}~%
+  \setcounter{solution}{0}%
+}
+\parindent 0in
+\parskip 1em
+
+\begin{document}
+\maketitle
+
+\section{Inleiding}
+
+Deze opgavenbundel bevat een verzameling aan opgaven van langzaam toenemende moeilijkheidsgraad.
+De moeilijke opgaven zijn voorzien van een opmerking en deze kunt u overslaan.
+In het antwoordenbundel staan de uitwerkingen van een aantal opgaven.
+Een deel van de opgaven zullen we ook tijdens de workshop klassikaal doornemen en variaties van laten zien.
+
+\subsection{VICE opzetten}
+Voor deze workshop gebruiken we de Versatile Commodore Emulator (VICE).
+Deze kunt u \href{http://vice-emu.sourceforge.net/}{hier} vinden.
+Hieronder volgen kant-en-klare recepten voor verschillende besturingssytemen.
+
+\subsubsection{Linux}
+Het makkelijkst is om VICE met uw package manager te installeren. Bijvoorbeeld: \verb:sudo apt install vice: op Debian, Ubuntu en varianten.
+Als dit niet werkt maar u heeft Wine dan kunt u het recept van Windows ook volgen.
+Voor de masochisten is er natuurlijk ook altijd de \href{http://sourceforge.net/projects/vice-emu/files/releases/vice-3.1.tar.gz/download}{source code}.
+
+\subsubsection{Windows}
+Download de \href{http://sourceforge.net/projects/vice-emu/files/releases/binaries/windows/WinVICE-3.1-x64.7z/download}{windows versie}.
+Andere versies kun je \href{http://vice-emu.sourceforge.net/windows.html}{hier} vinden.
+U heeft \href{http://www.7-zip.org/}{7Zip} nodig om de emulator uit te pakken.
+Pak vervolgens de emulator uit en start \verb:x64.exe: op.
+
+\subsubsection{Mac}
+Download de \href{http://sourceforge.net/projects/vice-emu/files/releases/binaries/macosx/vice-macosx-sdl-x86_64-10.12-3.1.dmg/download}{mac versie}.
+Om de emulator te gebruiken moet de .dmg uitgepakt worden.
+Let op dat de emulator vanuit een terminal gestart moet worden omdat het optiemenu ontbreekt.
+
+Open de terminal en navigeer naar de map waar u de emulator heeft uitgepakt en start de emulator op. Bijvoorbeeld als u de emulator op uw bureaublad heeft gezet:
+\begin{lstlisting}
+cd /Users/gebruiker/Desktop/vice-emu/
+./x64.app/Contents/MacOS/x64
+\end{lstlisting}
+
+Vervang \verb:gebruiker: met uw gebruikersnaam.
+
+\subsection{Tips en Trucs}
+
+Als u vastloopt met de opgaven kunt u ook het document met hints bekijken die u verder op weg helpen.
+Aarzel vooral niet om dingen te proberen.
+Sommige opgaven zijn juist gemaakt met het idee dat u dingen moet proberen.
+
+Als de emulator lijkt te zijn vastgelopen dan kunt u via \verb:File->Reset->Soft: de computer herstarten.
+Als dit niet werkt kunt u via \verb:File->Reset->Hard: het forceren en als dat ook niet werkt de emulator sluiten en opnieuw openen.
+
+\section{Introductie BASIC}
+
+De Commmodore 64 begrijpt naast machine code ook de high-level programmeertaal BASIC.
+Als u de VICE emulator opstart zult u een vergelijkbaar venster zien zoals Figuur \ref{fig:vice}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth]{images/boot.png}
+\caption{VICE emulator}
+\label{fig:vice}
+\end{figure}
+
+Het opstartvenster vertelt dat het uitgerust is met BASIC versie 2 en dat het een 64KiB systeem is waarvan er 38911 bytes beschikbaar zijn voor BASIC.
+Dit betekent ook dat een BASIC programma dus niet groter kan zijn dan 38.9KB!
+
+Zoals u waarschijnlijk ook is opgevallen is dat er alleen hoofdletters in het opstartscherm gebruikt zijn.
+Dit komt omdat toentertijd computerontwerpers het overbodig vonden om hoofdletters en kleine letters door mekaar te kunnen gebruiken!
+Het is wel mogelijk om ze allebei tegelijk te gebruiken, maar dat laten we hier buiten beschouwing.
+
+\subsection{Typen}
+
+\problem Probeer \verb:hallo: en \verb:HALLO: in te typen. Wat gebeurt er als u tekst typt terwijl u de shift toets ingedrukt houdt?
+
+Met behulp van de spatie kunt u naast een spatie plaatsen ook een teken van het scherm `wegpoetsen'.
+
+\problem Probeer verschillende stukken tekst van het scherm aan te passen of te verwijderen door er spaties overheen te plaatsen.
+
+\problem Wat gebeurt er eigenlijk als u de cursor helemaal rechts plaats en vervolgens nog een keer pijltje naar rechts indrukt?
+En wat gebeurt er als u de cursor helemaal links plaats en vervolgens nog een keer pijltje naar links indrukt?
+En wat gebeurt er als u de cursor onderaan het scherm plaats en nogmaals pijltje omlaag indrukt?
+
+\subsection{Printen}
+
+Nu we weten hoe we tekst op het scherm plaatsen en weghalen kunnen we gaan kijken hoe we in BASIC moeten programmeren.
+Laten we allereerst gaan kijken hoe we een ``Hello World'' programma kunnen maken.
+Tekst kan geprint worden met het \verb:PRINT: commando.
+Elk commando wordt uitgevoerd zodra u enter indrukt.
+De tekst die geprint wordt moet tussen dubbele haken, namelijk \verb:":, staan.
+Een voorbeeld hiervan is \verb:PRINT "HALLO":.
+
+\problem Pas het voorbeeld aan zodat er niet \verb:HALLO: maar \verb:HELLO WORLD: geprint wordt.
+
+\verb:PRINT: kan ook verschillende stukken tekst aan elkaar plakken.
+Dit kan zowel met \verb:,: als met \verb:;: en dit kan meerdere keren herhaald worden.
+
+\problem Wat is het verschil tussen \verb:PRINT"HALLO","OLLAH": en \verb:PRINT"HALLO";"OLLAH":?
+
+\subsection{Rekenen}
+
+Met BASIC kunnen we ook berekeningen uitvoeren.
+De basisoperatoren $+$,$-$,$*$ en $/$ kunnen we hiervoor gebruiken.
+Maar als we bijvoorbeeld \verb:12 + 12: intypen en op enter drukken, dan zien we geen resultaat.
+Dit komt omdat we niet verteld hebben dat we het resultaat ook willen printen.
+
+\problem Schrijf een BASIC commando wat $12 + 12$ uitrekent en het resultaat naar het scherm print.
+
+\problem Schrijf een BASIC commando wat $2 - 3 * 4$ uitrekent en het resultaat naar het scherm print.
+
+De enige operator die we nog niet met een voorbeeld hebben laten zien is de deeloperator $/$.
+In BASIC worden alle getallen als floating point getallen opgeslagen, wat sommige programmeurs misschien niet zouden verwachten.
+Bijvoorbeeld $\verb:PRINT:\ 2/3$ zal niet $0$, maar $0.666666667$ printen.
+
+Als we nu wel integerdeling willen hebben, dat wil zeggen dat we alles achter de komma `negeren',
+dan kunnen we dit doen met de functie \verb:INT():.
+Bijvoorbeeld $\verb:PRINT:\ \verb:INT:(2/3)$ zal $0$ printen.
+
+Zoals u waarschijnlijk al is opgevallen is dat de basisoperatoren dezelfde prioriteit hebben als in de wiskunde.
+Met behulp van haakjes kunt u berekeningen in een andere volgorde uitvoeren.
+%Als u een te ingewikkelde formule invult zal de foutmelding \verb:FORMULA TOO COMPLEX: geprint worden.
+
+\problem Schrijf een BASIC commando wat $3*3*3*3$ uitrekent en het resultaat naar het scherm print.
+Kunnen we dit naast herhaaldelijk vermenigvuldigen ook anders opschrijven?
+
+\subsection{Variabelen}
+
+Het is handig als we onze resultaten kunnen opslaan in variabelen zodat we resultaten niet steeds opnieuw moeten uitrekenen.
+Daarnaast kunnen we een programma ook interactief maken.
+BASIC heeft numerieke variabelen en nog andere typen variabelen (denk aan tekst en lijsten van getallen).
+We kijken voor nu alleen naar de numerieke variabelen.
+
+Vroeger werd de code van een programma eerst op papier geschreven en daarna ingetypt.
+Variabelen werden daarom vaak kort en cryptisch opgeschreven, waardoor de Commodore 64 alleen korte variabelen ondersteunt.
+Een variabele mag niet de naam hebben van een BASIC commando, dus \verb:PRINT: is bijvoorbeeld een ongeldige naam.
+Daarnaast mag een variabele naam \emph{niet langer zijn dan twee karakters}.
+Als een variabele langer is dan twee karakters worden alleen de eerste twee onthouden.
+Bijvoorbeeld \verb:APPELS:, \verb:AP: en \verb:APPELFLAP: worden allemaal gezien als dezelfde variabele!
+
+Stel, we willen gaan bijhouden hoeveel appels we hebben en we beginnen met 3 appels.
+Dit doen we met \verb:A=3: en we kunnen dit uitprinten met bijvoorbeeld \verb:PRINT"APPELS",A:
+
+We kunnen er een appel bijleggen door \verb:A=A+1: uit te voeren.
+Daarna printen we weer hoeveel appels we hebben en zullen zien dat er nu 4 appels zijn.
+Als u de printregel nog op het scherm heeft staan kunt u de cursor ernaar verplaatsen en weer op enter drukken zodat u de regel niet opnieuw hoeft in te typen.
+
+Nu we de elementaire basis van BASIC onder de knie hebben kunnen we naar wat serieuzere programma's gaan kijken.
+
+\section{Programmeren in BASIC}
+
+Tot nu toe moesten we elke keer handmatig de BASIC commando's invullen.
+Dit werkt voor kleine probeelsels, maar voor echte serieuze projecten is dit niet praktisch.
+We gaan kijken hoe we ons eerste BASIC programma kunnen schrijven wat helemaal op zichzelf kan draaien zodra we hem RUNnen.
+
+Elke regel in een BASIC programma wordt voorafgegaan met een nummer.
+Dit is te vergelijken met een regelnummer.
+De BASIC interpreter gebruikt de regelnummers om te weten in welke volgorde het programma uitgevoerd moet worden.
+
+Een simpel programma wat we nu kunnen maken is het volgende:
+
+\begin{lstlisting}
+10 PRINT"COMMODORE 64"
+\end{lstlisting}
+
+Als we nu RUN intypen en op enter drukken zal het programma uitgevoerd worden.
+Gefeliciteerd! U heeft uw eerste echte BASIC programma gemaakt!
+
+Nu is dit programma een beetje saai.
+We willen dat het scherm helemaal vol komt te staan door oneindig keer regel 10 uit te voeren.
+In BASIC kunnen we met behulp van een \verb:GOTO: naar een regelnummer springen.
+Hiermee kunnen we een oneindige loop maken.
+Voeg de volgende regel toe en RUN het programma.
+
+\begin{lstlisting}
+20 GOTO 10
+\end{lstlisting}
+
+Het programma kan afgebroken worden met ESCAPE (\verb:STOP: op de C=64).
+
+\problem Voeg nu achter regel 10 een \verb:;: toe en druk op enter. Wat gebeurt er nu als we het programma RUNnen?
+
+\problem Typ \verb:LIST: en daarna \verb:LIST10: in. Wat doet dit commando?
+
+Elke keer als we een nieuw programma gaan schrijven willen we alle code van vorige programma's verwijderen.
+Dit kunnen we doen door de emulator te resetten, maar dit is natuurlijk niet handig.
+Een veel makkelijkere manier is door \verb:NEW: in te typen.
+Wees hier wel voorzichtig mee, want er wordt geen waarschuwing gegeven!
+
+\problem Folkert heeft 6 appels gekocht van \euro 0,32 per stuk en 4 bananen van \euro 0,22 per stuk en zou de totale kosten van alle appels, alle bananen en het totaal willen uitprinten.
+Schrijf een programma wat dit uitrekent en print. Vergeet niet \verb:NEW: in te typen voordat je begint met programmeren!
+
+\end{document}

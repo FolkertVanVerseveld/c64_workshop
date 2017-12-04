@@ -1,0 +1,67 @@
+\documentclass{article}
+
+\usepackage[dutch]{babel}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+
+\title{Uitwerkingen van Opgaven voor workshop Commodore 64}
+\author{Folkert van Verseveld}
+
+\newcounter{solution}
+
+\newcommand\solution{%
+  \stepcounter{solution}%
+  \textbf{\thesolution.}~%
+}
+\parindent 0in
+\parskip 1em
+
+\begin{document}
+\maketitle
+
+\section{Inleiding}
+
+Alle opgaven zijn kort en bondig uitgewerkt in dit document.
+Let op dat de opgaven waarbij code geschreven moet worden niet per se de enige oplossing is!
+
+\section{Introductie BASIC}
+
+\solution De shift zorgt ervoor dat de alternatieve karakters gebruikt worden van de aangeslagen toetsen. Op het toetsenbord van de Commodore 64 is dit duidelijk te zien, maar helaas niet in een emulator.
+
+\solution Met de pijltoetsen kunt u de cursor verplaatsen over het scherm.
+Alle tekst die u intypt wordt over de onderliggende tekst heengeschreven.
+Als u de spatie intypt lijkt het of de onderliggende tekst `weggepoetst' wordt.
+
+\solution Als de cursor rechts voorbij de laatste kolom gaat zal de cursor naar de eerste kolom van de volgende regel springen. Als de cursor links voor de eerste kolom gaat zal de cursor naar de laatste kolom van de vorige regel springen (behalve bij de eerste regel).
+Als de cursor voorbij de laatste regel gaat zal het hele venster \'e\'en regel naar beneden scrollen en de cursor wordt weer op de laatste regel gezet.
+
+\solution \verb:PRINT"HELLO WORLD":
+
+\solution \verb:,: zal een tab plaatsen tussen de elementen terwijl \verb:;: ze direct aan mekaar plakt.
+
+\solution \verb:PRINT12+12:
+
+\solution \verb:PRINT2-3*4:
+
+\solution \verb:PRINT3*3*3*3:. We hadden ook \^{} kunnen gebruiken: \verb:PRINT3^4:.
+
+\solution De tekst \verb:COMMODORE 64: zal nu continu achter elkaar geprint worden in plaats van \'e\'en per regel.
+
+\solution Met \verb:LIST: kan men een \emph{listing} geven van alle broncode. \verb:LIST10: geeft alle code van regel 10.
+
+\solution Een voorbeeld van hoe dit gemaakt kan worden:
+\begin{lstlisting}
+5A=6
+6AP=0.32
+7B=4
+8BP=0.22
+10PRINT"FRUIT","PRIJS","AANTAL","TOTAAL"
+20PRINT"APPELS",AP,A,AP*A
+30PRINT"BANANEN",BP,B,BP*B
+40PRINT""
+50PRINT"TOTAAL:",AP*A+BP*B
+\end{lstlisting}
+
+\end{document}
