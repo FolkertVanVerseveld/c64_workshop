@@ -70,6 +70,8 @@ vcs.jpg:
 	wget -O vcs.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Atari-2600-Wood-4Sw-Set.jpg/1024px-Atari-2600-Wood-4Sw-Set.jpg
 vic20.jpg:
 	wget -O vic20.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Commodore-VIC-20-FL.jpg/1024px-Commodore-VIC-20-FL.jpg
+waveforms.png:
+	wget -O waveforms.png https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Waveforms.svg/892px-Waveforms.svg.png
 x.jpg:
 	wget -O x.jpg http://www.vanverseveld.me/folkert/c64/workshop/gfx/x.jpg
 zxspectrum.jpg:

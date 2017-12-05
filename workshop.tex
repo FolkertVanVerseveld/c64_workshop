@@ -759,6 +759,10 @@ rts
 \item Analoog of Digitaal
 \end{itemize}
 
+\begin{figure}
+\includegraphics[width=0.6\linewidth]{images/waveforms.png}
+\end{figure}
+
 \end{frame}
 
 %----------------------------------------------
@@ -808,9 +812,64 @@ rts
 \frametitle{Digitaal Audio - Speaker}
 
 \begin{itemize}
+\item Squaker
 \item Zeer ruw
 \item Aan of uit
 \item Frequentie
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Digitaal Audio - Speaker Voorbeelden}
+
+\begin{itemize}
+\item Loop
+\item Single
+\item Arpeggio
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Digitaal Audio - NES}
+
+\begin{tabular}{|l|l|l|l|}
+\hline \# & type & volumes & frequenties \\ \hline
+2 & Pulse wave & 16 & 54Hz-28kHz \\
+% XXX er stond 447kHz als upper bound, maar kan toch niet kloppen?
+1 & White noise & 16 & 29.3Hz-47kHz \\
+1 & Triangle wave & 1 & 27Hz-56kHz \\
+1 & Delta PCM & 16 & 4kHz-33kHz \\ \hline
+\end{tabular}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Digitaal Audio - NES}
+
+\begin{itemize}
+\item 5 kanalen
+\item 8 bit voor pulse, noise en triangle
+\item 1 bit voor DPCM
+\item hardware pitch bending
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Digitaal Audio - NES voorbeeld}
+
+\begin{itemize}
+\item The Legend of Zelda theme
 \end{itemize}
 
 \end{frame}
@@ -835,6 +894,7 @@ rts
 \item 's werelds eerste audio synthesizer
 \item Analoog \emph{en} Digitaal
 \item Verschillende onderscheidingen
+\item 6581 en 8580
 \item Timbaland plagiaat
 \end{itemize}
 
@@ -853,7 +913,7 @@ C64 & SID & A/D 8-bit synthesizer & 3 \\ \hline
 Apple ][ & Speaker & 1-bit beeper & 0 \\
 IBM PC & Speaker & 1-bit beeper & 0 \\
 %ZX Spec. & 16K & Beeper & 175 pound & 175 pound \\ \hline
-NES & custom & 8-bit digital & 5 \\ \hline
+NES & RP2A03 & 8-bit digitaal & 5 \\ \hline
 \end{tabular}
 
 \end{frame}
@@ -896,7 +956,28 @@ NES & custom & 8-bit digital & 5 \\ \hline
 
 \end{frame}
 
-% TODO laat voorbeelden horen van elke waveform
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Waveforms}
+
+\begin{figure}
+\includegraphics[width=0.75\linewidth]{images/waveforms.png}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{SID - Voorbeelden}
+
+\begin{itemize}
+\item Driller
+\item Commando
+\end{itemize}
+
+\end{frame}
 
 %----------------------------------------------
 
@@ -907,6 +988,24 @@ NES & custom & 8-bit digital & 5 \\ \hline
 Raad welk muziekje bij welke computer/console hoort!
 \end{block}
 
+\begin{itemize}
+\item IBM PC
+\item NES
+\item C64
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Intermezzo - Voorbeelden}
+
+\begin{itemize}
+\item Grand Prix Circuit (PC, C64)
+\item Castlevania (PC, NES, C64)
+\end{itemize}
+
 \end{frame}
 
 %----------------------------------------------
@@ -916,8 +1015,20 @@ Raad welk muziekje bij welke computer/console hoort!
 
 \begin{itemize}
 \item IBM PC
-\item C64
 \item NES
+\item C64
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{SID hacking}
+
+\begin{itemize}
+\item Click/pop-bug in 6581
+\item 4-bit PCM digitaal
 \end{itemize}
 
 \end{frame}
