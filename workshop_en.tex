@@ -1,43 +1,25 @@
 %
-% Naam: Folkert van Verseveld
+% Name: Folkert van Verseveld
 % UvAnetID: 11839341
 % Contact:
 %   @: folkert.van.verseveld@gmail.com
 %   @: folkert.vanverseveld@students.uva.nl
 %
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% LATEX-TEMPLATE PRESENTATIE
-%-------------------------------------------------------------------------------
-% Voor informatie over presenterenn, zie
-% http://practicumav.nl/presenteren/presenteren.html
-% Voor readme en meest recente versie van het template, zie
-% https://gitlab-fnwi.uva.nl/informatica/LaTeX-template.git
-% Gebaseerd op een template van: http://www.LaTeXTemplates.com
-% Licentie: CC BY-NC-SA 3.0
-% (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%-------------------------------------------------------------------------------
-%	PACKAGES EN CONFIGURATIE
-%-------------------------------------------------------------------------------
-
 \documentclass[aspectratio=43]{uva-inf-presentation}
-\usepackage[dutch]{babel}
-%\usepackage{qtree}
 \usepackage{multicol}
 \usepackage{amssymb}
 \usepackage{listings}
 \usepackage{subcaption}
 
-\title{Programmeren in Beperkte Omgevingen}
+\title{Programming in Restricted Enviroments}
 % Easter egg: Commodore Business Machines logo
 \course{C=}
 \assignment{Just 4 Fun}
 \assignmenttype{Hacking}
 \authors{Folkert van Verseveld}
 \uvanetids{11839341}
-% XXX Tutor, mentor en docent niet echt van toepassing denk ik?
+% XXX Tutor, mentor and docent are not necessary?
 \tutor{Teun Mathijssen}
 \mentor{}
 \docent{Robert van Wijk}
@@ -51,32 +33,26 @@
 \end{titelframe}
 
 \begin{frame}
-\frametitle{Inhoudsopgave}
+\frametitle{Table of Contents}
 \tableofcontents
 \end{frame}
 
-%-------------------------------------------------------------------------------
-%	PRESENTATIE SLIDES
-%-------------------------------------------------------------------------------
 
-% Secties zijn er om structuur in je presentatie aan te brengen
-% en worden direct in de inhoudsopgave opgenomen
-\section{Introductie}
-% Maak een subsection voor een serie slides met een gedeeld thema
-\section{Programmeeromgeving}
-\section{Intermezzo's en Opdrachten}
+\section{Introduction}
+\section{Programming Environment}
+\section{Intermezzo's and Exercises}
 
-\section{Conclusies}
+\section{Conclusions}
 
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Beperkte Omgevingen}
+\frametitle{Restricted Environments}
 
 \begin{itemize}
-\item Allereerste `computers'
-\item Militaire toepassingen
-\item Kamersgrote machines en torenhoge energierekeningen
+\item Very first `computers'
+\item Primarily built for Army, Universities or Government
+\item Spanning several rooms using enormous amount of electricity
 \end{itemize}
 
 \end{frame}
@@ -84,11 +60,11 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Allereerste `computers'}
+\frametitle{Applications of very first `computers'}
 
 \begin{itemize}
-\item Rekentabellen (sin, cos)
-\item Administratie (statistiek, belasting)
+\item Calculation tables (sin, cos)
+\item Administration (statistics, taxes)
 \end{itemize}
 
 \end{frame}
@@ -96,7 +72,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Rekentabellen}
+\frametitle{Calculation tables}
 
 \begin{figure}
 \includegraphics[width=0.75\linewidth]{images/rekentabellen.jpg}
@@ -107,11 +83,11 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Militaire toepassingen}
+\frametitle{Military Applications}
 
 \begin{itemize}
-\item Artillerie (boog van kogel)
-\item Cryptografie (enigma)
+\item Artillery (projectiles)
+\item Cryptography (enigma)
 \item OXO
 \end{itemize}
 
@@ -159,13 +135,8 @@
 \includegraphics[width=0.75\linewidth]{images/oxo.jpg}
 \end{figure}
 % http://www.dcs.warwick.ac.uk/~edsac/
-% eventueel OXO in emulator laten zien.
 
 \end{frame}
-
-%----------------------------------------------
-
-% XXX add edsac geschiedenis & specs?
 
 %----------------------------------------------
 
@@ -173,12 +144,12 @@
 \frametitle{Mainframes}
 
 \begin{itemize}
-\item Multi-user omgeving
+\item Multi-user environment
 \item Batch
-\item Reserveren
-\item Onpraktisch
-\item Heel duur: \$100,000+ / \$1,000,000+
-\item Gebruikersonvriendelijk
+\item Reserve computing time
+\item Not for practical use
+\item Very expensive: \$100,000+ / \$1,000,000+
+\item Not user friendly
 \end{itemize}
 
 \end{frame}
@@ -200,9 +171,9 @@
 \frametitle{Mini-mainframes}
 
 \begin{itemize}
-\item Duur, maar niet onbetaalbaar: \$10000+
-\item Acceptabele performance
-\item `Gewone' klanten
+\item Expensive, but less than millions: \$10000+
+\item Acceptable performance
+\item `Average' customers
 \end{itemize}
 
 \end{frame}
@@ -213,8 +184,8 @@
 \frametitle{Moore's law}
 
 \begin{itemize}
-\item Rekenmachines steeds sneller en goedkoper
-\item Hoe goedkoper, des te meer toepassingen
+\item Calculators are getting faster and cheaper
+\item The cheaper, the more applications
 \end{itemize}
 
 \end{frame}
@@ -222,13 +193,13 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Introductie van de Personal Computer}
+\frametitle{Introduction of Personal Computer}
 
 \begin{itemize}
 \item Mini mainframe
-\item `Goedkoop'
-\item `Gebruikersvriendelijk'
-\item Eerste echte PCs rond 1977-1982
+\item `Cheap'
+\item `User friendly'
+\item Real PCs around 1977-1982
 \end{itemize}
 
 \end{frame}
@@ -236,7 +207,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Eerste computers}
+\frametitle{First Personal Computers}
 
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{images/appleii.jpg}
@@ -247,7 +218,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Eerste computers}
+\frametitle{First Personal Computers}
 
 \begin{figure}
 \includegraphics[width=0.75\linewidth]{images/trs80.jpg}
@@ -258,7 +229,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Eerste computers}
+\frametitle{First Personal Computers}
 
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{images/pet.jpg}
@@ -269,7 +240,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Eerste computers}
+\frametitle{First Personal Computers}
 
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{images/vic20.jpg}
@@ -280,7 +251,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Eerste computers}
+\frametitle{First Personal Computers}
 
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{images/ibm5150.jpg}
@@ -291,7 +262,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Eerste computers}
+\frametitle{First Personal Computers}
 
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{images/zxspectrum.jpg}
@@ -302,7 +273,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Eerste Game Consoles}
+\frametitle{First Game Consoles}
 
 \begin{figure}
 \includegraphics[width=0.75\linewidth]{images/vcs.jpg}
@@ -313,7 +284,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Eerste Game Consoles}
+\frametitle{First Game Consoles}
 
 \begin{figure}
 \includegraphics[width=0.75\linewidth]{images/nes.jpg}
@@ -324,11 +295,11 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Toepassingen van PCs}
+\frametitle{Applications of PCs}
 
 \begin{itemize}
-\item Kantoor gerelateerd (administratie, spreadsheets, \dots)
-\item Consumentgericht
+\item Office related (administration, spreadsheets, \dots)
+\item Aimed at broader consumer audience
 \item (Games)
 \end{itemize}
 
@@ -337,42 +308,29 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Ter Vergelijking}
+\frametitle{Personal Computers by Comparison}
 
 \begin{tabular}{|l|l|l|l|l|}
-\hline Jaar & Model & Toen & Omg. & Nu \\ \hline
+\hline Year & Model & Introd. & Converted & Now \\ \hline
 1977 & PET & \$795 & \$3150 & \$600-\$800 \\
 1980 & VIC-20 & \$299.95 & \$874 & \$30-\$110 \\
 1982 & C64 & \$595 & \$1480 & \$10-\$50 \\ \hline
 1977 & Apple ][ & \$1296 & \$5130 & \$200-\$750 \\
 1981 & IBM PC & \$1565 & \$4130 & \$150-\$1100 \\
-%IBM PC & 16-640 & Beeper & Ja & \$1565 \\
 1982 & ZX Spec. & \pounds 175 & \pounds 567 & \pounds 80-\pounds 120 \\ \hline
 1983 & NES & \$179 & \$433 & \$25-\$120 \\ \hline
 \end{tabular}
-
-%\begin{tabular}{|l|l|l|l|l|}
-%\hline Model & RAM & Geluid & \$ toen & \$ nu \\
-%%C64 & 64K & AD Synth. & \$595 - \$135 & \$595 \\
-%C64 & 64K & AD Synth. & \$595 & \$595 \\
-%Apple ][ & 8-16K & Beeper & \$1296 & \$1296 \\
-%IBM PC & 16K & Beeper & \$1565 & \$1565 \\
-%%IBM PC & 16-640 & Beeper & Ja & \$1565 \\
-%%ZX Spec. & 16 & Beeper & Nee & \pound 175 \\ \hline
-%ZX Spec. & 16K & Beeper & \pounds 175 & \pounds 175 pound \\ \hline
-%NES & 2K & Z80? & \$179 & \$433 \\ \hline
-%\end{tabular}
 
 \end{frame}
 
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{En harddisk opslag?}
+\frametitle{What about Hard Disks?}
 
 \begin{itemize}
-\item Niet nodig
-\item Te duur (+\$500/+\$2000)
+\item Don't need them
+\item Too expensive (+\$500/+\$2000)
 \end{itemize}
 
 \end{frame}
@@ -380,11 +338,11 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Data-opslag}
+\frametitle{Data Storage}
 
 \begin{itemize}
-\item programma's in RAM, firmware in ROM
-\item power loss
+\item Programs in RAM, firmware in ROM
+\item Power loss: program gone!
 \end{itemize}
 
 \end{frame}
@@ -395,9 +353,9 @@
 \frametitle{Tapes!}
 
 \begin{itemize}
-\item Sequentieel magnetisch geheugen
-\item Enkele MBs
-\item Enkel-/dubbelzijdig
+\item Sequential magnetic memory
+\item Couple of MBs
+\item Single/Double density
 \end{itemize}
 
 \end{frame}
@@ -405,12 +363,12 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Programma opzoeken}
+\frametitle{Searching for Program}
 
 \begin{itemize}
-\item Onhandig
-\item Handmatig heen en weer zoeken
-\item Analoge file table
+\item Clumsy
+\item Manually seek forward and rewind tape
+\item Analogue file table
 \end{itemize}
 
 \end{frame}
@@ -421,7 +379,7 @@
 \frametitle{Floppies!}
 
 \begin{itemize}
-\item Echt floppy
+\item Real floppy
 \item 8 inch, 5.25 inch
 \item SD/DD
 \item 300-600 RPM (5-10 revs/sec)
@@ -433,7 +391,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Ontmoet de Succesvolste PC ooit}
+\frametitle{Meet the most Successful PC of all time}
 
 \begin{figure}
 \includegraphics[width=0.75\linewidth]{images/desk.jpg}
@@ -444,7 +402,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{De Enige Echte}
+\frametitle{The Only Real One - Breadbin}
 
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{images/c64.jpg}
@@ -455,7 +413,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{De Enige Echte}
+\frametitle{The Only Real One - C64C}
 
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{images/c64c.jpg}
@@ -466,7 +424,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Moderne Variant}
+\frametitle{Modern Version (emulator)}
 
 \begin{figure}
 \includegraphics[width=0.5\linewidth]{images/boot.png}
@@ -477,15 +435,15 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{De Specificaties}
+\frametitle{Hardware Specifications}
 
 \begin{itemize}
-\item Ge\"introduceerd in 1982
-\item 64 kilobytes
-\item MOS 6510 met 1 MHz kristalklok
-\item 2 joystick poorten
+\item Introduced in 1982
+\item 64 kilobytes of RAM
+\item MOS 6510 clocked at 0.985MHz (PAL)
+\item 2 joystick ports
 \item cartridge port (games!), serial I/O, user port
-\item 16 kleuren
+\item 16 colors
 \end{itemize}
 
 \end{frame}
@@ -493,7 +451,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Ter Vergelijking}
+\frametitle{CPU and Memory by Comparison}
 
 \begin{tabular}{|l|l|l|l|l|}
 \hline Model & RAM (KB) & CPU & MHz \\ \hline
@@ -514,7 +472,7 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 \frametitle{MOS 6502}
 
 \begin{itemize}
-\item Zeer goedkoop en succesvol
+\item Really cheap and successful
 \item 6502, 6510, ricoh 2a03, \dots
 \item PET, VIC-20, C64, NES, \dots
 \item Embedded systems
@@ -547,13 +505,13 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Wat kan een C64?}
+\frametitle{What can you do on a C64?}
 
 \begin{itemize}
-\item Administratie (spreadsheets, word, \dots)
-\item Scannen, printen
+\item Administration (spreadsheets, word, \dots)
+\item Scanning, printing (with dox matrix printer)
 \item Games!
-\item Internet (via 50Kbps modem)
+\item Internet (using 50Kbps modem)
 \item Hardware upgrades
 \end{itemize}
 
@@ -562,13 +520,13 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Waarom werken met Vintage PCs?}
+\frametitle{Why Bother with Vintage PCs?}
 
 \begin{itemize}
-\item Enorme uitdaging
-\item Simpel ontwerp, simpel te begrijpen
-\item Literatuur
-\item Programmeerwedstrijden (ja, 30 jaar lang!)
+\item Great Challenge
+\item Simple design, easy to understand
+\item Literature
+\item Programming Contests (yes, more than 30 years!)
 \end{itemize}
 
 \end{frame}
@@ -576,7 +534,7 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{C64 wordt nog steeds gebruikt!!}
+\frametitle{C64 is still in use at this garage!!}
 
 \begin{figure}
 \includegraphics[width=0.75\linewidth]{images/c64c_garage.jpg}
@@ -587,7 +545,7 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Programmeertalen}
+\frametitle{Supported Programming Languages}
 
 \begin{itemize}
 \item Microsoft BASIC
@@ -599,12 +557,12 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Hoe Programmeerden we vroeger?}
+\frametitle{How did we write Programs back then?}
 
 \begin{itemize}
-\item Geen internet
-\item Literatuur (tijdschriften, boeken, \dots)
-\item Overlevering (bijeenkomsten, wedstrijden, \dots)
+\item No internet (BBS after some time)
+\item Literature (magazines, books, \dots)
+\item Mouth-to-mouth (meetings, competitions, parties, \dots)
 \end{itemize}
 
 \end{frame}
@@ -612,12 +570,12 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Wat krijg je bij een C64?}
+\frametitle{What do you get if you bought a C64?}
 
 \begin{itemize}
-\item Handleiding van ca. 300 pagina's
-\item Programmeerhandleiding voor BASIC en assembly
-\item Verwijzingen naar programma's, clubs, tijdschriften
+\item User's Guide approx. 300 pages
+\item Programmer's reference guide for BASIS and Assembly
+\item Reference to programs, clubs, magazines
 \end{itemize}
 
 \end{frame}
@@ -625,13 +583,13 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Gebruikershandleiding}
+\frametitle{User's Guide}
 
 \begin{itemize}
-\item Randapparaten aansluiten
-\item Configuratie en commando's
-\item BASIC programmeren (ca. 60 commando's)
-\item Voorbeelden
+\item Connecting peripherals
+\item Configurations and Commands
+\item BASIC programming (approx. 60 commands)
+\item Examples
 \item Tips and tricks
 \end{itemize}
 
@@ -640,14 +598,14 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Programmeerhandleiding}
+\frametitle{Programmer's Reference Guide}
 
 \begin{itemize}
-\item Geheugenlayout
-\item Assembly instructie set (151 documented)
+\item Memory layout
+\item Assembly instruction set (151 documented)
 \item Graphics modes
-\item Sound effecten
-\item Hardware uitbreidingen
+\item Sound effects
+\item Hardware expansions
 \end{itemize}
 
 \end{frame}
@@ -655,7 +613,7 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Literatuur}
+\frametitle{Literature}
 
 \begin{figure}
 \includegraphics[width=0.75\linewidth]{images/c64schema.jpg}
@@ -666,7 +624,7 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Literatuur}
+\frametitle{Literature}
 
 \begin{figure}
 \includegraphics[width=0.75\linewidth]{images/c64schema2.jpg}
@@ -676,7 +634,7 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 
 %----------------------------------------------
 
-\begin{frame}[fragile]{Simpel Programma - BASIC}
+\begin{frame}[fragile]{Simple Program - BASIC}
 
 \begin{lstlisting}
 10 PRINT "HALLO VIA"
@@ -687,7 +645,7 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 
 %----------------------------------------------
 
-\begin{frame}[fragile]{Simpel Programma - BASIC}
+\begin{frame}[fragile]{Simple Program - BASIC}
 
 \begin{lstlisting}
 10 POKE 1024,8
@@ -699,7 +657,7 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 
 %----------------------------------------------
 
-\begin{frame}[fragile]{Simpel Programma - assembly}
+\begin{frame}[fragile]{Simple Program - assembly}
 
 \begin{lstlisting}
 lda #$08
@@ -718,9 +676,9 @@ rts
 \begin{frame}{Assembly}
 
 \begin{itemize}
-\item Simpel, maar diepere leercurve
-\item 151 offici\"ele instructies
-\item Kleine voorbeelden
+\item Simple, but steep learning curve
+\item 151 official instructions
+\item Small examples
 \end{itemize}
 
 \end{frame}
@@ -730,21 +688,21 @@ rts
 \begin{frame}{Assembly}
 
 \begin{tabular}{l|l|l}
-lda \#\$10 & A = 16 & Zet waarde \$10 in A \\
-sta \$400 & mem[1000] = A & Schrijf A naar \$400 \\
-rts & return; & Stop met functie \\
+lda \#\$10 & A = 16 & Write \$10 to A \\
+sta \$400 & mem[1000] = A & Write A to \$400 \\
+rts & return; & End of procedure \\
 \end{tabular}
 
 \end{frame}
 
 %----------------------------------------------
 
-\begin{frame}{Simpel Programma}
+\begin{frame}{Simple Program}
 
 \begin{itemize}
-\item Ga naar: https://skilldrick.github.io/easy6502/
-\item Bekijk de voorbeelden.
-\item Probeer zelf een programma te maken!
+\item Go to: https://skilldrick.github.io/easy6502/
+\item Look at the examples.
+\item Try to create your own program!
 \end{itemize}
 
 
@@ -756,7 +714,7 @@ rts & return; & Stop met functie \\
 \frametitle{Audio}
 
 \begin{itemize}
-\item Analoog of Digitaal
+\item Analogue or Digital
 \end{itemize}
 
 \begin{figure}
@@ -771,8 +729,8 @@ rts & return; & Stop met functie \\
 \frametitle{Analoog Audio}
 
 \begin{itemize}
-\item Niet-elektronisch
-\item Visualisatie met Oscilloscoop
+\item Not-electronic
+\item Visualization using Oscilloscope
 \end{itemize}
 
 \end{frame}
@@ -780,12 +738,12 @@ rts & return; & Stop met functie \\
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Digitaal Audio}
+\frametitle{Digital Audio}
 
 \begin{itemize}
-\item Benadering van Analoog
-\item Stapsgewijs
-\item Duidelijk zichtbaar op oude PCs
+\item Approximation of analogue
+\item Amplitude jumps in levels
+\item Clearly visible with oscilloscope on old PCs
 \end{itemize}
 
 \end{frame}
@@ -793,7 +751,7 @@ rts & return; & Stop met functie \\
 %----------------------------------------------
 
 \begin{frame}
-\frametitle[fragile]{Digitaal Audio}
+\frametitle[fragile]{Digital Audio}
 
 \begin{figure}
 	\begin{subfigure}[b]{0.4\textwidth}
@@ -813,9 +771,9 @@ rts & return; & Stop met functie \\
 
 \begin{itemize}
 \item Squaker
-\item Zeer ruw
-\item Aan of uit
-\item Frequentie
+\item Very rough
+\item On or off
+\item Frequency
 \end{itemize}
 
 \end{frame}
@@ -823,7 +781,7 @@ rts & return; & Stop met functie \\
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Digitaal Audio - Speaker Voorbeelden}
+\frametitle{Digital Audio - Speaker Examples}
 
 \begin{itemize}
 \item Loop
@@ -836,12 +794,11 @@ rts & return; & Stop met functie \\
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Digitaal Audio - NES}
+\frametitle{Digital Audio - NES}
 
 \begin{tabular}{|l|l|l|l|}
-\hline \# & type & volumes & frequenties \\ \hline
+\hline \# & Type & Volumes & Frequencies \\ \hline
 2 & Pulse wave & 16 & 54Hz-28kHz \\
-% XXX er stond 447kHz als upper bound, maar kan toch niet kloppen?
 1 & White noise & 16 & 29.3Hz-47kHz \\
 1 & Triangle wave & 1 & 27Hz-56kHz \\
 1 & Delta PCM & 16 & 4kHz-33kHz \\ \hline
@@ -852,12 +809,12 @@ rts & return; & Stop met functie \\
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Digitaal Audio - NES}
+\frametitle{Digital Audio - NES}
 
 \begin{itemize}
-\item 5 kanalen
-\item 8 bit voor pulse, noise en triangle
-\item 1 bit voor DPCM
+\item 5 channels
+\item 8 bit for pulse, noise en triangle
+\item 1 bit for DPCM
 \item hardware pitch bending
 \end{itemize}
 
@@ -866,7 +823,7 @@ rts & return; & Stop met functie \\
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Digitaal Audio - NES voorbeeld}
+\frametitle{Digital Audio - NES example}
 
 \begin{itemize}
 \item The Legend of Zelda theme
@@ -877,7 +834,7 @@ rts & return; & Stop met functie \\
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Digitaal Audio}
+\frametitle{Digital Audio}
 
 \begin{figure}
 \includegraphics[width=0.9\linewidth]{images/rc3nes.png}
@@ -891,11 +848,11 @@ rts & return; & Stop met functie \\
 \frametitle{C64: SID chip}
 
 \begin{itemize}
-\item 's werelds eerste audio synthesizer
-\item Analoog \emph{en} Digitaal
-\item Verschillende onderscheidingen
-\item 6581 en 8580
-\item Timbaland plagiaat
+\item World's first audio synthesizer
+\item Analogue \emph{and} Digitaal
+\item Designer received different awards
+\item 6581 and 8580
+\item Timbaland plagiarism
 \end{itemize}
 
 \end{frame}
@@ -903,17 +860,16 @@ rts & return; & Stop met functie \\
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Ter Vergelijking}
+\frametitle{Audio Hardware by Comparison}
 
 \begin{tabular}{|l|l|l|l|}
-\hline Model & Geluid & Type & Voices \\ \hline
+\hline Model & Hardware & Type & Voices \\ \hline
 PET & CPU PIO & 1-bit beeper & 0 \\
 VIC-20 & VIC I & 8-bit digital & 4 \\
 C64 & SID & A/D 8-bit synthesizer & 3 \\ \hline
 Apple ][ & Speaker & 1-bit beeper & 0 \\
 IBM PC & Speaker & 1-bit beeper & 0 \\
-%ZX Spec. & 16K & Beeper & 175 pound & 175 pound \\ \hline
-NES & RP2A03 & 8-bit digitaal & 5 \\ \hline
+NES & RP2A03 & 8-bit digital & 5 \\ \hline
 \end{tabular}
 
 \end{frame}
@@ -924,7 +880,7 @@ NES & RP2A03 & 8-bit digitaal & 5 \\ \hline
 \frametitle{Audio}
 
 \begin{itemize}
-\item 3 kanalen (voices)
+\item 3 channels (voices)
 \item ADSR envelope
 \end{itemize}
 
@@ -949,7 +905,7 @@ NES & RP2A03 & 8-bit digitaal & 5 \\ \hline
 \begin{itemize}
 \item Sawtooth
 \item Square
-\item Sinuso\"ide
+\item Sinusoid
 \item Triangle
 \item Noise
 \end{itemize}
@@ -970,7 +926,7 @@ NES & RP2A03 & 8-bit digitaal & 5 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{SID - Voorbeelden}
+\frametitle{SID - Examples}
 
 \begin{itemize}
 \item Driller
@@ -985,7 +941,7 @@ NES & RP2A03 & 8-bit digitaal & 5 \\ \hline
 \frametitle{Intermezzo}
 
 \begin{block}{Muziek}
-Raad welk muziekje bij welke computer/console hoort!
+Guess which music belongs to which machine!
 \end{block}
 
 \begin{itemize}
@@ -999,7 +955,7 @@ Raad welk muziekje bij welke computer/console hoort!
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Intermezzo - Voorbeelden}
+\frametitle{Intermezzo - Examples}
 
 \begin{itemize}
 \item Grand Prix Circuit (PC, C64)
@@ -1028,7 +984,7 @@ Raad welk muziekje bij welke computer/console hoort!
 
 \begin{itemize}
 \item Click/pop-bug in 6581
-\item 4-bit PCM digitaal
+\item 4-bit PCM digital
 \end{itemize}
 
 \end{frame}
@@ -1051,8 +1007,8 @@ Raad welk muziekje bij welke computer/console hoort!
 
 \begin{itemize}
 \item 320x200 pixels
-\item 16 kleuren palette
-\item Maximaal 2 of 4 kleuren per 8x8 blok.
+\item 16 color palette
+\item At most 2 or 4 colors per 8x8 block.
 \end{itemize}
 
 \end{frame}
@@ -1060,10 +1016,10 @@ Raad welk muziekje bij welke computer/console hoort!
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Ter Vergelijking}
+\frametitle{Video Hardware by Comparison}
 
 \begin{tabular}{|l|l|l|}
-\hline Model & Video & Kleuren \\
+\hline Model & Video & Colors \\
 PET & ??? & 1 \\
 VIC-20 & VIC I & 4-16??? \\
 C64 & VIC II & 16 \\
@@ -1074,19 +1030,6 @@ NES & Ricoh 2C02 PPU & 52 \\ \hline
 \end{tabular}
 
 \end{frame}
-
-%----------------------------------------------
-%
-%\begin{frame}
-%\frametitle{Graphics}
-%
-%\begin{figure}
-%\includegraphics[width=0.5\linewidth]{images/gfx.png}
-%\end{figure}
-%
-%\end{frame}
-
-%----------------------------------------------
 
 \begin{frame}
 \frametitle{Graphic modes}
@@ -1145,11 +1088,11 @@ Source: Duce
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Programmeerwedstrijden}
+\frametitle{Programming Contests}
 
 \begin{itemize}
-\item X (in Nederland!)
-\item Revision (grootste ter wereld!)
+\item X (biggest C64 party in the Netherlands!)
+\item Revision (largest demoparty in the world!)
 \item Nordlicht
 \item Under Construction
 \item \dots
@@ -1174,9 +1117,9 @@ Source: Duce
 \frametitle{X}
 
 \begin{itemize}
-\item sinds 1995
-\item Vanaf 2004 \'e\'en keer per 2 jaar
-\item Vorig jaar ong. 400 bezoekers
+\item Since 1995
+\item Since 2004 once per 2 years
+\item Last year approx. 400 visitors
 \end{itemize}
 
 \end{frame}
@@ -1198,11 +1141,11 @@ Source: Duce
 \frametitle{Revision}
 
 \begin{itemize}
-\item Sinds 2011 (daarvoor: Breakpoint)
-\item Ong. 700 bezoekers
-\item Grote bedrijven bieden banen aan!
+\item Since 2011 (previously known as Breakpoint)
+\item Approx. 700 visitors
+\item Big companies are looking for jobs at the party!
 \item Seminars
-\item 30+ wedstrijden (demo, gfx, fotografie, \dots)
+\item 30+ competitions (demo, gfx, photography, \dots)
 \end{itemize}
 
 \end{frame}
@@ -1210,11 +1153,11 @@ Source: Duce
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Opdracht}
+\frametitle{Exercise}
 
 \begin{itemize}
-\item Vorm groepen van maximaal 5
-\item Maak een demo!
+\item Form groups (maximum of 5)
+\item Create a demo!
 \end{itemize}
 
 \end{frame}
@@ -1222,13 +1165,13 @@ Source: Duce
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Wil je een C64?}
+\frametitle{Do you want a C64?}
 
 \begin{itemize}
-\item Dat kan!
-\item Duur op ebay en marktplaats
-\item Goedkoop bij rommelmarkt
-\item Toetsenbord
+\item Yes you can!
+\item Expensive on ebay etc.
+\item Cheap at flea market
+\item Keyboard
 \item HCC
 \end{itemize}
 
@@ -1240,13 +1183,13 @@ Source: Duce
 \frametitle{HCC}
 
 \begin{itemize}
-\item Nederlandse Hobby Computer Club
-\item Sinds 27 april 1977
-\item Diverse interessegroepen
-\item Elke twee maanden in Maarssen
-\item Retro (8/16 bit) computers welkom
+\item Dutch Hobby Computer Club
+\item Since 27 april 1977
+\item Multiple groups of interest
+\item Meeting once every two months in Maarssen (Netherlands)
+\item Retro (8/16 bit) computers
 \item Ultimate II+
-\item Swappen
+\item Swapping
 \end{itemize}
 
 \end{frame}
@@ -1254,12 +1197,12 @@ Source: Duce
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Vervolg}
+\frametitle{Further Reading/Learning}
 
 \begin{itemize}
 \item Demoscene
 \item Oldskool computers
-\item Programmeerwedstrijden
+\item Programming Contests
 \item Cracking 'n Hacking
 \end{itemize}
 
@@ -1268,26 +1211,26 @@ Source: Duce
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Conclusies}
+\frametitle{Conclusions}
 
 \begin{itemize}
-\item PC Geschiedenis
-\item Hacken op C64
-\item Programmeren tot het uiterste
-\item Programmeerwedstrijden
+\item PC History
+\item Hacking on C64
+\item Programming to the Limit
+\item Programming Contests
 \end{itemize}
 
 \end{frame}
 
 %------------------------------------------------
 
-\include{thanks}
+\include{thanks_en}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Bedankt voor jullie aandacht}
-\Large{\centerline{Zijn er nog vragen?}}
+\frametitle{Thank you for your attention}
+\Large{\centerline{Are there any questions?}}
 \end{frame}
 
 \end{document}
