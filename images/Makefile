@@ -4,7 +4,7 @@ GFX=\
 	adsr.png appleii.jpg bender.jpeg bombe.jpg boot.png c64.jpg c64c.jpg \
 	c64c_garage.jpg c64schema.jpg c64schema2.jpg desk.jpg edsac.jpg \
 	edsac_crts.jpg gary.png ibm5150.jpg nes.jpg oxo.jpg palette.png pdp8.jpg \
-	rc3nes.png rekentabellen.jpg rev2017.jpg sbm_obey.png sbm_tuksu.png \
+	pet.jpg rc3nes.png rekentabellen.jpg rev2017.jpg sbm_obey.png sbm_tuksu.png \
 	sx64.jpg terminator.jpg trs80.jpg vcs.jpg vic20.jpg waveforms.png x.jpg \
 	zxspectrum.jpg
 
@@ -48,6 +48,8 @@ palette.png:
 	wget -O palette.png http://www.vanverseveld.me/folkert/c64/workshop/gfx/palette.png
 pdp8.jpg:
 	wget -O pdp8.jpg https://upload.wikimedia.org/wikipedia/commons/6/6d/PDP-8.jpg
+pet.jpg:
+	wget -O pet.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Commodore_2001_Series-IMG_0448b.jpg/1024px-Commodore_2001_Series-IMG_0448b.jpg
 rc3nes.png:
 	wget -O rc3nes.png http://www.vanverseveld.me/folkert/c64/workshop/gfx/rc3nes.png
 rekentabellen.jpg:

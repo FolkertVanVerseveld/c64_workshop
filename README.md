@@ -19,6 +19,7 @@ Provided you have the following dependencies installed:
 
 * GNU bash (or compatibles)
 * wget
+* LaTeX
 * createpav from FNWI LaTeX-template
 
 ## Installing FNWI LaTeX template
