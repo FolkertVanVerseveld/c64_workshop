@@ -1,0 +1,264 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{eurosym}
+
+\title{Exercises for workshop Commodore 64}
+\author{Folkert van Verseveld}
+
+\newcounter{problem}
+\newcounter{solution}
+
+\newcommand\problem{%
+  \stepcounter{problem}%
+  \textbf{\theproblem.}~%
+  \setcounter{solution}{0}%
+}
+\parindent 0in
+\parskip 1em
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+This bundle contains a set of exercises with increasing difficulty.
+The difficult exercises may be skipped.
+See the bundle of answers for solutions of some exercises.
+Some exercises (or variations) will also be discussed during the workshop.
+
+\subsection{VICE setup}
+This workshop uses the Versatile Commodore Emulator (VICE).
+You can download the emulator \href{http://vice-emu.sourceforge.net/}{from this site}.
+Depending on your operating system, some additional setup may be required as will be discussed in the next section.
+
+\subsubsection{Linux}
+The easiest method is to use your package manager to install VICE. Example \verb:sudo apt install vice: on Debian, Ubuntu and derivatives.
+If this does not work, but you have Wine installed, you can also use the Windows recipe.
+The die-hards may also try to compile the \href{http://sourceforge.net/projects/vice-emu/files/releases/vice-3.1.tar.gz/download}{source code}.
+
+\subsubsection{Windows}
+Download the \href{http://sourceforge.net/projects/vice-emu/files/releases/binaries/windows/WinVICE-3.1-x64.7z/download}{windows version}.
+Other versions can be downloaded from the \href{http://vice-emu.sourceforge.net/windows.html}{download section}.
+You need \href{http://www.7-zip.org/}{7Zip} in order to extract the archive.
+Extract all files and run \verb:x64.exe:.
+
+\subsubsection{Mac}
+Download the \href{http://sourceforge.net/projects/vice-emu/files/releases/binaries/macosx/vice-macosx-sdl-x86_64-10.12-3.1.dmg/download}{mac version}.
+You need to extract the .dmg in order to use the emulator.
+Please note that you have to run the emulator from a terminal because the menu bar is missing.
+
+Open a terminal and navigate to the directory where you just extracted the emulator and run the emulator. For example, if you have extracted the emulator on your desktop:
+\begin{lstlisting}
+cd /Users/name/Desktop/vice-emu/
+./x64.app/Contents/MacOS/x64
+\end{lstlisting}
+
+Replace \verb:name: with your user name.
+
+\textbf{Note: If you want to save and load programs, you should read the `Saving/Loading programs' section first!}
+
+\subsection{Tips and Tricks}
+
+If you are stuck on an exercise you can try to look at the hints document.
+Please don't hesitate to try some things before giving up.
+Some exercises are designed with this in mind.
+
+If the emulator is haning you can try to reset it using \verb:File->Reset->Soft: to restart the C64.
+If this does not work, you can try to hard reset it using \verb:File->Reset->Hard: or restart the emulator if that does not work either.
+
+\section{Introduction BASIC}
+
+The Commodore 64 understands machine code and the high-level programming language BASIC.
+If you run the VICE emulator you will see a similar window to figure \ref{fig:vice}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth]{images/boot.png}
+\caption{VICE emulator}
+\label{fig:vice}
+\end{figure}
+
+The default screens tells us that we are using BASIC version 2 and it has 64KiB of RAM leaving 38911 bytes for BASIC.
+This means that our BASIC program cannot exceed 38.9KB!
+
+You may have noticed that the default screen only uses upper case letters.
+This is because many computer designers at that time deemed it unnessecary to support both upper and lower case letters at the same time!
+It is possible to use both at the same time, but we are not going to use this.
+
+\subsection{Typing}
+
+\problem Try to type \verb:hello: and \verb:HELLO:. What happens if you hold shift while trying to type something?
+
+You can use the spacebar to place a space character on the screen or to `erase' the current character.
+
+\problem Try to change different portions of text on the screen and try to remove some text by overwriting them with spaces.
+
+\problem What happens if we place the cursor to the far right and press the right arrow key?
+What happens if we place the cursor to the far left and press the left arrow key?
+And what happens if we place the cursor at the bottom and press the down arrow key?
+
+\subsection{Printing}
+
+Now that we have learned how to write text and remove it, we can look at some BASIC programming.
+Lets see how we can write a ``Hello World'' program.
+You can print text using the \verb:PRINT: command.
+Each BASIC command is executed after you press enter.
+All text to be printed must be enclosed with double quotes, that is \verb:":.
+One example is \verb:PRINT "HELLO":.
+
+\problem Change the example to print \verb:HELLO WORLD:.
+
+\verb:PRINT: can also join multiple portions of text using either \verb:,: or \verb:;:. You can use these multiple times.
+
+\problem What is the difference between \verb:PRINT"HELLO","OLLEH": and \verb:PRINT"HELLO";"OLLEH":?
+
+\subsection{Calculations}
+
+Using BASIC we can compute some expressions.
+The basic math operators $+$,$-$,$*$ and $/$ can be used in expressions.
+But if we would type \verb:12 + 12: we don't get any result.
+This is because we did not instruct the C64 to also print the result.
+
+\problem Write a BASIC command that computes $12 + 12$ and prints the result.
+
+\problem Write a BASIC command that computes $2 - 3 * 4$ and prints the result.
+
+The only remaining operator is $/$.
+BASIC uses floating point numbers by default.
+This may suprise some programmers who would probably expect integers to be the default type.
+For example, $\verb:PRINT:\ 2/3$ does not print $0$, but $0.666666667$.
+
+If we want to perform integer division, this means `ignoring' the fractional part of the result, we can use the function \verb:INT():.
+For example, $\verb:PRINT:\ \verb:INT:(2/3)$ prints $0$.
+
+As you may have noticed is that the operator precedence is the same as in mathematics.
+Note that some calculators and computers from the same era did not have operator precedence at all!
+You can also use braces to change the order of computation.
+
+\problem Write a BASIC command that computes $3*3*3*3$ and prints the result.
+Can we replace the multiple multiplications with something else?
+
+\subsection{Variables}
+
+It would be nice if we could store the result of a computation in a variable so we don't have to recalculate each result.
+Using variables we can also write interactive programs.
+BASIC has numeric variables and a couple of other types (think about text or a list of numbers).
+For now, we will only look at the numeric variables.
+
+Back then, many programmers first wrote their program on tape before typing them in.
+This is one of the many reasons why variables had very short and cryptic names and why the C64 only supports short variable names.
+BASIC commands are illegal variable names.
+For example, \verb:PRINT: is an illegal variable name.
+A variable may \emph{not be longer than two characters}.
+If it is longer than two characters, all characters after the second are ignored.
+For example, \verb:BANANA:, \verb:BA: and \verb:BAROMETER: are all considered to refer to the same variable!
+
+Lets say we want to keep track of the number of apples we have.
+We could do this using \verb:A=3: and we can print the number of apples with \verb:PRINT"APPELS",A:
+
+If we want to add one apple we just have to add \verb:A=A+1:.
+If you would print the number of apples you should see that we now have 4 apples.
+You can navigate the cursor to the previous typed in \verb:PRINT: statement and press enter to re-execute the statement without having to type it all over again.
+
+Now we know some fundamental theory about BASIC and lets take a look at some more serious programs.
+
+\section{Programming using BASIC}
+
+Until now we had to manually type each BASIC command.
+While this works quite nicely for small experiments, it is inpractical for real programs.
+Lets see how we can write our first BASIC program that can run by itself once we RUN it.
+
+Each line of BASIC codoe has to be preceeded by a unique number.
+It is similar to a linenumber.
+The BASIC interpreter uses these linenumbers to determine in what order the program has to be executed.
+
+Lets write our first BASIC program:
+
+\begin{lstlisting}
+10 PRINT"COMMODORE 64"
+\end{lstlisting}
+
+If you type RUN (or if you have a real C64, press the RUN/STOP key) it will start RUNning the program.
+Congratulations! You have written your first real BASIC program!
+
+This program is a little boring.
+Lets change the program so it will keep printing the text over and over.
+In BASIC you can use the \verb:GOTO: command to jump to a line.
+Using \verb:GOTO: we can make a loop.
+Lets add this line and RUN the program:
+
+\begin{lstlisting}
+20 GOTO 10
+\end{lstlisting}
+
+You can stop the program by pressing ESCAPE (\verb:STOP: on a real C=64).
+
+\problem Add \verb:;: to line 10 and press enter. What happens if we RUN the program?
+
+\problem Type \verb:LIST: and then \verb:LIST10:. What does this command do?
+
+Whenever you want to write a new program it is a good idea to erase all previous code.
+We can reset the emulator to accomplish this, but this is unpractical.
+It is much easier to just type \verb:NEW: to start a NEW program.
+Be careful with this command, because it does not ask for confirmation!
+
+\problem Folkert has bought 6 apples for \$0.32 a piece and 4 banana's for \$0.22 a piece and he would like to determine the total price for all apples, all banana's and all apples and all banana's and print these to the screen.
+Write such a program that computes and prints the overal cost. Don't forget to type \verb:NEW: before you start writing the program!
+
+If you want to save the result, either read the section Saving/Loading programs or write your solution in your favorite text editor or even on paper.
+
+\subsection{Peeks 'n Pokes}
+
+Restart the emulator and type a `A' in the upper-left corner of the screen.
+Then go to an empty line and type \verb:PEEK(1024):.
+
+\problem Replace the `A' in the upper-left corner of the screen with `B' and rerun \verb:PEEK(1024):.
+What does this command do? Try a couple of other values to figure out what the printed number represents.
+
+Now type in \verb:POKE1024,1: and hit enter. Then replace \verb:,1: with \verb:,2: and try some other values as well.
+
+\problem What does this command do?
+
+\subsection{Input/Output}
+
+\section{Saving/Loading programs}
+
+\subsection{Creating and attaching a floppy disk}
+
+You can use c1541 (the floppy drive tools program) to create a disk.
+For example, if we want to create a disk named `music' we can use this on linux:
+
+\begin{lstlisting}
+c1541 -format diskname,id d64 music.d64
+\end{lstlisting}
+
+Or this on windows:
+
+\begin{lstlisting}
+c1541.exe -format diskname,id d64 music.d64
+\end{lstlisting}
+
+Or this on a mac:
+
+% XXX make sure this is correct. It may be ./x64.app/.../c1541 but I'm not sure
+\begin{lstlisting}
+./c1541.app/Contents/MacOS/c1541 -format diskname,id d64 music.d64
+\end{lstlisting}
+
+Replace `music' with whatever you want to name the disk.
+
+On windows and Linux, you can attach the drive even after you have started the emulator using \verb:File->Attach disk image->Unit #8: or using \verb:ALT+8:.
+
+\subsection{Saving/Loading programs on Mac}
+
+In order to be able to save and load programs, you have to attach a floppy disk \emph{before} starting the emulator like this:
+
+\begin{lstlisting}
+./x64.app/Contents/MacOS/x64 path/to/your/floppy.d64
+\end{lstlisting}
+
+\end{document}

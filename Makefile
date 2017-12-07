@@ -1,6 +1,6 @@
 .PHONY: default all clean
 
-default: exercises.pdf hints.pdf
+default: exercises_en.pdf exercises.pdf hints.pdf
 all: answers.pdf exercises.pdf hints.pdf workshop.pdf workshop_en.pdf
 
 images/desk.jpg:
@@ -15,6 +15,8 @@ workshop_en.pdf: images/desk.jpg workshop_en.tex thanks.tex
 	pdflatex workshop_en.tex
 exercises.pdf: exercises.tex
 	pdflatex exercises.tex
+exercises_en.pdf: exercises_en.tex
+	pdflatex exercises_en.tex
 answers.pdf: answers.tex
 	pdflatex answers.tex
 hints.pdf: hints.tex
@@ -22,4 +24,4 @@ hints.pdf: hints.tex
 
 clean:
 	cd images && $(MAKE) clean && cd ..
-	rm -f answers.pdf exercises.pdf hints.pdf workshop.pdf *.aux *.log *.nav *.out *.snm *.toc
+	rm -f *.pdf *.aux *.log *.nav *.out *.snm *.toc

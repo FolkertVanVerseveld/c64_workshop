@@ -1,12 +1,13 @@
 .PHONY: default clean
 
 GFX=\
-	adsr.png appleii.jpg bender.jpeg bombe.jpg boot.png c64.jpg c64c.jpg \
-	c64c_garage.jpg c64schema.jpg c64schema2.jpg desk.jpg edsac.jpg \
-	edsac_crts.jpg gary.png ibm5150.jpg nes.jpg oxo.jpg palette.png pdp8.jpg \
-	pet.jpg rc3nes.png rekentabellen.jpg rev2017.jpg sbm_obey.png sbm_tuksu.png \
-	sx64.jpg terminator.jpg trs80.jpg vcs.jpg vic20.jpg waveforms.png x.jpg \
-	zxspectrum.jpg
+	adsr.png appleii.jpg bender.jpeg bombe.jpg boot.png c1541.jpg c64.jpg \
+	c64c.jpg c64c_garage.jpg c64schema.jpg c64schema2.jpg datasette.jpg \
+	desk.jpg edsac.jpg edsac_crts.jpg farts.png gary.png hvsc.jpg \
+	ibm5150.jpg nes.jpg oxo.jpg palette.png pdp8.jpg pet.jpg pouet.jpg \
+	rc3nes.png rekentabellen.jpg rev2017.jpg sbm_obey.png sbm_tuksu.png \
+	sx64.jpg terminator.jpg trs80.jpg vcs.jpg vic20.jpg waveforms.png \
+	x.jpg zxspectrum.jpg
 
 default: $(GFX)
 
@@ -20,6 +21,8 @@ bombe.jpg:
 	wget -O bombe.jpg 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/%27bombe%27.jpg/960px-%27bombe%27.jpg'
 boot.png:
 	wget -O boot.png http://www.vanverseveld.me/folkert/c64/workshop/gfx/boot.png
+c1541.jpg:
+	wget -O c1541.jpg https://upload.wikimedia.org/wikipedia/commons/1/1b/Commodore64_fdd1541_front_demodified.jpg
 c64.jpg:
 	wget -O c64.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Commodore-64-Computer-FL.jpg/1024px-Commodore-64-Computer-FL.jpg
 c64c.jpg:
@@ -30,14 +33,20 @@ c64schema.jpg:
 	wget -O c64schema.jpg http://www.vanverseveld.me/folkert/c64/workshop/gfx/c64schema.jpg
 c64schema2.jpg:
 	wget -O c64schema2.jpg http://www.vanverseveld.me/folkert/c64/workshop/gfx/c64schema2.jpg
+datasette.jpg:
+	wget -O datasette.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Commodore-Datasette-C2N-Mk2-Front.jpg/1024px-Commodore-Datasette-C2N-Mk2-Front.jpg
 desk.jpg:
 	wget -O desk.jpg http://studium.chytrak.cz/nostalgia/Setup/Commodore/C-64/C64Pages/HARDWARE/Obr/C64_desk.jpg
 edsac.jpg:
 	wget -O edsac.jpg 'https://upload.wikimedia.org/wikipedia/commons/2/22/EDSAC_%2819%29.jpg'
 edsac_crts.jpg:
 	wget -O edsac_crts.jpg https://history-computer.com/ModernComputer/Software/images/EDSAC_CRTs.jpg
+farts.png:
+	wget -O farts.png https://i.imgur.com/pWpctHO.png
 gary.png:
 	wget -O gary.png https://www.c64-wiki.com/images/3/3f/Gary_by_Mermaid.png
+hvsc.jpg:
+	wget -O hvsc.jpg http://hvsc.c64.org/resources/images/HVSC-logo-blue.jpg
 ibm5150.jpg:
 	wget -O ibm5150.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Ibm_pc_5150.jpg/827px-Ibm_pc_5150.jpg
 nes.jpg:
@@ -50,6 +59,8 @@ pdp8.jpg:
 	wget -O pdp8.jpg https://upload.wikimedia.org/wikipedia/commons/6/6d/PDP-8.jpg
 pet.jpg:
 	wget -O pet.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Commodore_2001_Series-IMG_0448b.jpg/1024px-Commodore_2001_Series-IMG_0448b.jpg
+pouet.jpg:
+	wget -O pouet.jpg http://content.pouet.net/logos/logo-9679-01.jpg
 rc3nes.png:
 	wget -O rc3nes.png http://www.vanverseveld.me/folkert/c64/workshop/gfx/rc3nes.png
 rekentabellen.jpg:

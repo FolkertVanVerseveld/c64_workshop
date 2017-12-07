@@ -5,7 +5,7 @@ is an educational non-profit workshop organized at the University of Amsterdam.*
 
 ## Overview
 
-*NOTE: All presentation slides are in Dutch only!*
+*NOTE: The default documents are written in Dutch. Look for the *_en documents for the English translated version.*
 
 ## Creating the slides
 
