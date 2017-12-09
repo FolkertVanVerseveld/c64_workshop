@@ -1,13 +1,14 @@
 .PHONY: default clean
 
 GFX=\
-	adsr.png appleii.jpg bender.jpeg bombe.jpg boot.png c1541.jpg c64.jpg \
-	c64c.jpg c64c_garage.jpg c64schema.jpg c64schema2.jpg datasette.jpg \
-	desk.jpg edsac.jpg edsac_crts.jpg farts.png gary.png hvsc.jpg \
-	ibm5150.jpg nes.jpg oxo.jpg palette.png pdp8.jpg pet.jpg pouet.jpg \
-	rc3nes.png rekentabellen.jpg rev2017.jpg sbm_obey.png sbm_tuksu.png \
-	sx64.jpg terminator.jpg trs80.jpg vcs.jpg vic20.jpg waveforms.png \
-	x.jpg zxspectrum.jpg
+	adsr.png appleii.jpg bender.jpeg bleeding.png bombe.jpg boot.png \
+	breadbin.jpg c1541.jpg c64.jpg c64back.png c64c.jpg c64c_garage.jpg \
+	c64schema.jpg c64schema2.jpg datasette.jpg desk.jpg edsac.jpg \
+	edsac_crts.jpg farts.png gary.png hvsc.jpg ibm5150.jpg nes.jpg oxo.jpg \
+	palette.png pdp8.jpg pet.jpg pouet.jpg rc3nes.png rekentabellen.jpg \
+	rev2017.jpg sbm_obey.png sbm_tuksu.png sprdwh.png sx64.jpg \
+	terminator.jpg trs80.jpg vcs.jpg vic20.jpg waveforms.png x.jpg \
+	zxspectrum.jpg
 
 default: $(GFX)
 
@@ -17,14 +18,24 @@ appleii.jpg:
 	wget -O appleii.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Apple_II_IMG_4212.jpg/1024px-Apple_II_IMG_4212.jpg
 bender.jpeg:
 	wget -O bender.jpeg https://spectrum.ieee.org/image/Mjg5MjEzMg.jpeg
+bleeding.gif:
+	wget -O bleeding.gif https://upload.wikimedia.org/wikipedia/commons/c/cb/MSX_Computer_Color_Limit.gif
+bleeding.png: bleeding.gif
+	convert bleeding.gif bleeding.png
 bombe.jpg:
 	wget -O bombe.jpg 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/%27bombe%27.jpg/960px-%27bombe%27.jpg'
 boot.png:
 	wget -O boot.png http://www.vanverseveld.me/folkert/c64/workshop/gfx/boot.png
+breadbin.jpg:
+	wget -O breadbin.jpg https://ksr-ugc.imgix.net/assets/005/716/147/c11b7e5d5b215cfe1ab10de0c92fd4c5_original.jpg?w=680&fit=max&v=1460659081&auto=format&q=92&s=59fba6f4d1d3da5467f3d5d5e7907541
 c1541.jpg:
 	wget -O c1541.jpg https://upload.wikimedia.org/wikipedia/commons/1/1b/Commodore64_fdd1541_front_demodified.jpg
 c64.jpg:
 	wget -O c64.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Commodore-64-Computer-FL.jpg/1024px-Commodore-64-Computer-FL.jpg
+c64back.gif:
+	wget -O c64back.gif https://www.c64-wiki.com/images/c/cf/C641.gif
+c64back.png: c64back.gif
+	convert c64back.gif c64back.png
 c64c.jpg:
 	wget -O c64c.jpg https://www.c64-wiki.com/images/6/6c/C64c.jpg
 c64c_garage.jpg:
@@ -71,6 +82,8 @@ sbm_obey.png:
 	wget -O sbm_obey.png https://www.c64-wiki.com/images/1/1e/Obey_The_Machine_by_Archmage.png
 sbm_tuksu.png:
 	wget -O sbm_tuksu.png https://www.c64-wiki.com/images/c/c2/TTTTTTUUUUUUKSU_by_Duce.png
+sprdwh.png:
+	wget -O sprdwh.png https://www.c64-wiki.com/images/1/12/Sprite_Vergroesserung.png
 sx64.jpg:
 	wget -O sx64.jpg http://studium.chytrak.cz/nostalgia/Setup/Commodore/C-64/C64Pages/HARDWARE/Obr/sx64.jpg
 terminator.jpg:

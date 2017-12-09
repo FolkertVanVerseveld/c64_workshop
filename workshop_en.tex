@@ -318,6 +318,7 @@
 1977 & Apple ][ & \$1296 & \$5130 & \$200-\$750 \\
 1981 & IBM PC & \$1565 & \$4130 & \$150-\$1100 \\
 1982 & ZX Spec. & \pounds 175 & \pounds 567 & \pounds 80-\pounds 120 \\ \hline
+1977 & VCS & \$199 & \$768 & \$40-\$80 \\
 1983 & NES & \$179 & \$433 & \$25-\$120 \\ \hline
 \end{tabular}
 
@@ -435,6 +436,17 @@
 %----------------------------------------------
 
 \begin{frame}
+\frametitle{The Only Real One - Breadbin}
+
+\begin{figure}
+\includegraphics[width=0.75\linewidth]{images/breadbin.jpg}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
 \frametitle{The Only Real One - C64C}
 
 \begin{figure}
@@ -476,14 +488,15 @@
 \frametitle{CPU and Memory by Comparison}
 
 \begin{tabular}{|l|l|l|l|l|}
-\hline Model & RAM (KB) & CPU & MHz \\ \hline
-PET & 8 & MOS 6502 & 1 \\
-VIC-20 & 5 & MOS 6502 & 1.11 \\
-C64 & 64 & MOS 6510 & 0.985 \\ \hline
-Apple ][ & 4 & MOS 6502 & 1 \\
-IBM PC & 16 & i8086 & 4.04 \\
-ZX Spec. & 16 & Z80 & 3.5 \\ \hline
-NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
+\hline Model & RAM (bytes) & CPU & MHz \\ \hline
+PET & 8192 & MOS 6502 & 1 \\
+VIC-20 & 5120 & MOS 6502 & 1.11 \\
+C64 & 65536 & MOS 6510 & 0.985 \\ \hline
+Apple ][ & 4096 & MOS 6502 & 1 \\
+IBM PC & 16384 & i8086 & 4.04 \\
+ZX Spec. & 16384 & Z80 & 3.5 \\ \hline
+VCS & 128 & MOS 6507 & 1.19 \\
+NES & 2048 & Ricoh 2A03 & 1.6 \\ \hline
 \end{tabular}
 
 \end{frame}
@@ -545,6 +558,17 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 \frametitle{What can you do on a C64?}
 
 \begin{figure}
+\includegraphics[width=0.8\linewidth]{images/c64back.png}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{What can you do on a C64?}
+
+\begin{figure}
 \includegraphics[width=0.8\linewidth]{images/performance.png}
 \end{figure}
 
@@ -583,6 +607,8 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 \begin{itemize}
 \item Microsoft BASIC
 \item Machine code (assembly)
+\item Pascal
+\item K\&R C
 \end{itemize}
 
 \end{frame}
@@ -678,12 +704,126 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 
 %----------------------------------------------
 
+\begin{frame}{BASIC constructs}
+
+\begin{itemize}
+\item Line numbered source code
+\item Numeric variables, strings, arrays
+\item Code/Data
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}{BASIC commands}
+
+\begin{multicols}{3}
+\begin{itemize}
+\item ABS
+\item AND
+\item ASC
+\item ATN
+\item CHR\$
+\item CLOSE
+\item CLR
+\item CMD
+\item CONT
+\item COS
+\item DATA
+\item DEF
+\item DIM
+\item END
+\item EXP
+\item FN
+\item FOR
+\item FRE
+\item GET
+\item GET\#
+\item GOSUB
+\item GOTO
+\item IF
+\item INPUT
+\item INPUT\#
+\item INT
+\end{itemize}
+\end{multicols}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}{BASIC commands}
+
+\begin{multicols}{3}
+\begin{itemize}
+\item LEFT\$
+\item LET
+\item LIST
+\item LOAD
+\item LOG
+\item MID\$
+\item NEW
+\item NEXT
+\item NOT
+\item ON
+\item OPEN
+\item OR
+\item PEEK
+\item $\pi$
+\item POKE
+\item POS
+\item PRINT
+\item PRINT\#
+\item READ
+\item REM
+\item RESTORE
+\item RETURN
+\item RIGHT\$
+\item RND
+\item RUN
+\item SAVE
+\item SGN
+\item SIN
+\end{itemize}
+\end{multicols}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}{BASIC commands}
+
+\begin{multicols}{3}
+\begin{itemize}
+\item SPC
+\item SQR
+\item STATUS
+\item STEP
+\item STOP
+\item STR\$
+\item SYS
+\item TAB
+\item TAN
+\item THEN
+\item TIME
+\item TIME\$
+\item VERIFY
+\item WAIT
+\end{itemize}
+\end{multicols}
+
+\end{frame}
+
+%----------------------------------------------
+
 \begin{frame}[fragile]{Simple Program - BASIC}
 
 \begin{lstlisting}
 10 POKE 1024,8
 20 POKE 1025,5
 30 POKE 1026,25
+40 END
 \end{lstlisting}
 
 \end{frame}
@@ -693,12 +833,13 @@ NES & 2 & Ricoh 2A03 & 1.6 \\ \hline
 \begin{frame}[fragile]{Simple Program - assembly}
 
 \begin{lstlisting}
+* = $0810
 lda #$08
-sta $400
+sta 1024
 lda #$05
-sta $401
+sta 1025
 lda #$19
-sta $402
+sta 1026
 rts
 \end{lstlisting}
 
@@ -718,12 +859,143 @@ rts
 
 %----------------------------------------------
 
-\begin{frame}{Assembly}
+\begin{frame}{Simple Program - assembly}
 
-\begin{tabular}{l|l|l}
-lda \#\$10 & A = 16 & Write \$10 to A \\
-sta \$400 & mem[1000] = A & Write A to \$400 \\
-rts & return; & End of procedure \\
+\begin{tabular}{l|l|l|l}
+Addr. & Mach. Code & Dissassembly & Pseudo Code \\
+ & & * = \$0810 & \\
+0810 & A9 08 & LDA \#\$08 & A = `H' \\
+0812 & 8D 00 04 & STA \$400 & mem[1024] = A \\
+0815 & A9 05 & LDA \#\$05 & A = `E' \\
+0817 & 8D 01 04 & STA \$401 & mem[1025] = A \\
+081A & A9 19 & LDA \#\$19 & A = `Y' \\
+081C & 8D 02 04 & STA \$402 & mem[1026] = A \\
+081F & 60 & RTS & return \\
+\end{tabular}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}{Instruction Set Comparison}
+
+\begin{tabular}{|l|l|l|l|}
+\hline CPU & Regs & Reg Bits & Mul/Div \\ \hline
+8086 & 14 & 8/16 & Mul \& Div \\
+65XX & 6 & 8 & none \\
+Z80 & 16 & 8/16 & Mul \\ \hline
+\end{tabular}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}{8086 registers}
+
+\begin{tabular}{|l|l|l|}
+\hline Name & Size & Purpose \\ \hline
+A & 16 & Accumulator \\
+B & 16 & Base pointer \\
+C & 16 & Loop counter \\
+D & 16 & Second accumulator, other stuff \\ 
+SI & 16 & Source Index \\
+DI & 16 & Destination Index \\
+BP & 16 & Base Pointer \\
+SP & 16 & Stack Pointer \\
+IP & 16 & Instruction Pointer \\ \hline
+\end{tabular}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}{8086 registers continued}
+
+\begin{tabular}{|l|l|l|}
+\hline Name & Size & Purpose \\ \hline
+CS & 16 & Code Segment \\
+DS & 16 & Data Segment \\
+ES & 16 & Extra Segment \\
+SS & 16 & Stack Segment \\
+FLAGS & 16 & Processor Status Word \\ \hline
+\end{tabular}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}{Z80 registers}
+
+\begin{tabular}{|l|l|l|}
+\hline Name & Size & Purpose \\ \hline
+AF(') & 16 & Accumulator and Flags \\
+BC(') & 16 & Data/Address register \\
+DE(') & 16 & Data/Address register \\
+HL(') & 16 & Accumulator/Address register \\
+SP & 16 & Stack Pointer \\
+PC & 16 & Program Counter \\
+IX & 16 & Index/Base register \\
+IY & 16 & Index/Base register \\
+I & 8 & Interrupt vector \\
+R & 8 & DRAM refresh counter \\ \hline
+\end{tabular}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}{6502 registers}
+
+\begin{tabular}{|l|l|l|}
+\hline Name & Size & Purpose \\ \hline
+A & 8 & Accumulator \\
+X & 8 & Index register \\
+Y & 8 & Index register \\
+SP & 8 & Stack Pointer \\
+PC & 16 & Program Counter \\
+FLAGS & 8 & Processor Status Word \\ \hline
+\end{tabular}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}{6502}
+
+\begin{itemize}
+\item Very simple and elegant
+\item 256 bytes stack (i.e. 128 call-stack)
+\item IRQ, NMI
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}{Commodore 64}
+
+\begin{itemize}
+\item 64K of RAM
+\item KERNAL, BASIC, CHAR ROM
+\item Bankswitching
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}{Commodore 64 - memory map}
+
+\begin{tabular}{|l|l|l|l|}
+\hline Start & End & Purpose & Size \\ \hline
+FFFF & 0000 & RAM & 65356 \\
+FFFF & E000 & KERNAL ROM & 8192 \\
+DFFF & D000 & I/O \& CHAR ROM & 4096 \\
+CFFF & C000 & RAM & 4096 \\
+BFFF & A000 & BASIC/ROM PLUG-IN & 8192 \\
+9FFF & 8000 & ROM PLUG-IN & 8192 \\
+7FFF & 4000 & RAM & 16384 \\
+3FFF & 0000 & RAM & 16384 \\ \hline
 \end{tabular}
 
 \end{frame}
@@ -743,421 +1015,11 @@ rts & return; & End of procedure \\
 
 %----------------------------------------------
 
-\begin{frame}
-\frametitle{Audio}
-
-\begin{itemize}
-\item Analog or Digital
-\end{itemize}
-
-\begin{figure}
-\includegraphics[width=0.6\linewidth]{images/waveforms.png}
-\end{figure}
-
-\end{frame}
+\include{graphics_en}
 
 %----------------------------------------------
 
-\begin{frame}
-\frametitle{Analog Audio}
-
-\begin{itemize}
-\item Not-electronic
-\item Visualization using Oscilloscope
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Digital Audio}
-
-\begin{itemize}
-\item Approximation of analog
-\item Amplitude jumps in levels
-\item Clearly visible with oscilloscope on old PCs
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle[fragile]{Digital Audio}
-
-\begin{figure}
-	\begin{subfigure}[b]{0.4\textwidth}
-		\includegraphics[width=\linewidth]{images/waveforms.png}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.5\textwidth}
-		\includegraphics[width=\linewidth]{images/rc3nes.png}
-	\end{subfigure}
-\end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Digitaal Audio - Speaker}
-
-\begin{itemize}
-\item Squaker
-\item Very rough
-\item On or off
-\item Frequency
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Digital Audio - Speaker Examples}
-
-\begin{itemize}
-\item Loop
-\item Single
-\item Arpeggio
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Digital Audio - NES}
-
-\begin{tabular}{|l|l|l|l|}
-\hline \# & Type & Volumes & Frequencies \\ \hline
-2 & Pulse wave & 16 & 54Hz-28kHz \\
-1 & White noise & 16 & 29.3Hz-47kHz \\
-1 & Triangle wave & 1 & 27Hz-56kHz \\
-1 & Delta PCM & 16 & 4kHz-33kHz \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Digital Audio - NES}
-
-\begin{itemize}
-\item 5 channels
-\item 8 bit for pulse, noise en triangle
-\item 1 bit for DPCM
-\item hardware pitch bending
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Digital Audio - NES example}
-
-\begin{itemize}
-\item The Legend of Zelda theme
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Digital Audio}
-
-\begin{figure}
-\includegraphics[width=0.9\linewidth]{images/rc3nes.png}
-\end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{C64: SID chip}
-
-\begin{itemize}
-\item World's first audio synthesizer
-\item Analog \emph{and} Digitaal
-\item Designer received different awards
-\item 6581 and 8580
-\item Timbaland plagiarism
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Audio Hardware by Comparison}
-
-\begin{tabular}{|l|l|l|l|}
-\hline Model & Hardware & Type & Voices \\ \hline
-PET & CPU PIO & 1-bit beeper & 0 \\
-VIC-20 & VIC I & 8-bit digital & 4 \\
-C64 & SID & A/D 8-bit synthesizer & 3 \\ \hline
-Apple ][ & Speaker & 1-bit beeper & 0 \\
-IBM PC & Speaker & 1-bit beeper & 0 \\
-NES & RP2A03 & 8-bit digital & 5 \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Audio}
-
-\begin{itemize}
-\item 3 channels (voices)
-\item ADSR envelope
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{ADSR}
-
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{images/adsr.png}
-\end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Waveforms}
-
-\begin{itemize}
-\item Sawtooth
-\item Square
-\item Sinusoid
-\item Triangle
-\item Noise
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Waveforms}
-
-\begin{figure}
-\includegraphics[width=0.75\linewidth]{images/waveforms.png}
-\end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{SID - Techniques}
-
-\begin{itemize}
-\item Pulse Width Modulation (PWM)
-\item Ring modulation (ring mod)
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{SID - Examples}
-
-\begin{itemize}
-\item Driller (PWM)
-\item Commando
-\item Zoids (ring mod)
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Intermezzo}
-
-\begin{block}{Muziek}
-Guess which music belongs to which machine!
-\end{block}
-
-\begin{itemize}
-\item IBM PC
-\item NES
-\item C64
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Intermezzo - Examples}
-
-\begin{itemize}
-\item Grand Prix Circuit (PC, C64)
-\item Castlevania (PC, NES, C64)
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Intermezzo}
-
-\begin{itemize}
-\item IBM PC
-\item NES
-\item C64
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{SID hacking}
-
-\begin{itemize}
-\item Click/pop-bug in 6581
-\item 4-bit PCM digital
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{SID hacking - Arkanoid}
-
-\begin{figure}
-\includegraphics[width=\linewidth]{images/farts.png}
-\end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{SID hacking - 6581 examples}
-
-\begin{tabular}{|l|l|l|}
-\hline Year & Artist & Title \\ \hline
-1987 & Martin Galway & Arkanoid \\
-1987 & Chris H\"ulsbeck & Dulcedo Cogitationis \\
-1988 & Jeroen Tel & Savage \\
-1989 & Jeroen Tel & Stormlord \\
-1989 & Jeroen Tel & Turbo Outrun \\
-1990 & J. Tel and C. H\"ulsbeck & Turrican \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Graphics}
-
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{images/palette.png}
-\end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Graphics}
-
-\begin{itemize}
-\item 320x200 pixels
-\item 16 color palette
-\item At most 2 or 4 colors per 8x8 block.
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Video Hardware by Comparison}
-
-\begin{tabular}{|l|l|l|}
-\hline Model & Video & Colors \\
-PET & ??? & 1 \\
-VIC-20 & VIC I & 4-16??? \\
-C64 & VIC II & 16 \\
-Apple ][ & ??? & 1-4 \\
-IBM PC & mono of CGA & 1-4 \\
-ZX Spec. & geen (CPU) & 8 \\ \hline
-NES & Ricoh 2C02 PPU & 52 \\ \hline
-\end{tabular}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Graphic modes}
-
-\begin{itemize}
-\item Standard Character (text) Mode
-\item Multicolor Character (text) Mode
-\item Standard Bitmap Mode
-\item Multicolor Bitmap Mode
-\item Extended Background Color Mode
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Multicolor Character Mode}
-
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{images/gary.png}
-\end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Standard Bitmap}
-
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{images/sbm_obey.png}
-\end{figure}
-
-\begin{center}
-Source: Archmage
-\end{center}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Standard Bitmap}
-
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{images/sbm_tuksu.png}
-\end{figure}
-
-\begin{center}
-Source: Duce
-\end{center}
-
-\end{frame}
+\include{music_en}
 
 %----------------------------------------------
 

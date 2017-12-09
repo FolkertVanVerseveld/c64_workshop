@@ -5,11 +5,11 @@ all: answers.pdf exercises.pdf hints.pdf workshop.pdf workshop_en.pdf
 
 images/desk.jpg:
 	cd images && $(MAKE) && cd ..
-workshop.pdf: images/desk.jpg workshop.tex thanks.tex
+workshop.pdf: images/desk.jpg workshop.tex graphics.tex music.tex thanks.tex
 	# Run multiple times to get page numbers, bibliography etc. right.
 	pdflatex workshop.tex
 	pdflatex workshop.tex
-workshop_en.pdf: images/desk.jpg workshop_en.tex thanks.tex
+workshop_en.pdf: images/desk.jpg workshop_en.tex graphics_en.tex music_en.tex thanks.tex
 	# Run multiple times to get page numbers, bibliography etc. right.
 	pdflatex workshop_en.tex
 	pdflatex workshop_en.tex
