@@ -14,8 +14,8 @@
 
 \begin{itemize}
 \item 320x200 pixels
-\item 16 color palette
-\item At most 2 or 4 colors per 8x8 block.
+\item 16 kleuren palette
+\item Maximaal 2 of 4 kleuren per 8x8 blok.
 \end{itemize}
 
 \end{frame}
@@ -23,10 +23,10 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Video Hardware by Comparison}
+\frametitle{Ter Vergelijking}
 
 \begin{tabular}{|l|l|l|}
-\hline Model & Video & Colors \\
+\hline Model & Video & Kleuren \\
 PET & ??? & 1 \\
 VIC-20 & VIC I & 4-16??? \\
 C64 & VIC II & 16 \\
@@ -45,8 +45,8 @@ NES & Ricoh 2C02 PPU & 52 \\ \hline
 
 \begin{itemize}
 \item 320x200 = 64,000
-\item Only 65,536 - 64,000 = 1,536 bytes with bitmap
-\item How do we solve this?
+\item Maar 65,536 - 64,000 = 1,536 bytes over met bitmap
+\item Hoe lossen we dit op?
 \end{itemize}
 
 \end{frame}
@@ -57,10 +57,10 @@ NES & Ricoh 2C02 PPU & 52 \\ \hline
 \frametitle{Graphics Memory}
 
 \begin{itemize}
-\item Use 8x8 blocks
-\item Text mode
-\item Only 40 * 25 = 1,000 bytes
-\item With 16 colors just 1,000 / 2 = 500 bytes more
+\item Gebruik 8x8 blokken
+\item Tekst modus
+\item Maar 40 * 25 = 1,000 bytes nodig
+\item Met 16 colors maar 1,000 / 2 = 500 bytes meer
 \item 1,500 bytes
 \end{itemize}
 
@@ -72,8 +72,8 @@ NES & Ricoh 2C02 PPU & 52 \\ \hline
 \frametitle{Graphics}
 
 \begin{itemize}
-\item Screen text data at \$0400 (== 1024)
-\item Color RAM at \$D800 (== 55296)
+\item Scherm tekstdata vanaf \$0400 (== 1024)
+\item Color RAM vanaf \$D800 (== 55296)
 \end{itemize}
 
 \end{frame}
@@ -140,9 +140,9 @@ Source: Duce
 \frametitle{Graphics Programming}
 
 \begin{itemize}
-\item Writing your own graphics driver
-\item 64 bytes (17 unused)
-\item This means 47 registers
+\item Eigen grafische driver schrijven
+\item 64 bytes (17 ongebruikt)
+\item Dus 47 registers
 \end{itemize}
 
 \end{frame}
@@ -153,7 +153,7 @@ Source: Duce
 \frametitle{VIC registers}
 
 \begin{tabular}{|l|l|}
-\hline Purpose & \# Registers \\ \hline
+\hline Doel & \# Registers \\ \hline
 % spr[0-7]x, spr[0-7]y, sprxh, spre, sdh, sdw, smc, sprio
 % 8 + 8 + 6
 Sprites & 22 \\
@@ -181,7 +181,7 @@ Light pen & 2 \\ \hline
 
 %----------------------------------------------
 
-\begin{frame}[fragile]{Simple Graphics Program - BASIC}
+\begin{frame}[fragile]{Simpel Graphics Programma - BASIC}
 
 \begin{lstlisting}
 10 VIC=53248
@@ -196,10 +196,10 @@ Light pen & 2 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{How to plot individual pixels?}
+\frametitle{Hoe plaatsen we individuele pixels?}
 
 \begin{itemize}
-\item Clumsy: Grid/block-aligned
+\item Onhandig: Grid/blok-aligned
 \item Color clash (bleeding)
 \end{itemize}
 
@@ -208,7 +208,7 @@ Light pen & 2 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Bleeding on MSX}
+\frametitle{Bleeding bij MSX}
 
 \begin{figure}
 \includegraphics[width=0.5\linewidth]{images/bleeding.png}
@@ -219,13 +219,13 @@ Light pen & 2 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Welcome to the world of Sprites!}
+\frametitle{Welkom in de wereld van Sprites!}
 
 \begin{itemize}
 \item Movable Objects (MOBs)
-\item 8 sprites composed of 24*21 pixels
+\item 8 sprites bestaande uit 24*21 pixels
 \item 63 bytes per sprite
-\item X and Y position
+\item X en Y co\"ordinaat
 \end{itemize}
 
 \end{frame}
@@ -247,7 +247,7 @@ Light pen & 2 \\ \hline
 \frametitle{Great Giana Sisters}
 
 \begin{itemize}
-\item Like Super Mario Bros
+\item Lijkt op Super Mario Bros
 \item 33 stages
 \end{itemize}
 
@@ -259,7 +259,7 @@ Light pen & 2 \\ \hline
 \frametitle{Graphics Hacking}
 
 \begin{itemize}
-\item CRT generates HSYNC, VSYNC
+\item CRT signaleert HSYNC, VSYNC
 \item Raster Interrupts
 \end{itemize}
 
@@ -271,9 +271,9 @@ Light pen & 2 \\ \hline
 \frametitle{Graphics Hacking - Raster bars}
 
 \begin{itemize}
-\item Horizontal: Double Hotline - R-Type+
-\item Vertical \& Rotating: Booze Design - Uncensored
-\item Wobbing: Censor \& Oxyron - Comalight X14
+\item Horizontaal: Double Hotline - R-Type+
+\item Verticaal \& Ronddraaiend: Booze Design - Uncensored
+\item Wiebelen: Censor \& Oxyron - Comalight X14
 \end{itemize}
 
 \end{frame}
@@ -287,9 +287,9 @@ Light pen & 2 \\ \hline
 \item Borderless graphics
 \item Raster split
 \item Parallax scrolling
-\item Other graphic modes
+\item Andere graphic modes
 \item Plasma
-\item More than 8 sprites
+\item Meer dan 8 sprites
 \item \dots
 \end{itemize}
 
@@ -300,9 +300,10 @@ Light pen & 2 \\ \hline
 \begin{frame}{Intermezzo}
 
 \begin{itemize}
-\item Continue with the exercises
-\item Or: write a BASIC program with some graphical effects
-\item Advanced: go to: https://skilldrick.github.io/easy6502/ and look at the examples
+\item Ga verder met de opgaven
+\item Of: schrijf een BASIC programma met wat grafische effecten
+\item Geadvanceerd: ga naar: https://skilldrick.github.io/easy6502/ en kijk naar
+de voorbeelden
 \end{itemize}
 
 \end{frame}

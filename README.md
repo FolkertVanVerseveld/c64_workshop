@@ -5,11 +5,11 @@ is an educational non-profit workshop organized at the University of Amsterdam.*
 
 ## Overview
 
-*NOTE: The default documents are written in Dutch. Look for the *_en documents for the English translated version.*
+**NOTE: The default documents are written in Dutch. Look for the documents suffixed with en for the English translated version.**
 
 ## Creating the slides
 
-You can build the slides using just:
+You can build the exercises and hints using just:
 
 ```
 make

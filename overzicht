@@ -1,29 +1,29 @@
 schema:
 
 0:00 - 0:15 introductie, geschiedenis, voorbeelden en emulator
-0:15 - 0:25 klooien met easy6502 en emulator
-0:25 - 0:35 muziek en laat mensen computer raden
-0:35 - 0:45 emulator en assembly voorbeelden
+0:15 - 0:25 klooien met emulator en opdrachten
+0:25 - 0:35 assembly, graphics en programmeervoorbeelden
+0:35 - 0:45 opdrachten deel 2 en evt. easy6502
 
-10 min pauze
+15 min pauze
 
-0:55 - 1:10 graphics en programmeervoorbeelden
-1:10 - 1:15 uitleg voor eindopdracht
-1:15 - 1:35 eindopdracht of pauze
-1:35 - 1:40 verzamelen van alle programma's
-1:40 - 2:00 programma's op echte C64 tonen en afronden workshop
+1:00 - 1:15 muziek en laat mensen computer raden
+1:15 - 1:20 uitleg voor eindopdracht
+1:20 - 1:40 eindopdracht of pauze
+1:40 - 1:45 verzamelen van alle programma's
+1:45 - 2:00 programma's op echte C64 tonen en afronden workshop
 
 globaal idee:
 
 15 min presentatie: geschiedenis en tonen van voorbeelden
 10 min klooien met easy6502 en emulator
-10 min muziek en laat mensen computer raden
-10 min klooien met emulator en assembly voorbeelden
+10 min assembly, graphics en programmeervoorbeelden
+10 min klooien met opdrachten en evt. easy 6502
 
-10 min pauze
+15 min pauze
 
-15 min graphics en programmeervoorbeelden
+15 muziek en laat mensen computer raden
  5 min uitleg voor eindopdracht
 20 min programmeren in team en rondlopen om mensen te helpen of pauze
  5 min verzamelen van alle programma's
-10 min programma's op echte C64 tonen en afronden workshop
+15 min programma's op echte C64 tonen en afronden workshop

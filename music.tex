@@ -1,0 +1,319 @@
+\begin{frame}
+\frametitle{Audio}
+
+\begin{itemize}
+\item Analoog of Digitaal
+\end{itemize}
+
+\begin{figure}
+\includegraphics[width=0.6\linewidth]{images/waveforms.png}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Analoog Audio}
+
+\begin{itemize}
+\item Niet-elektronisch
+\item Visualisatie met Oscilloscoop
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Digitaal Audio}
+
+\begin{itemize}
+\item Benadering van Analoog
+\item Stapsgewijs
+\item Duidelijk zichtbaar op oude PCs
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle[fragile]{Digitaal Audio}
+
+\begin{figure}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\linewidth]{images/waveforms.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\linewidth]{images/rc3nes.png}
+	\end{subfigure}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Digitaal Audio - Speaker}
+
+\begin{itemize}
+\item Squaker
+\item Zeer ruw
+\item Aan of uit
+\item Frequentie
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Digitaal Audio - Speaker Voorbeelden}
+
+\begin{itemize}
+\item Loop
+\item Single
+\item Arpeggio
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Digitaal Audio - NES}
+
+\begin{tabular}{|l|l|l|l|}
+\hline \# & type & volumes & frequenties \\ \hline
+2 & Pulse wave & 16 & 54Hz-28kHz \\
+% XXX er stond 447kHz als upper bound, maar kan toch niet kloppen?
+1 & White noise & 16 & 29.3Hz-47kHz \\
+1 & Triangle wave & 1 & 27Hz-56kHz \\
+1 & Delta PCM & 16 & 4kHz-33kHz \\ \hline
+\end{tabular}
+
+\end{frame}
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Digitaal Audio - NES}
+
+\begin{itemize}
+\item 5 kanalen
+\item 8 bit voor pulse, noise en triangle
+\item 1 bit voor DPCM
+\item hardware pitch bending
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Digitaal Audio - NES voorbeeld}
+
+\begin{itemize}
+\item The Legend of Zelda theme
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Digitaal Audio}
+
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{images/rc3nes.png}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{C64: SID chip}
+
+\begin{itemize}
+\item 's werelds eerste audio synthesizer
+\item Analoog \emph{en} Digitaal
+\item Verschillende onderscheidingen
+\item 6581 en 8580
+\item Timbaland plagiaat
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Ter Vergelijking}
+
+\begin{tabular}{|l|l|l|l|}
+\hline Model & Geluid & Type & Voices \\ \hline
+PET & CPU PIO & 1-bit beeper & 0 \\
+VIC-20 & VIC I & 8-bit digital & 4 \\
+C64 & SID & A/D 8-bit synthesizer & 3 \\ \hline
+Apple ][ & Speaker & 1-bit beeper & 0 \\
+IBM PC & Speaker & 1-bit beeper & 0 \\
+NES & RP2A03 & 8-bit digitaal & 5 \\ \hline
+\end{tabular}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Audio}
+
+\begin{itemize}
+\item 3 kanalen (voices)
+\item ADSR envelope
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{ADSR}
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{images/adsr.png}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Waveforms}
+
+\begin{itemize}
+\item Sawtooth
+\item Square
+\item Sinuso\"ide
+\item Triangle
+\item Noise
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Waveforms}
+
+\begin{figure}
+\includegraphics[width=0.75\linewidth]{images/waveforms.png}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{SID - Technieken}
+
+\begin{itemize}
+\item Pulse Width Modulation (PWM)
+\item Ring modulation (ring mod)
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{SID - Voorbeelden}
+
+\begin{itemize}
+\item Driller (PWM)
+\item Commando
+\item Zoids (ring mod)
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Intermezzo}
+
+\begin{block}{Muziek}
+Raad welk muziekje bij welke computer/console hoort!
+\end{block}
+
+\begin{itemize}
+\item IBM PC
+\item NES
+\item C64
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Intermezzo - Voorbeelden}
+
+\begin{itemize}
+\item Grand Prix Circuit (PC, C64)
+\item Castlevania (PC, NES, C64)
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Intermezzo}
+
+\begin{itemize}
+\item IBM PC
+\item NES
+\item C64
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{SID hacking}
+
+\begin{itemize}
+\item Click/pop-bug in 6581
+\item 4-bit PCM digitaal
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{SID hacking - Arkanoid}
+
+\begin{figure}
+\includegraphics[width=\linewidth]{images/farts.png}
+\end{figure}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{SID hacking - 6581 examples}
+
+\begin{tabular}{|l|l|l|}
+\hline Year & Artist & Title \\ \hline
+1987 & Martin Galway & Arkanoid \\
+1987 & Chris H\"ulsbeck & Dulcedo Cogitationis \\
+1988 & Jeroen Tel & Savage \\
+1989 & Jeroen Tel & Stormlord \\
+1989 & Jeroen Tel & Turbo Outrun \\
+1990 & J. Tel and C. H\"ulsbeck & Turrican \\ \hline
+\end{tabular}
+
+\end{frame}

@@ -1,6 +1,6 @@
 .PHONY: default all clean
 
-default: exercises_en.pdf exercises.pdf hints.pdf
+default: exercises_en.pdf exercises.pdf hints.pdf preview.pdf
 all: answers.pdf exercises.pdf hints.pdf workshop.pdf workshop_en.pdf
 
 images/desk.jpg:
@@ -17,6 +17,10 @@ exercises.pdf: exercises.tex
 	pdflatex exercises.tex
 exercises_en.pdf: exercises_en.tex
 	pdflatex exercises_en.tex
+preview.pdf: preview.tex
+	# Run multiple times to get page numbers, bibliography etc. right.
+	pdflatex preview.tex
+	pdflatex preview.tex
 answers.pdf: answers.tex
 	pdflatex answers.tex
 hints.pdf: hints.tex

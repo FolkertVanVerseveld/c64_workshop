@@ -5,10 +5,10 @@ GFX=\
 	breadbin.jpg c1541.jpg c64.jpg c64back.png c64c.jpg c64c_garage.jpg \
 	c64schema.jpg c64schema2.jpg datasette.jpg desk.jpg edsac.jpg \
 	edsac_crts.jpg farts.png gary.png hvsc.jpg ibm5150.jpg nes.jpg oxo.jpg \
-	palette.png pdp8.jpg pet.jpg pouet.jpg rc3nes.png rekentabellen.jpg \
-	rev2017.jpg sbm_obey.png sbm_tuksu.png sprdwh.png sx64.jpg \
-	terminator.jpg trs80.jpg vcs.jpg vic20.jpg waveforms.png x.jpg \
-	zxspectrum.jpg
+	palette.png pdp8.jpg performance.png pet.jpg pouet.jpg rc3nes.png \
+	rekentabellen.jpg rev2017.jpg sbm_obey.png sbm_tuksu.png sprdwh.png \
+	sx64.jpg terminator.jpg trs80.jpg vcs.jpg vic20.jpg waveforms.png \
+	x.jpg zxspectrum.jpg
 
 default: $(GFX)
 
@@ -27,7 +27,7 @@ bombe.jpg:
 boot.png:
 	wget -O boot.png http://www.vanverseveld.me/folkert/c64/workshop/gfx/boot.png
 breadbin.jpg:
-	wget -O breadbin.jpg https://ksr-ugc.imgix.net/assets/005/716/147/c11b7e5d5b215cfe1ab10de0c92fd4c5_original.jpg?w=680&fit=max&v=1460659081&auto=format&q=92&s=59fba6f4d1d3da5467f3d5d5e7907541
+	wget -O breadbin.jpg http://www.vanverseveld.me/folkert/c64/workshop/gfx/breadbin.jpg
 c1541.jpg:
 	wget -O c1541.jpg https://upload.wikimedia.org/wikipedia/commons/1/1b/Commodore64_fdd1541_front_demodified.jpg
 c64.jpg:
@@ -68,6 +68,8 @@ palette.png:
 	wget -O palette.png http://www.vanverseveld.me/folkert/c64/workshop/gfx/palette.png
 pdp8.jpg:
 	wget -O pdp8.jpg https://upload.wikimedia.org/wikipedia/commons/6/6d/PDP-8.jpg
+performance.png:
+	wget -O performance.png http://www.vanverseveld.me/folkert/c64/workshop/gfx/performance.png
 pet.jpg:
 	wget -O pet.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Commodore_2001_Series-IMG_0448b.jpg/1024px-Commodore_2001_Series-IMG_0448b.jpg
 pouet.jpg:
