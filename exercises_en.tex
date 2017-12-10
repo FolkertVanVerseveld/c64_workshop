@@ -225,6 +225,18 @@ Now type in \verb:POKE1024,1: and hit enter. Then replace \verb:,1: with \verb:,
 
 \subsection{Input/Output}
 
+You can read user input using the \verb:INPUT: command.
+For example, enter the following program:
+
+\begin{lstlisting}
+10 INPUT A$
+20 PRINT "YOU TYPED: "; A$
+\end{lstlisting}
+
+If you RUN the program, you can enter some text that will be printed to the screen.
+
+\problem Write a BASIC program that asks a username and prints it to the screen.
+
 \section{Saving/Loading programs}
 
 \subsection{Creating and attaching a floppy disk}
@@ -260,5 +272,26 @@ In order to be able to save and load programs, you have to attach a floppy disk 
 \begin{lstlisting}
 ./x64.app/Contents/MacOS/x64 path/to/your/floppy.d64
 \end{lstlisting}
+
+\subsection{Saving programs}
+
+After you have typed in a BASIC program and attached a floppy disk to drive 8 you can save it by typing \verb:SAVE"NAME",8:.
+If you want to overwrite a program you have to do the following in multiple steps.
+First, you have to remove the program like this:
+
+\begin{lstlisting}
+OPEN1,8,15,"I":CLOSE1
+OPEN1,8,15,"S:NAME":CLOSE1
+\end{lstlisting}
+
+Replace \verb:NAME: with the program you want to overwrite.
+After you have removed the program, you can resave it using \verb:SAVE"NAME",8:.
+
+\subsection{Loading programs}
+
+After you have attached the floppy disk you want to read from to drive 8 you can load a listing of the drive using \verb:LOAD"$",8: and type \verb:LIST: to see the list of files.
+You can load a file using \verb:LOAD"NAME",8:.
+
+If you want to load the first program from disk you can use the short-hand \verb:LOAD"*",8,1":.
 
 \end{document}

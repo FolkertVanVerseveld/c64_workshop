@@ -209,4 +209,90 @@ Wees hier wel voorzichtig mee, want er wordt geen waarschuwing gegeven!
 \problem Folkert heeft 6 appels gekocht van \euro 0,32 per stuk en 4 bananen van \euro 0,22 per stuk en zou de totale kosten van alle appels, alle bananen en het totaal willen uitprinten.
 Schrijf een programma wat dit uitrekent en print. Vergeet niet \verb:NEW: in te typen voordat je begint met programmeren!
 
+Als u het resultaat/programma wilt opslaan, kunt u ofwel de sectie Opslaan/Laden van Programma's lezen of uw oplossing overtypen in een teksteditor of op papier.
+
+\subsection{Peeks 'n Pokes}
+
+Herstart de emulator en typ `A' in de linkerbovenhoek van het scherm.
+Ga vervolgens naar een lege regel en typ \verb:PEEK(1024):.
+
+\problem Vervang de `A' in de linkerbovenhoek met `B' en typ opnieuw \verb:PEEK(1024): in.
+Wat doet dit commando? Probeer een paar andere waarden om erachter te komen wat het getal betekent.
+
+Typ nu \verb:POKE1024,1: in en druk op enter. Vervang \verb:,1: met \verb:,2: en probeer een paar anderen waarden.
+
+\problem Wat doet dit commando?
+
+\subsection{Invoer/Uitvoer}
+
+Invoer kan opgevraagd worden met het \verb:INPUT: commando.
+Bijvoorbeeld met het onderstaande programma:
+
+\begin{lstlisting}
+10 INPUT A$
+20 PRINT "UW INVOER: "; A$
+\end{lstlisting}
+
+Typ het programma in en RUN het programma.
+Het programma zal u om gebruikersinvoer vragen en dit printen.
+
+\problem Schrijf een BASIC programma wat een gebruikersnaam vraagt en dit print naar het scherm.
+
+\section{Opslaan/Laden van Programma's}
+
+\subsection{Aanmaken en aansluiten van een floppydisk}
+
+Met het floppy hulpprogramma c1541 kunt u een disk maken.
+Als we bijvoorbeeld een disk genaamd `muziek' willen maken op linux kunnen we dit doen:
+
+\begin{lstlisting}
+c1541 -format diskname,id d64 muziek.d64
+\end{lstlisting}
+
+Of op windows:
+
+\begin{lstlisting}
+c1541.exe -format diskname,id d64 muziek.d64
+\end{lstlisting}
+
+Of op een mac:
+
+% XXX make sure this is correct. It may be ./x64.app/.../c1541 but I'm not sure
+\begin{lstlisting}
+./c1541.app/Contents/MacOS/c1541 -format diskname,id d64 muziek.d64
+\end{lstlisting}
+
+Vervang `muziek' met de naam van de disk.
+
+Op windows en Linux kunt u de floppydisk aan de drive aansluiten zelfs nadat u de emulator gestart hebt met \verb:File->Attach disk image->Unit #8: of met \verb:ALT+8:.
+
+\subsection{Opslaan/Laden van programma's op Mac}
+
+Als u programma's wil opslaan of laden moet u de floppydisk aansluiten \emph{voordat} u de emulator start. Bijvoorbeeld:
+
+\begin{lstlisting}
+./x64.app/Contents/MacOS/x64 pad/naar/uw/floppy.d64
+\end{lstlisting}
+
+\subsection{Programma's opslaan}
+
+Nadat u een BASIC programma heeft ingevoerd en de floppydisk aan drive 8 heeft aangesloten kunt u met \verb:SAVE"NAME",8: een programma opslaan.
+Als u het programma wilt overschrijven zult u dit in meerdere stappen moeten doen.
+Als eerste moet het programma als volgt verwijderd worden:
+
+\begin{lstlisting}
+OPEN1,8,15,"I":CLOSE1
+OPEN1,8,15,"S:NAAM":CLOSE1
+\end{lstlisting}
+
+Vervang \verb:NAAM: met het programma wat u wilt verwijderen.
+Nadat het verwijderd is, kunt u het opnieuw bewaren met \verb:SAVE"NAAM",8:.
+
+\subsection{Programma's laden}
+
+Nadat u de floppydisk heeft aangesloten kunt u het programma van drive 8 laden met \verb:LOAD"$",8: waarna u \verb:LIST: kan intypen om de lijst van alle programma's te zien.
+Een bestand laden kan met \verb:LOAD"NAME",8:.
+
+Als u het eerste programma van de disk wilt laden kunt u ook dit gebruiken: \verb:LOAD"*",8,1":.
+
 \end{document}
