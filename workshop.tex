@@ -6,25 +6,8 @@
 %   @: folkert.vanverseveld@students.uva.nl
 %
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% LATEX-TEMPLATE PRESENTATIE
-%-------------------------------------------------------------------------------
-% Voor informatie over presenterenn, zie
-% http://practicumav.nl/presenteren/presenteren.html
-% Voor readme en meest recente versie van het template, zie
-% https://gitlab-fnwi.uva.nl/informatica/LaTeX-template.git
-% Gebaseerd op een template van: http://www.LaTeXTemplates.com
-% Licentie: CC BY-NC-SA 3.0
-% (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%-------------------------------------------------------------------------------
-%	PACKAGES EN CONFIGURATIE
-%-------------------------------------------------------------------------------
-
 \documentclass[aspectratio=43]{uva-inf-presentation}
 \usepackage[dutch]{babel}
-%\usepackage{qtree}
 \usepackage{multicol}
 \usepackage{amssymb}
 \usepackage{listings}
@@ -55,18 +38,11 @@
 \tableofcontents
 \end{frame}
 
-%-------------------------------------------------------------------------------
-%	PRESENTATIE SLIDES
-%-------------------------------------------------------------------------------
-
-% Secties zijn er om structuur in je presentatie aan te brengen
-% en worden direct in de inhoudsopgave opgenomen
 \section{Introductie}
-% Maak een subsection voor een serie slides met een gedeeld thema
 \section{Programmeeromgeving}
 \section{Programmeren in BASIC}
-\section{Muziek}
 \section{Graphics}
+\section{Muziek}
 \section{Intermezzo's en Opdrachten}
 
 \section{Conclusies}
@@ -168,10 +144,6 @@
 
 %----------------------------------------------
 
-% XXX add edsac geschiedenis & specs?
-
-%----------------------------------------------
-
 \begin{frame}
 \frametitle{Mainframes}
 
@@ -206,18 +178,6 @@
 \item Duur, maar niet onbetaalbaar: \$10,000+
 \item Acceptabele performance
 \item `Gewone' klanten
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Moore's law}
-
-\begin{itemize}
-\item Rekenmachines steeds sneller en goedkoper
-\item Hoe goedkoper, des te meer toepassingen
 \end{itemize}
 
 \end{frame}
@@ -319,7 +279,7 @@
 \frametitle{Eerste Game Consoles}
 
 \begin{figure}
-\includegraphics[width=0.75\linewidth]{images/nes.jpg}
+\includegraphics[width=0.5\linewidth]{images/vectrex.jpg}
 \end{figure}
 
 \end{frame}
@@ -327,13 +287,11 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Toepassingen van PCs}
+\frametitle{Eerste Game Consoles}
 
-\begin{itemize}
-\item Kantoor gerelateerd (administratie, spreadsheets, \dots)
-\item Consumentgericht
-\item (Games)
-\end{itemize}
+\begin{figure}
+\includegraphics[width=0.75\linewidth]{images/nes.jpg}
+\end{figure}
 
 \end{frame}
 
@@ -343,15 +301,15 @@
 \frametitle{Ter Vergelijking}
 
 \begin{tabular}{|l|l|l|l|l|}
-\hline Jaar & Model & Toen & Omg. & Nu \\ \hline
+\hline Jaar & Model & Toen & Omg. & Nu (ebay) \\ \hline
 1977 & PET & \$795 & \$3150 & \$600-\$800 \\
 1980 & VIC-20 & \$299.95 & \$874 & \$30-\$110 \\
 1982 & C64 & \$595 & \$1480 & \$10-\$50 \\ \hline
 1977 & Apple ][ & \$1296 & \$5130 & \$200-\$750 \\
 1981 & IBM PC & \$1565 & \$4130 & \$150-\$1100 \\
-%IBM PC & 16-640 & Beeper & Ja & \$1565 \\
 1982 & ZX Spec. & \pounds 175 & \pounds 567 & \pounds 80-\pounds 120 \\ \hline
 1977 & VCS & \$199 & \$768 & \$40-\$80 \\
+1982 & Vectrex & \$199 & \$495 & \$400-\$600 \\
 1983 & NES & \$179 & \$433 & \$25-\$120 \\ \hline
 \end{tabular}
 
@@ -365,16 +323,6 @@
 \begin{itemize}
 \item Niet nodig
 \item Te duur (+\$500/+\$2,000)
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Data-opslag}
-
-\begin{itemize}
 \item Programma's in RAM, firmware in ROM
 \item Power loss: programma weg!
 \end{itemize}
@@ -399,18 +347,8 @@
 
 \begin{itemize}
 \item Sequentieel magnetisch geheugen
-\item Enkele MBs
+\item 450KB-2000KB
 \item Enkel-/dubbelzijdig
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Programma opzoeken}
-
-\begin{itemize}
 \item Onhandig
 \item Handmatig heen en weer zoeken
 \item Analoge file table
@@ -436,10 +374,10 @@
 
 \begin{itemize}
 \item Echt floppy
-\item 8 inch, 5.25 inch
-\item SD/DD
-\item 300-600 RPM (5-10 revs/sec)
-\item 0.1MB-2.0MB
+\item 5.25 inch
+\item SD
+\item 300 RPM (5 revs/sec)
+\item 186KB
 \end{itemize}
 
 \end{frame}
@@ -458,7 +396,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{De Enige Echte}
+\frametitle{De Enige Echte - Broodtrommel}
 
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{images/c64.jpg}
@@ -480,7 +418,7 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{De Enige Echte}
+\frametitle{De Enige Echte - C64C}
 
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{images/c64c.jpg}
@@ -502,22 +440,6 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{De Specificaties}
-
-\begin{itemize}
-\item Ge\"introduceerd in 1982
-\item 64 kilobytes
-\item MOS 6510 met 1 MHz kristalklok
-\item 2 joystick poorten
-\item Cartridge port (games!), serial I/O, user port
-\item 16 kleuren
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
 \frametitle{Ter Vergelijking}
 
 \begin{tabular}{|l|l|l|l|l|}
@@ -529,6 +451,7 @@ Apple ][ & 4096 & MOS 6502 & 1 \\
 IBM PC & 16384 & i8086 & 4.04 \\
 ZX Spectrum & 16384 & Z80 & 3.5 \\ \hline
 VCS & 128 & MOS 6507 & 1.19 \\
+Vectrex & 1024 & MC68A09 & 1.5 \\
 NES & 2048 & Ricoh 2A03 & 1.6 \\ \hline
 \end{tabular}
 
@@ -567,21 +490,6 @@ NES & 2048 & Ricoh 2A03 & 1.6 \\ \hline
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{images/bender.jpeg}
 \end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Wat kan een C64?}
-
-\begin{itemize}
-\item Administratie (spreadsheets, word, \dots)
-\item Scannen, printen (met dot matrix printer)
-\item Games!
-\item Internet (via 50Kbps modem)
-\item Hardware upgrades
-\end{itemize}
 
 \end{frame}
 
@@ -635,119 +543,13 @@ NES & 2048 & Ricoh 2A03 & 1.6 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Er wordt nog steeds software gemaakt!}
-
-\begin{itemize}
-\item Tijdschriften, nieuwsbrieven, blogs, \dots
-\item Offence \& Prosonix - Area64
-\item Mayday! - Fallen Stars
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Programmeertalen}
-
-\begin{itemize}
-\item Microsoft BASIC
-\item Machine code (assembly)
-\item Pascal
-\item K\&R C
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
 \frametitle{Hoe Programmeerden we vroeger?}
 
 \begin{itemize}
 \item Geen internet
 \item Literatuur (tijdschriften, boeken, \dots)
 \item Overlevering (bijeenkomsten, wedstrijden, \dots)
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Wat krijg je bij een C64?}
-
-\begin{itemize}
-\item Handleiding van ca. 300 pagina's
-\item Programmeerhandleiding voor BASIC en assembly
-\item Verwijzingen naar programma's, clubs, tijdschriften
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Gebruikershandleiding}
-
-\begin{itemize}
-\item Randapparaten aansluiten
-\item Configuratie en commando's
-\item BASIC programmeren (ca. 60 commando's)
-\item Voorbeelden
-\item Tips and tricks
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Programmeerhandleiding}
-
-\begin{itemize}
-\item Geheugenlayout
-\item Assembly instructie set (151 gedocumenteerd)
-\item Graphics modes
-\item Sound effecten
-\item Hardware uitbreidingen
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Literatuur}
-
-\begin{figure}
-\includegraphics[width=0.75\linewidth]{images/c64schema.jpg}
-\end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Literatuur}
-
-\begin{figure}
-\includegraphics[width=0.75\linewidth]{images/c64schema2.jpg}
-\end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{Programmeren in BASIC}
-
-\begin{itemize}
-\item Makkelijk te leren, makkelijk te begrijpen
-\item Al ingebouwd in C64
-\item 68 BASIC commando's
-\item Broncode is genummerd per regel
-\item Numerieke variabelen, strings, lijsten
-\item Code/Data
+\item `Download' programma's van radio naar tape!
 \end{itemize}
 
 \end{frame}
@@ -804,10 +606,11 @@ NES & 2048 & Ricoh 2A03 & 1.6 \\ \hline
 \begin{frame}{Intermezzo}
 
 \begin{itemize}
-\item Ga naar https://www.github.com/FolkertVanVerseveld/workshop
+\item Ga naar https://www.github.com/FolkertVanVerseveld
+\item Klik op `workshop' en dan op `releases'
 \item Download het release archief en pak het uit
 \item Probeer wat opdrachten te maken
-\item Probeer zelf een BASIC programma te schrijven
+\item Pas de code aan of probeer zelf een BASIC programma te schrijven
 \end{itemize}
 
 \end{frame}
@@ -843,11 +646,11 @@ NES & 2048 & Ricoh 2A03 & 1.6 \\ \hline
 
 \begin{lstlisting}
 * = $0810
-lda #$08
+lda #8
 sta 1024
-lda #$05
+lda #5
 sta 1025
-lda #$19
+lda #25
 sta 1026
 rts
 \end{lstlisting}
@@ -868,131 +671,6 @@ Addr. & Mach. Code & Dissassembly & Pseudo Code \\
 081A & A9 19 & LDA \#\$19 & A = `Y' \\
 081C & 8D 02 04 & STA \$402 & mem[1026] = A \\
 081F & 60 & RTS & return \\
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{Ter Vergelijking - Instruction Set}
-
-\begin{tabular}{|l|l|l|l|}
-\hline CPU & Regs & Reg Bits & Mul/Div \\ \hline
-8086 & 14 & 8/16 & Mul \& Div \\
-65XX & 6 & 8 & geen \\
-Z80 & 14 & 8/16 & Mul \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{8086 registers}
-
-\begin{tabular}{|l|l|l|}
-\hline Naam & Bits & Doel \\ \hline
-A & 16 & Accumulator \\
-B & 16 & Base pointer \\
-C & 16 & Loop counter \\
-D & 16 & Second accumulator, andere dingen \\ 
-SI & 16 & Source Index \\
-DI & 16 & Destination Index \\
-BP & 16 & Base Pointer \\
-SP & 16 & Stack Pointer \\
-IP & 16 & Instruction Pointer \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{8086 registers}
-
-\begin{tabular}{|l|l|l|}
-\hline Naam & Bits & Doel \\ \hline
-CS & 16 & Code Segment \\
-DS & 16 & Data Segment \\
-ES & 16 & Extra Segment \\
-SS & 16 & Stack Segment \\
-FLAGS & 16 & Processor Status Word \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{Z80 registers}
-
-\begin{tabular}{|l|l|l|}
-\hline Naam & Bits & Doel \\ \hline
-AF(') & 16 & Accumulator en Flaggen \\
-BC(') & 16 & Data/Address register \\
-DE(') & 16 & Data/Address register \\
-HL(') & 16 & Accumulator/Address register \\
-SP & 16 & Stack Pointer \\
-PC & 16 & Program Counter \\
-IX & 16 & Index/Base register \\
-IY & 16 & Index/Base register \\
-I & 8 & Interrupt vector \\
-R & 8 & DRAM refresh counter \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{6502 registers}
-
-\begin{tabular}{|l|l|l|}
-\hline Naam & Bits & Doel \\ \hline
-A & 8 & Accumulator \\
-X & 8 & Index register \\
-Y & 8 & Index register \\
-SP & 8 & Stack Pointer \\
-PC & 16 & Program Counter \\
-FLAGS & 8 & Processor Status Word \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{6502}
-
-\begin{itemize}
-\item Erg simpel en elegant
-\item 256 bytes stack (d.w.z. 128 call-stack)
-\item IRQ, NMI
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{Commodore 64}
-
-\begin{itemize}
-\item 64K aan RAM
-\item KERNAL, BASIC, CHAR ROM
-\item Bankswitching
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{Commodore 64 - memory map}
-
-\begin{tabular}{|l|l|l|l|}
-\hline Begin & Eind & Doel & Grootte \\ \hline
-FFFF & 0000 & RAM & 65356 \\
-FFFF & E000 & KERNAL ROM & 8192 \\
-DFFF & D000 & I/O \& CHAR ROM & 4096 \\
-CFFF & C000 & RAM & 4096 \\
-BFFF & A000 & BASIC/ROM PLUG-IN & 8192 \\
-9FFF & 8000 & ROM PLUG-IN & 8192 \\
-7FFF & 4000 & RAM & 16384 \\
-3FFF & 0000 & RAM & 16384 \\ \hline
 \end{tabular}
 
 \end{frame}
@@ -1061,13 +739,13 @@ BFFF & A000 & BASIC/ROM PLUG-IN & 8192 \\
 \frametitle{Revision}
 
 \begin{itemize}
+\item Je krijgt er 2 colloqiumpunten voor!!
 \item Sinds 2011 (daarvoor: Breakpoint)
 \item Ong. 700 bezoekers
 \item Grote bedrijven bieden banen aan!
 \item Seminars
 \item 30+ wedstrijden (demo, gfx, fotografie, \dots)
 \end{itemize}
-
 \end{frame}
 
 %----------------------------------------------
@@ -1076,8 +754,8 @@ BFFF & A000 & BASIC/ROM PLUG-IN & 8192 \\
 \frametitle{Opdracht}
 
 \begin{itemize}
-\item Vorm groepen van maximaal 5
-\item Maak een demo!
+\item Probeer de gegeven voorbeelden
+\item Speel met de voorbeelden en probeer dingen uit!
 \end{itemize}
 
 \end{frame}
@@ -1108,8 +786,6 @@ BFFF & A000 & BASIC/ROM PLUG-IN & 8192 \\
 \item Diverse interessegroepen
 \item Elke twee maanden in Maarssen
 \item Retro (8/16 bit) computers welkom
-\item Ultimate II+
-\item Swappen
 \end{itemize}
 
 \end{frame}
@@ -1142,7 +818,7 @@ BFFF & A000 & BASIC/ROM PLUG-IN & 8192 \\
 \item Ongeveer 1500 artiesten
 \item Ongeveer 300MB
 \item Dus ongeveer 6KB per SID!
-\item Meer dan 16000 uur muziek!
+\item Meer dan 10000 uur muziek!
 \end{itemize}
 
 \end{frame}

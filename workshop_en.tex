@@ -7,6 +7,7 @@
 %
 
 \documentclass[aspectratio=43]{uva-inf-presentation}
+
 \usepackage{multicol}
 \usepackage{amssymb}
 \usepackage{listings}
@@ -37,12 +38,11 @@
 \tableofcontents
 \end{frame}
 
-
 \section{Introduction}
 \section{Programming Environment}
 \section{BASIC programming}
-\section{Music}
 \section{Graphics}
+\section{Music}
 \section{Intermezzo's and Exercises}
 
 \section{Conclusions}
@@ -138,6 +138,7 @@
 \includegraphics[width=0.75\linewidth]{images/oxo.jpg}
 \end{figure}
 % http://www.dcs.warwick.ac.uk/~edsac/
+% optionally show OXO in emulator.
 
 \end{frame}
 
@@ -177,18 +178,6 @@
 \item Expensive, but less than millions: \$10,000+
 \item Acceptable performance
 \item `Average' customers
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Moore's law}
-
-\begin{itemize}
-\item Calculators are getting faster and cheaper
-\item The cheaper, the more applications
 \end{itemize}
 
 \end{frame}
@@ -290,7 +279,7 @@
 \frametitle{First Game Consoles}
 
 \begin{figure}
-\includegraphics[width=0.75\linewidth]{images/nes.jpg}
+\includegraphics[width=0.5\linewidth]{images/vectrex.jpg}
 \end{figure}
 
 \end{frame}
@@ -298,13 +287,11 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Applications of PCs}
+\frametitle{First Game Consoles}
 
-\begin{itemize}
-\item Office related (administration, spreadsheets, \dots)
-\item Aimed at broader consumer audience
-\item (Games)
-\end{itemize}
+\begin{figure}
+\includegraphics[width=0.75\linewidth]{images/nes.jpg}
+\end{figure}
 
 \end{frame}
 
@@ -314,7 +301,7 @@
 \frametitle{Personal Computers by Comparison}
 
 \begin{tabular}{|l|l|l|l|l|}
-\hline Year & Model & Introd. & Converted & Now \\ \hline
+\hline Year & Model & Introd. & Converted & Now (ebay) \\ \hline
 1977 & PET & \$795 & \$3150 & \$600-\$800 \\
 1980 & VIC-20 & \$299.95 & \$874 & \$30-\$110 \\
 1982 & C64 & \$595 & \$1480 & \$10-\$50 \\ \hline
@@ -322,6 +309,7 @@
 1981 & IBM PC & \$1565 & \$4130 & \$150-\$1100 \\
 1982 & ZX Spec. & \pounds 175 & \pounds 567 & \pounds 80-\pounds 120 \\ \hline
 1977 & VCS & \$199 & \$768 & \$40-\$80 \\
+1982 & Vectrex & \$199 & \$495 & \$400-\$600 \\
 1983 & NES & \$179 & \$433 & \$25-\$120 \\ \hline
 \end{tabular}
 
@@ -335,16 +323,6 @@
 \begin{itemize}
 \item Don't need them
 \item Too expensive (+\$500/+\$2,000)
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Data Storage}
-
-\begin{itemize}
 \item Programs in RAM, firmware in ROM
 \item Power loss: program gone!
 \end{itemize}
@@ -369,18 +347,8 @@
 
 \begin{itemize}
 \item Sequential magnetic memory
-\item Couple of MBs
+\item 450KB-2000KB
 \item Single/Double density
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Searching for Program}
-
-\begin{itemize}
 \item Clumsy
 \item Manually seek forward and rewind tape
 \item Analog file table
@@ -406,10 +374,10 @@
 
 \begin{itemize}
 \item Real floppy
-\item 8 inch, 5.25 inch
-\item SD/DD
-\item 300-600 RPM (5-10 revs/sec)
-\item 0.1MB-2.0MB
+\item 5.25 inch
+\item SD
+\item 300 RPM (5 revs/sec)
+\item 186KB
 \end{itemize}
 
 \end{frame}
@@ -472,22 +440,6 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Hardware Specifications}
-
-\begin{itemize}
-\item Introduced in 1982
-\item 64 kilobytes of RAM
-\item MOS 6510 clocked at 0.985MHz (PAL)
-\item 2 joystick ports
-\item Cartridge port (games!), serial I/O, user port
-\item 16 colors
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
 \frametitle{CPU and Memory by Comparison}
 
 \begin{tabular}{|l|l|l|l|l|}
@@ -499,6 +451,7 @@ Apple ][ & 4096 & MOS 6502 & 1 \\
 IBM PC & 16384 & i8086 & 4.04 \\
 ZX Spectrum & 16384 & Z80 & 3.5 \\ \hline
 VCS & 128 & MOS 6507 & 1.19 \\
+Vectrex & 1024 & MC68A09 & 1.5 \\
 NES & 2048 & Ricoh 2A03 & 1.6 \\ \hline
 \end{tabular}
 
@@ -537,21 +490,6 @@ NES & 2048 & Ricoh 2A03 & 1.6 \\ \hline
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{images/bender.jpeg}
 \end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{What can you do on a C64?}
-
-\begin{itemize}
-\item Administration (spreadsheets, word, \dots)
-\item Scanning, printing (with dot matrix printer)
-\item Games!
-\item Internet (using 50Kbps modem)
-\item Hardware upgrades
-\end{itemize}
 
 \end{frame}
 
@@ -605,119 +543,13 @@ NES & 2048 & Ricoh 2A03 & 1.6 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Software is still being written!}
-
-\begin{itemize}
-\item Magazines, newsletters, blogs, \dots
-\item Offence \& Prosonix - Area64
-\item Mayday! - Fallen Stars
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Supported Programming Languages}
-
-\begin{itemize}
-\item Microsoft BASIC
-\item Machine code (assembly)
-\item Pascal
-\item K\&R C
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
 \frametitle{How did we write Programs back then?}
 
 \begin{itemize}
 \item No internet (BBS after some time)
 \item Literature (magazines, books, \dots)
 \item Mouth-to-mouth (meetings, competitions, parties, \dots)
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{What do you get if you bought a C64?}
-
-\begin{itemize}
-\item User's Guide approx. 300 pages
-\item Programmer's reference guide for BASIS and Assembly
-\item Reference to programs, clubs, magazines
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{User's Guide}
-
-\begin{itemize}
-\item Connecting peripherals
-\item Configurations and Commands
-\item BASIC programming (approx. 60 commands)
-\item Examples
-\item Tips and tricks
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Programmer's Reference Guide}
-
-\begin{itemize}
-\item Memory layout
-\item Assembly instruction set (151 documented)
-\item Graphics modes
-\item Sound effects
-\item Hardware expansions
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Literature}
-
-\begin{figure}
-\includegraphics[width=0.75\linewidth]{images/c64schema.jpg}
-\end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Literature}
-
-\begin{figure}
-\includegraphics[width=0.75\linewidth]{images/c64schema2.jpg}
-\end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{Programming in BASIC}
-
-\begin{itemize}
-\item Easy to learn, easy to understand
-\item Already embedded in C64
-\item 68 BASIC commands
-\item Line numbered source code
-\item Numeric variables, strings, arrays
-\item Code/Data
+\item `Download' programs from radio to tape!
 \end{itemize}
 
 \end{frame}
@@ -774,10 +606,11 @@ NES & 2048 & Ricoh 2A03 & 1.6 \\ \hline
 \begin{frame}{Intermezzo}
 
 \begin{itemize}
-\item Go to https://www.github.com/FolkertVanVerseveld/workshop
+\item Go to https://www.github.com/FolkertVanVerseveld
+\item Click on `workshop' and then `releases'
 \item Download and unpack the release archive
-\item Try to solve some exercises
-\item Try to create a BASIC program
+\item Try to do some exercises
+\item Modify the examples or try to create a BASIC program
 \end{itemize}
 
 \end{frame}
@@ -813,11 +646,11 @@ NES & 2048 & Ricoh 2A03 & 1.6 \\ \hline
 
 \begin{lstlisting}
 * = $0810
-lda #$08
+lda #8
 sta 1024
-lda #$05
+lda #5
 sta 1025
-lda #$19
+lda #25
 sta 1026
 rts
 \end{lstlisting}
@@ -838,131 +671,6 @@ Addr. & Mach. Code & Dissassembly & Pseudo Code \\
 081A & A9 19 & LDA \#\$19 & A = `Y' \\
 081C & 8D 02 04 & STA \$402 & mem[1026] = A \\
 081F & 60 & RTS & return \\
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{Instruction Set Comparison}
-
-\begin{tabular}{|l|l|l|l|}
-\hline CPU & Regs & Reg Bits & Mul/Div \\ \hline
-8086 & 14 & 8/16 & Mul \& Div \\
-65XX & 6 & 8 & none \\
-Z80 & 14 & 8/16 & Mul \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{8086 registers}
-
-\begin{tabular}{|l|l|l|}
-\hline Name & Size & Purpose \\ \hline
-A & 16 & Accumulator \\
-B & 16 & Base pointer \\
-C & 16 & Loop counter \\
-D & 16 & Second accumulator, other stuff \\ 
-SI & 16 & Source Index \\
-DI & 16 & Destination Index \\
-BP & 16 & Base Pointer \\
-SP & 16 & Stack Pointer \\
-IP & 16 & Instruction Pointer \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{8086 registers continued}
-
-\begin{tabular}{|l|l|l|}
-\hline Name & Size & Purpose \\ \hline
-CS & 16 & Code Segment \\
-DS & 16 & Data Segment \\
-ES & 16 & Extra Segment \\
-SS & 16 & Stack Segment \\
-FLAGS & 16 & Processor Status Word \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{Z80 registers}
-
-\begin{tabular}{|l|l|l|}
-\hline Name & Size & Purpose \\ \hline
-AF(') & 16 & Accumulator and Flags \\
-BC(') & 16 & Data/Address register \\
-DE(') & 16 & Data/Address register \\
-HL(') & 16 & Accumulator/Address register \\
-SP & 16 & Stack Pointer \\
-PC & 16 & Program Counter \\
-IX & 16 & Index/Base register \\
-IY & 16 & Index/Base register \\
-I & 8 & Interrupt vector \\
-R & 8 & DRAM refresh counter \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{6502 registers}
-
-\begin{tabular}{|l|l|l|}
-\hline Name & Size & Purpose \\ \hline
-A & 8 & Accumulator \\
-X & 8 & Index register \\
-Y & 8 & Index register \\
-SP & 8 & Stack Pointer \\
-PC & 16 & Program Counter \\
-FLAGS & 8 & Processor Status Word \\ \hline
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{6502}
-
-\begin{itemize}
-\item Very simple and elegant
-\item 256 bytes stack (i.e. 128 call-stack)
-\item IRQ, NMI
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{Commodore 64}
-
-\begin{itemize}
-\item 64K of RAM
-\item KERNAL, BASIC, CHAR ROM
-\item Bankswitching
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{Commodore 64 - memory map}
-
-\begin{tabular}{|l|l|l|l|}
-\hline Start & End & Purpose & Size \\ \hline
-FFFF & 0000 & RAM & 65356 \\
-FFFF & E000 & KERNAL ROM & 8192 \\
-DFFF & D000 & I/O \& CHAR ROM & 4096 \\
-CFFF & C000 & RAM & 4096 \\
-BFFF & A000 & BASIC/ROM PLUG-IN & 8192 \\
-9FFF & 8000 & ROM PLUG-IN & 8192 \\
-7FFF & 4000 & RAM & 16384 \\
-3FFF & 0000 & RAM & 16384 \\ \hline
 \end{tabular}
 
 \end{frame}
@@ -1046,8 +754,8 @@ BFFF & A000 & BASIC/ROM PLUG-IN & 8192 \\
 \frametitle{Exercise}
 
 \begin{itemize}
-\item Form groups (maximum of 5)
-\item Create a demo!
+\item Try provided examples
+\item Modify and try something out!
 \end{itemize}
 
 \end{frame}
@@ -1078,8 +786,6 @@ BFFF & A000 & BASIC/ROM PLUG-IN & 8192 \\
 \item Multiple groups of interest
 \item Meeting once every two months in Maarssen (Netherlands)
 \item Retro (8/16 bit) computers
-\item Ultimate II+
-\item Swapping
 \end{itemize}
 
 \end{frame}
@@ -1112,7 +818,7 @@ BFFF & A000 & BASIC/ROM PLUG-IN & 8192 \\
 \item About 1500 artists
 \item About 300MB
 \item This means about 6KB per SID!
-\item More than 16000 hours of music!
+\item More than 10000 hours of music!
 \end{itemize}
 
 \end{frame}

@@ -1,8 +1,13 @@
 \begin{frame}
-\frametitle{Graphics}
+\frametitle[fragile]{Graphics}
 
 \begin{figure}
-\includegraphics[width=0.5\linewidth]{images/palette.png}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\linewidth]{images/sbm_obey.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\linewidth]{images/nyan.png}
+	\end{subfigure}
 \end{figure}
 
 \end{frame}
@@ -10,12 +15,12 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Graphics}
+\frametitle{Graphics - Analog}
 
 \begin{itemize}
-\item 320x200 pixels
-\item 16 color palette
-\item At most 2 or 4 colors per 8x8 block.
+\item Vectrex
+\item No pixels, but SVG
+\item Monochrome: brightness
 \end{itemize}
 
 \end{frame}
@@ -27,14 +32,27 @@
 
 \begin{tabular}{|l|l|l|}
 \hline Model & Video & Colors \\
-PET & ??? & 1 \\
-VIC-20 & VIC I & 4-16??? \\
+PET & none (CPU) & 1 \\
+VIC-20 & VIC I & 16 \\
 C64 & VIC II & 16 \\
-Apple ][ & ??? & 1-4 \\
-IBM PC & mono of CGA & 1-4 \\
-ZX Spec. & geen (CPU) & 8 \\ \hline
+Apple ][ & none (CPU, TTL) & 1 or 4 \\
+IBM PC & mono or CGA & 1 or 4 \\
+ZX Spec. & none (CPU) & 8 \\ \hline
+VCS & TIA & depends \\
+Vectrex & VIA & none: brightness \\
 NES & Ricoh 2C02 PPU & 52 \\ \hline
 \end{tabular}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}
+\frametitle{Graphics - C64}
+
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{images/palette.png}
+\end{figure}
 
 \end{frame}
 
@@ -69,53 +87,11 @@ NES & Ricoh 2C02 PPU & 52 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Graphics}
-
-\begin{itemize}
-\item Screen text data at \$0400 (== 1024)
-\item Color RAM at \$D800 (== 55296)
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Graphic modes}
-
-\begin{itemize}
-\item Standard Character (text) Mode
-\item Multicolor Character (text) Mode
-\item Standard Bitmap Mode
-\item Multicolor Bitmap Mode
-\item Extended Background Color Mode
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Multicolor Character Mode}
+\frametitle{PETSCII - Text Mode}
 
 \begin{figure}
 \includegraphics[width=0.5\linewidth]{images/gary.png}
 \end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Standard Bitmap}
-
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{images/sbm_obey.png}
-\end{figure}
-
-\begin{center}
-Source: Archmage
-\end{center}
 
 \end{frame}
 
@@ -131,51 +107,6 @@ Source: Archmage
 \begin{center}
 Source: Duce
 \end{center}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Graphics Programming}
-
-\begin{itemize}
-\item Writing your own graphics driver
-\item 64 bytes (17 unused)
-\item This means 47 registers
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{VIC registers}
-
-\begin{tabular}{|l|l|}
-\hline Purpose & \# Registers \\ \hline
-% spr[0-7]x, spr[0-7]y, sprxh, spre, sdh, sdw, smc, sprio
-% 8 + 8 + 6
-Sprites & 22 \\
-% cse0, cse1
-Sprite color & 10 \\
-% cbor, cbkg, cbe0, cbe1, cbe2
-Border/Foreground color & 5 \\
-% ssc, sbkc
-Collision Detection & 2 \\
-% 1 MC mode & screen width etc.
-% 1 screen height & text/bitmap etc.
-% scrc0, scrc1
-Screen control & 2 \\
-% 1 current raster line
-% crl, isr, icr
-Interrupt control & 3 \\
-% msr
-Memory setup & 1 \\
-% 2 lightpen
-% lpx, lpy
-Light pen & 2 \\ \hline
-\end{tabular}
 
 \end{frame}
 
@@ -208,7 +139,7 @@ Light pen & 2 \\ \hline
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{Bleeding on MSX}
+\frametitle{Color clash on MSX}
 
 \begin{figure}
 \includegraphics[width=0.5\linewidth]{images/bleeding.png}
@@ -239,14 +170,8 @@ Light pen & 2 \\ \hline
 \includegraphics[width=0.5\linewidth]{images/sprdwh.png}
 \end{figure}
 
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Great Giana Sisters}
-
 \begin{itemize}
+\item Great Giana Sisters
 \item Like Super Mario Bros
 \item 33 stages
 \end{itemize}
@@ -258,10 +183,9 @@ Light pen & 2 \\ \hline
 \begin{frame}
 \frametitle{Graphics Hacking}
 
-\begin{itemize}
-\item CRT generates HSYNC, VSYNC
-\item Raster Interrupts
-\end{itemize}
+\begin{figure}
+\includegraphics[width=0.75\linewidth]{images/raster.png}
+\end{figure}
 
 \end{frame}
 

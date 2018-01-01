@@ -5,10 +5,10 @@ GFX=\
 	breadbin.jpg c1541.jpg c64.jpg c64back.png c64c.jpg c64c_garage.jpg \
 	c64schema.jpg c64schema2.jpg datasette.jpg desk.jpg edsac.jpg \
 	edsac_crts.jpg farts.png gary.png hvsc.jpg ibm5150.jpg nes.jpg oxo.jpg \
-	palette.png pdp8.jpg performance.png pet.jpg pouet.jpg rc3nes.png \
-	rekentabellen.jpg rev2017.jpg sbm_obey.png sbm_tuksu.png sprdwh.png \
-	sx64.jpg terminator.jpg trs80.jpg vcs.jpg vic20.jpg waveforms.png \
-	x.jpg zxspectrum.jpg
+	palette.png pdp8.jpg performance.png pet.jpg pouet.jpg raster.png \
+	rc3nes.png rekentabellen.jpg rev2017.jpg sbm_obey.png sbm_tuksu.png \
+	sprdwh.png sx64.jpg terminator.jpg trs80.jpg vcs.jpg vectrex.jpg \
+	vic20.jpg waveforms.png x.jpg zxspectrum.jpg
 
 default: $(GFX)
 
@@ -74,6 +74,8 @@ pet.jpg:
 	wget -O pet.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Commodore_2001_Series-IMG_0448b.jpg/1024px-Commodore_2001_Series-IMG_0448b.jpg
 pouet.jpg:
 	wget -O pouet.jpg http://content.pouet.net/logos/logo-9679-01.jpg
+raster.png:
+	wget -O raster.png https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Raster-scan.svg/617px-Raster-scan.svg.png
 rc3nes.png:
 	wget -O rc3nes.png http://www.vanverseveld.me/folkert/c64/workshop/gfx/rc3nes.png
 rekentabellen.jpg:
@@ -94,6 +96,8 @@ trs80.jpg:
 	wget -O trs80.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Radioshack_TRS80-IMG_7206.jpg/1024px-Radioshack_TRS80-IMG_7206.jpg
 vcs.jpg:
 	wget -O vcs.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Atari-2600-Wood-4Sw-Set.jpg/1024px-Atari-2600-Wood-4Sw-Set.jpg
+vectrex.jpg:
+	wget -O vectrex.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Vectrex-Console-Set.jpg/614px-Vectrex-Console-Set.jpg
 vic20.jpg:
 	wget -O vic20.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Commodore-VIC-20-FL.jpg/1024px-Commodore-VIC-20-FL.jpg
 waveforms.png:

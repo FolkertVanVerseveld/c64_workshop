@@ -39,22 +39,6 @@
 %----------------------------------------------
 
 \begin{frame}
-\frametitle[fragile]{Digitaal Audio}
-
-\begin{figure}
-	\begin{subfigure}[b]{0.4\textwidth}
-		\includegraphics[width=\linewidth]{images/waveforms.png}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.5\textwidth}
-		\includegraphics[width=\linewidth]{images/rc3nes.png}
-	\end{subfigure}
-\end{figure}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
 \frametitle{Digitaal Audio - Speaker}
 
 \begin{itemize}
@@ -84,26 +68,10 @@
 \begin{frame}
 \frametitle{Digitaal Audio - NES}
 
-\begin{tabular}{|l|l|l|l|}
-\hline \# & type & volumes & frequenties \\ \hline
-2 & Pulse wave & 16 & 54Hz-28kHz \\
-% XXX er stond 447kHz als upper bound, maar kan toch niet kloppen?
-1 & White noise & 16 & 29.3Hz-47kHz \\
-1 & Triangle wave & 1 & 27Hz-56kHz \\
-1 & Delta PCM & 16 & 4kHz-33kHz \\ \hline
-\end{tabular}
-
-\end{frame}
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Digitaal Audio - NES}
-
 \begin{itemize}
 \item 5 kanalen
-\item 8 bit voor pulse, noise en triangle
-\item 1 bit voor DPCM
-\item hardware pitch bending
+\item 2 pulse, 1 noise, 1 triangle
+\item 1 voor geluidseffecten
 \end{itemize}
 
 \end{frame}
@@ -136,11 +104,10 @@
 \frametitle{C64: SID chip}
 
 \begin{itemize}
-\item 's werelds eerste audio synthesizer
+\item 's werelds eerste audio synthesizer on chip
 \item Analoog \emph{en} Digitaal
 \item Verschillende onderscheidingen
 \item 6581 en 8580
-\item Timbaland plagiaat
 \end{itemize}
 
 \end{frame}
@@ -154,23 +121,14 @@
 \hline Model & Geluid & Type & Voices \\ \hline
 PET & CPU PIO & 1-bit beeper & 0 \\
 VIC-20 & VIC I & 8-bit digital & 4 \\
-C64 & SID & A/D 8-bit synthesizer & 3 \\ \hline
+C64 & SID & A/D 8-bit synth. & 3 \\ \hline
 Apple ][ & Speaker & 1-bit beeper & 0 \\
 IBM PC & Speaker & 1-bit beeper & 0 \\
+ZX Spectrum & AY-3-8912 & 8-bit digitaal & 4 \\ \hline
+VCS & TIA & 5-bit digitaal & 2 \\
+Vectrex & AY-3-8192 & 8-bit digitaal & 4 \\
 NES & RP2A03 & 8-bit digitaal & 5 \\ \hline
 \end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Audio}
-
-\begin{itemize}
-\item 3 kanalen (voices)
-\item ADSR envelope
-\end{itemize}
 
 \end{frame}
 
@@ -180,23 +138,15 @@ NES & RP2A03 & 8-bit digitaal & 5 \\ \hline
 \frametitle{ADSR}
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{images/adsr.png}
+\includegraphics[width=0.7\linewidth]{images/adsr.png}
 \end{figure}
 
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Waveforms}
-
-\begin{itemize}
-\item Sawtooth
-\item Square
-\item Sinuso\"ide
-\item Triangle
-\item Noise
-\end{itemize}
+\begin{tabular}{l|l}
+Attack & Toetsaanslag \\
+Decay & Amplitude zwakt af \\
+Sustain & Amplitude constant \\
+Release & Geluid `dooft' uit \\
+\end{tabular}
 
 \end{frame}
 
@@ -281,22 +231,15 @@ Raad welk muziekje bij welke computer/console hoort!
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{SID hacking}
+\frametitle{SID hacking - Arkanoid}
 
 \begin{itemize}
 \item Click/pop-bug in 6581
 \item 4-bit PCM digitaal
 \end{itemize}
 
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{SID hacking - Arkanoid}
-
 \begin{figure}
-\includegraphics[width=\linewidth]{images/farts.png}
+\includegraphics[width=0.9\linewidth]{images/farts.png}
 \end{figure}
 
 \end{frame}
@@ -304,16 +247,12 @@ Raad welk muziekje bij welke computer/console hoort!
 %----------------------------------------------
 
 \begin{frame}
-\frametitle{SID hacking - 6581 examples}
+\frametitle{SID hacking - Digitized sound}
 
-\begin{tabular}{|l|l|l|}
-\hline Year & Artist & Title \\ \hline
-1987 & Martin Galway & Arkanoid \\
-1987 & Chris H\"ulsbeck & Dulcedo Cogitationis \\
-1988 & Jeroen Tel & Savage \\
-1989 & Jeroen Tel & Stormlord \\
-1989 & Jeroen Tel & Turbo Outrun \\
-1990 & J. Tel and C. H\"ulsbeck & Turrican \\ \hline
-\end{tabular}
+\begin{itemize}
+%\item mahoney, lft, lman, thcm
+\item Vortex, Hi Fi Sky
+\item Uniek: klinkt totaal niet als C64 muziek
+\end{itemize} 
 
 \end{frame}
