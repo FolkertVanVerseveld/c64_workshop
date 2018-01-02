@@ -4,11 +4,12 @@ GFX=\
 	adsr.png appleii.jpg bender.jpeg bleeding.png bombe.jpg boot.png \
 	breadbin.jpg c1541.jpg c64.jpg c64back.png c64c.jpg c64c_garage.jpg \
 	c64schema.jpg c64schema2.jpg datasette.jpg desk.jpg edsac.jpg \
-	edsac_crts.jpg farts.png gary.png hvsc.jpg ibm5150.jpg nes.jpg oxo.jpg \
-	palette.png pdp8.jpg performance.png pet.jpg pouet.jpg raster.png \
-	rc3nes.png rekentabellen.jpg rev2017.jpg sbm_obey.png sbm_tuksu.png \
-	sprdwh.png sx64.jpg terminator.jpg trs80.jpg vcs.jpg vectrex.jpg \
-	vic20.jpg waveforms.png x.jpg zxspectrum.jpg
+	edsac_crts.jpg farts.png gary.png hvsc.jpg ibm5150.jpg nes.jpg \
+	nyan.png oxo.jpg palette.png pdp8.jpg performance.png pet.jpg \
+	pouet.jpg raster.png rc3nes.png rekentabellen.jpg rev2017.jpg \
+	sbm_obey.png sbm_tuksu.png sprdwh.png sx64.jpg terminator.jpg \
+	trs80.jpg vcs.jpg vectrex.jpg vic20.jpg waveforms.png x.jpg \
+	zxspectrum.jpg
 
 default: $(GFX)
 
@@ -62,6 +63,8 @@ ibm5150.jpg:
 	wget -O ibm5150.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Ibm_pc_5150.jpg/827px-Ibm_pc_5150.jpg
 nes.jpg:
 	wget -O nes.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1024px-NES-Console-Set.jpg
+nyan.png:
+	wget -O nyan.png http://www.vanverseveld.me/folkert/c64/workshop/gfx/nyan.png
 oxo.jpg:
 	wget -O oxo.jpg https://i.ytimg.com/vi/irYvQKskBa8/maxresdefault.jpg
 palette.png:
