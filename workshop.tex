@@ -483,66 +483,6 @@ NES & 2048 & Ricoh 2A03 & 1.6 \\ \hline
 
 %----------------------------------------------
 
-\begin{frame}{Assembly}
-
-\begin{itemize}
-\item Simpel, maar diepere leercurve
-\item 151 offici\"ele instructies
-\item Kleine voorbeelden
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}[fragile]{Simpel Programma - BASIC}
-
-\begin{lstlisting}
-10 POKE 1024,8
-20 POKE 1025,5
-30 POKE 1026,25
-40 END
-\end{lstlisting}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}[fragile]{Simpel Programma - assembly}
-
-\begin{lstlisting}
-* = $0810
-lda #8
-sta 1024
-lda #5
-sta 1025
-lda #25
-sta 1026
-rts
-\end{lstlisting}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}{Simpel Programma - assembly}
-
-\begin{tabular}{l|l|l|l}
-Addr. & Mach. Code & Dissassembly & Pseudo Code \\
- & & * = \$0810 & \\
-0810 & A9 08 & LDA \#\$08 & A = `H' \\
-0812 & 8D 00 04 & STA \$400 & mem[1024] = A \\
-0815 & A9 05 & LDA \#\$05 & A = `E' \\
-0817 & 8D 01 04 & STA \$401 & mem[1025] = A \\
-081A & A9 19 & LDA \#\$19 & A = `Y' \\
-081C & 8D 02 04 & STA \$402 & mem[1026] = A \\
-081F & 60 & RTS & return \\
-\end{tabular}
-
-\end{frame}
-
-%----------------------------------------------
-
 \include{graphics}
 
 %----------------------------------------------
