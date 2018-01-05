@@ -116,8 +116,23 @@ Source: Duce
 
 \begin{lstlisting}
 10 VIC=53248
+20 C=PEEK(VIC+32)AND15
+30 PRINT"KLEURCODE=",C
+40 C=(C+3)AND15
+50 POKEVIC+32,C
+60 PRINT"KLEURCODE=",C
+\end{lstlisting}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}[fragile]{Simpel Graphics Programma - BASIC}
+
+\begin{lstlisting}
+10 VIC=53248
 20 FORC=0TO15
-20 POKEVIC+32,C
+30 POKEVIC+32,C
 40 FORT=1TO128:NEXT
 50 NEXTC
 \end{lstlisting}
@@ -152,28 +167,16 @@ Source: Duce
 \begin{frame}
 \frametitle{Welkom in de wereld van Sprites!}
 
-\begin{itemize}
-\item Movable Objects (MOBs)
-\item 8 sprites bestaande uit 24*21 pixels
-\item 63 bytes per sprite
-\item X en Y co\"ordinaat
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Sprite scaling}
-
 \begin{figure}
 \includegraphics[width=0.5\linewidth]{images/sprdwh.png}
 \end{figure}
 
 \begin{itemize}
+\item Movable Objects (MOBs)
+\item 8 sprites bestaande uit 24*21 pixels
+\item 63 bytes per sprite
+\item X en Y co\"ordinaat
 \item Great Giana Sisters
-\item Lijkt op Super Mario Bros
-\item 33 stages
 \end{itemize}
 
 \end{frame}
@@ -224,10 +227,9 @@ Source: Duce
 \begin{frame}{Intermezzo}
 
 \begin{itemize}
+\item RUN en speel met de programma's op roms/workshop/slides.d64
 \item Ga verder met de opgaven
 \item Of: schrijf een BASIC programma met wat grafische effecten
-\item Geadvanceerd: ga naar: https://skilldrick.github.io/easy6502/ en kijk naar
-de voorbeelden
 \end{itemize}
 
 \end{frame}

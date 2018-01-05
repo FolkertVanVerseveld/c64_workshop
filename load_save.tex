@@ -1,0 +1,126 @@
+\section{Opslaan/Laden van Programma's}
+
+We gaan eerst kijken hoe we een floppydisk kunnen aanmaken en daarna kijken we naar het laden en opslaan van programma's, spellen en dergelijke.
+
+Als eerste is het belangrijk dat we kijken of de emulator de echte trage laadtijden emuleert omdat veel programma's hiervan afhankelijk zijn.
+Deze optie kunt u vinden in \verb:Settings->Drive settings->True drive emulation: (zie figuur \ref{fig:true_c1541}).
+Als u deze optie niet kunt vinden dan is de drive emulation al goed ingesteld en kunt u dit negeren.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\linewidth]{images/true_c1541.png}
+\caption{Aanzetten van echte floppy emulatie}
+\label{fig:true_c1541}
+\end{figure}
+
+\subsection{Snel laden van programma's}
+
+De emulator biedt gelukkig een manier om een floppy, disk of cartridge aan te sluiten en het direct te starten.
+Dit kan met \verb:File->Smart-attach disk/tape: of met \verb:ALT+A:.
+U kunt na het kiezen van een bestand dan op \verb:Open: of \verb:Autostart: klikken.
+\verb:Autostart: zal het programma direct opstarten terwijl \verb:Open: alleen het opslagmedium aansluit.
+
+\problem Autostart de demo \verb:roms/cracktros/hotline/htl-41.prg: om te kijken of de emulator goed werkt.
+
+In de appendix kunt u verwijzingen vinden naar websites voor als u nog meer software wilt proberen (en ook in \verb:roms/:).
+%Spellen kunt u vinden in \verb:roms/games: en demo's voor programmeerwedstrijden in \verb:roms/parties:.
+
+\subsection{Cheatsheet opslaan/laden van programma's}
+
+Hieronder volgt een beknopt overzicht van de BASIC commando's om programma's te laden en op te slaan:
+
+\begin{tabular}{l|l}
+Taak & Commando \\ \hline
+Laad lijst van programma's & \verb:LOAD"$",8: \\
+Laad programma genaamd \verb:TEST: & \verb:LOAD"TEST",8,1: \\
+Laad eerste programma van disk & \verb:LOAD"*",8,1: \\
+Sla programma op & \verb:SAVE"NAAM",8:
+\end{tabular}
+
+Hierbij is \verb:8: de drive letter.
+Met \verb:RUN: kunt u een programma starten en met \verb:LIST: de lijst van programma's of de BASIC code van het geladen programma tonen.
+
+In de volgende secties kijken we hoe we floppydisks kunnen maken en worden de \verb:SAVE: en \verb:LOAD: commando's uitgebreider besproken.
+
+\subsection{Aanmaken en aansluiten van een floppydisk}
+
+De makkelijkste manier om een floppydisk aan te maken is door deze in de werkbalk aan te maken met \verb:File->Create and attach an empty disk->Unit #8: en
+vervolgens kiest u een naam voor het bestand en de \verb:Disk name: met het type \verb:d64: (zie figuur \ref{fig:create_d64}).
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\linewidth]{images/create_d64.png}
+\caption{Aanmaken van een floppydisk voor drive 8}
+\label{fig:create_d64}
+\end{figure}
+
+Als het goed is kunt de floppydisk inladen met \verb:LOAD"$",8: waarna na een aantal seconden \verb:READY: zal verschijnen.
+Nu kunt u met \verb:LIST: een directory listing tonen.
+Het resultaat is vergelijkbaar met figuur \ref{fig:d64dummy}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\linewidth]{images/d64dummy.png}
+\caption{Lege floppydisk}
+\label{fig:d64dummy}
+\end{figure}
+
+Als dit niet werkt, of u houdt van command-line tools, kunt u het onderstaande recept proberen.
+
+\subsection{Handmatig aanmaken van floppydisk met c1541}
+
+Met het floppy hulpprogramma c1541 kunt u een disk maken.
+Als we bijvoorbeeld een disk genaamd `muziek' willen maken op linux kunnen we dit doen:
+
+\begin{lstlisting}
+c1541 -format diskname,id d64 muziek.d64
+\end{lstlisting}
+
+Of op windows:
+
+\begin{lstlisting}
+c1541.exe -format diskname,id d64 muziek.d64
+\end{lstlisting}
+
+Of op een mac:
+
+% XXX make sure this is correct. It may be ./x64.app/.../c1541 but I'm not sure
+\begin{lstlisting}
+./c1541.app/Contents/MacOS/c1541 -format diskname,id d64 muziek.d64
+\end{lstlisting}
+
+Vervang `muziek' met de naam van de disk.
+
+Op windows en Linux kunt u de floppydisk aan de drive aansluiten zelfs nadat u de emulator gestart hebt met \verb:File->Attach disk image->Unit #8: of met \verb:ALT+8:.
+
+\subsection{Opslaan/Laden van programma's op Mac}
+
+Als u programma's wil opslaan of laden moet u de floppydisk aansluiten \emph{voordat} u de emulator start. Bijvoorbeeld:
+
+\begin{lstlisting}
+./x64.app/Contents/MacOS/x64 pad/naar/uw/floppy.d64
+\end{lstlisting}
+
+\subsection{Programma's opslaan}
+
+Nadat u een BASIC programma heeft ingevoerd en de floppydisk aan drive 8 heeft aangesloten kunt u met \verb:SAVE"NAAM",8: een programma opslaan.
+Als u het programma wilt overschrijven zult u dit in meerdere stappen moeten doen.
+Als eerste moet het programma verwijderd worden:
+
+\begin{lstlisting}
+OPEN1,8,15,"I":CLOSE1
+OPEN1,8,15,"S:NAAM":CLOSE1
+\end{lstlisting}
+
+Vervang \verb:NAAM: met het programma wat u wilt verwijderen.
+Nadat het verwijderd is, kunt u het opnieuw bewaren met \verb:SAVE"NAAM",8:.
+
+\subsection{Programma's laden}
+
+Nadat u de floppydisk heeft aangesloten kunt u het programma van drive 8 laden met \verb:LOAD"$",8,1: waarna u \verb:LIST: kan intypen om de lijst van alle programma's te zien.
+Een bestand laden kan met \verb:LOAD"NAAM",8,1:.
+
+Als u het eerste programma van de disk wilt laden kunt u ook dit gebruiken: \verb:LOAD"*",8,1:.
+
+Het is ook mogelijk om \verb:,1: weg te laten bij het \verb:LOAD: commando, maar sommige programma's zullen dan niet goed ingeladen worden.
+Wat dit precies betekent valt buiten het domein van deze opgaven.

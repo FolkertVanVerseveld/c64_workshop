@@ -27,8 +27,6 @@
 \section{Inleiding}
 
 Deze opgavenbundel bevat een verzameling aan opgaven van langzaam toenemende moeilijkheidsgraad.
-De moeilijke opgaven zijn voorzien van een opmerking en deze kunt u overslaan.
-In het antwoordenbundel staan de uitwerkingen van een aantal opgaven.
 Een deel van de opgaven zullen we ook tijdens de workshop klassikaal doornemen en variaties van laten zien.
 
 \subsection{VICE opzetten}
@@ -37,18 +35,19 @@ Deze kunt u \href{http://vice-emu.sourceforge.net/}{hier} vinden.
 Hieronder volgen kant-en-klare recepten voor verschillende besturingssytemen.
 
 \subsubsection{Linux}
-Het makkelijkst is om het inbegrepen script \verb:vice.sh: als superuser te draaien:
+Het opzetten van de emulator verschilt per Linux distro.
+Als u een distro hebt die afgeleid is van Debian (bijv. Ubuntu of Xubuntu) dan kunt u alles opzetten door het script \verb:vice.sh: als superuser te draaien:
 \verb:sudo sh vice.sh:.
-Als dit niet werkt, dan kunt u in het document de variabelen aanpassen (bijv. Arch en CentOS hebben een andere package manager dan Debian en Ubuntu).
+Als dit niet werkt of u heeft een distro die een andere package manager heeft dan \verb:apt:, dan kunt u in het document de variabelen aanpassen en script (nogmaals) draaien.
 
-Als dit niet werkt maar u heeft Wine dan kunt u het recept van Windows ook volgen.
+Als dit ook niet werkt maar u heeft Wine dan kunt u het recept van Windows ook volgen.
 Voor de masochisten is er natuurlijk ook altijd de \href{http://sourceforge.net/projects/vice-emu/files/releases/vice-3.1.tar.gz/download}{source code}.
 
 \subsubsection{Windows}
 Download de \href{http://sourceforge.net/projects/vice-emu/files/releases/binaries/windows/WinVICE-3.1-x64.7z/download}{windows versie}.
-Andere versies kun je \href{http://vice-emu.sourceforge.net/windows.html}{hier} vinden.
+Andere versies kunt u \href{http://vice-emu.sourceforge.net/windows.html}{hier} vinden.
 U heeft \href{http://www.7-zip.org/}{7Zip} nodig om de emulator uit te pakken.
-Pak vervolgens de emulator uit en start \verb:x64.exe: op.
+Pak vervolgens de emulator uit en start \verb:x64sc.exe: op.
 
 \subsubsection{Mac}
 Download de \href{http://sourceforge.net/projects/vice-emu/files/releases/binaries/macosx/vice-macosx-sdl-x86_64-10.12-3.1.dmg/download}{mac versie}.
@@ -58,28 +57,36 @@ Let op dat de emulator vanuit een terminal gestart moet worden omdat het optieme
 Open de terminal en navigeer naar de map waar u de emulator heeft uitgepakt en start de emulator op. Bijvoorbeeld als u de emulator op uw bureaublad heeft gezet:
 \begin{lstlisting}
 cd /Users/gebruiker/Desktop/vice-emu/
-./x64.app/Contents/MacOS/x64
+./x64sc.app/Contents/MacOS/x64sc
 \end{lstlisting}
 
 Vervang \verb:gebruiker: met uw gebruikersnaam.
 
 \subsection{Tips en Trucs}
 
-Als u vastloopt met de opgaven kunt u ook het document met hints bekijken die u verder op weg helpen.
 Aarzel vooral niet om dingen te proberen.
 Sommige opgaven zijn juist gemaakt met het idee dat u dingen moet proberen.
 
 Als de emulator lijkt te zijn vastgelopen dan kunt u via \verb:File->Reset->Soft: de computer herstarten.
 Als dit niet werkt kunt u via \verb:File->Reset->Hard: het forceren en als dat ook niet werkt de emulator sluiten en opnieuw openen.
 
+\emph{Let wel op dat uw BASIC programma en alles wat niet op een floppydisk is opgeslagen verloren gaat als u de emulator reset!
+De floppydisk moet u ook opnieuw aansluiten om uw programma weer van te laden!}
+
+De emulator kan ook versneld worden met \verb:ALT+W: om zo de laadtijd van programma's te verkorten.
+De originele laadtijd wordt namelijk ook nagebootst omdat veel software hiervan afhankelijk is!
+Met \verb:ALT+W: kunt u de snelheid ook weer herstellen.
+
+\include{load_save}
+
 \section{Introductie BASIC}
 
 De Commmodore 64 begrijpt naast machine code ook de high-level programmeertaal BASIC.
-Als u de VICE emulator opstart zult u een vergelijkbaar venster zien zoals Figuur \ref{fig:vice}.
+Als u de VICE emulator opstart zult u een vergelijkbaar venster zien zoals figuur \ref{fig:vice}.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\linewidth]{images/boot.png}
+\includegraphics[width=0.75\linewidth]{images/boot.png}
 \caption{VICE emulator}
 \label{fig:vice}
 \end{figure}
@@ -93,8 +100,6 @@ Het is wel mogelijk om ze allebei tegelijk te gebruiken, maar dat laten we hier 
 
 \subsection{Typen}
 
-\problem Probeer \verb:hallo: en \verb:HALLO: in te typen. Wat gebeurt er als u tekst typt terwijl u de shift toets ingedrukt houdt?
-
 Met behulp van de spatie kunt u naast een spatie plaatsen ook een teken van het scherm `wegpoetsen'.
 
 \problem Probeer verschillende stukken tekst van het scherm aan te passen of te verwijderen door er spaties overheen te plaatsen.
@@ -102,6 +107,32 @@ Met behulp van de spatie kunt u naast een spatie plaatsen ook een teken van het 
 \problem Wat gebeurt er eigenlijk als u de cursor helemaal rechts plaats en vervolgens nog een keer pijltje naar rechts indrukt?
 En wat gebeurt er als u de cursor helemaal links plaats en vervolgens nog een keer pijltje naar links indrukt?
 En wat gebeurt er als u de cursor onderaan het scherm plaats en nogmaals pijltje omlaag indrukt?
+
+\subsection{Toetsenbordconfiguratie}
+
+Misschien is het u nog niet opgevallen, maar het toetsenbord van de C64 is best wel anders dan een QWERTY toetsenbord.
+Als u \verb:SHIFT+2: en \verb:]: intypt zal er waarschijnlijk \verb:@]: op uw scherm staan.
+Indien u \verb:"@: ziet, dan heeft de emulator de echte layout van het toetsenbord van de C64 gebruikt.
+U de layout veranderen bij \verb:Settings->Keyboard settings->Keyboard mapping type:.
+De echte C64 gebruikt \verb:Positional mapping: en de emulator gebruikt standaard \verb:Symbolic mapping:.
+Zie ook figuur \ref{fig:changekbd} en \ref{fig:vicekbd}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\linewidth]{images/changekbd.png}
+\caption{Veranderen van keyboard layout}
+\label{fig:changekbd}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{images/vicekbd.png}
+\caption{C64 Keyboard cheatsheet}
+\label{fig:vicekbd}
+\end{figure}
+
+Als u speciale tekens uit BASIC voorbeelden wilt intypen die niet op een QWERTY toetsenbord bestaan dan is het noodzakelijk om de \verb:Positional mapping: te gebruiken.
+Veel opgaven kunnen ook getypt worden met de \verb:Symbolic mapping:.
 
 \subsection{Printen}
 
@@ -122,29 +153,17 @@ Dit kan zowel met \verb:,: als met \verb:;: en dit kan meerdere keren herhaald w
 \subsection{Rekenen}
 
 Met BASIC kunnen we ook berekeningen uitvoeren.
-De basisoperatoren $+$,$-$,$*$ en $/$ kunnen we hiervoor gebruiken.
-Maar als we bijvoorbeeld \verb:12 + 12: intypen en op enter drukken, dan zien we geen resultaat.
-Dit komt omdat we niet verteld hebben dat we het resultaat ook willen printen.
-
-\problem Schrijf een BASIC commando wat $12 + 12$ uitrekent en het resultaat naar het scherm print.
-
-\problem Schrijf een BASIC commando wat $2 - 3 * 4$ uitrekent en het resultaat naar het scherm print.
-
-De enige operator die we nog niet met een voorbeeld hebben laten zien is de deeloperator $/$.
-In BASIC worden alle getallen als floating point getallen opgeslagen, wat sommige programmeurs misschien niet zouden verwachten.
-Bijvoorbeeld $\verb:PRINT:\ 2/3$ zal niet $0$, maar $0.666666667$ printen.
+De basisoperatoren $+$,$-$,$*$,$/$ en $\uparrow$ (machtsverheffing) kunnen we hiervoor gebruiken.
+Merk op dat alle getallen als floating point worden opgeslagen.
+Dus \verb:PRINT 2/3: zal geen $0$ printen, zoals sommige programmeurs zouden verwachten, maar $0.666666667$.
 
 Als we nu wel integerdeling willen hebben, dat wil zeggen dat we alles achter de komma `negeren',
 dan kunnen we dit doen met de functie \verb:INT():.
 Bijvoorbeeld $\verb:PRINT:\ \verb:INT:(2/3)$ zal $0$ printen.
 
 Zoals u waarschijnlijk al is opgevallen is dat de basisoperatoren dezelfde prioriteit hebben als in de wiskunde.
-Let op dat er rekenmachines en computers waren stammend uit dezeflde tijd als de C64 die de prioriteit van operatoren kompleet negeerden!
+Let op dat er rekenmachines en computers waren stammend uit dezelfde tijd als de C64 die de prioriteit van operatoren kompleet negeerden!
 Met behulp van haakjes kunt u berekeningen in een andere volgorde uitvoeren.
-%Als u een te ingewikkelde formule invult zal de foutmelding \verb:FORMULA TOO COMPLEX: geprint worden.
-
-\problem Schrijf een BASIC commando wat $3*3*3*3$ uitrekent en het resultaat naar het scherm print.
-Kunnen we dit naast herhaaldelijk vermenigvuldigen ook anders opschrijven?
 
 \subsection{Variabelen}
 
@@ -209,27 +228,22 @@ Dit kunnen we doen door de emulator te resetten, maar dit is natuurlijk niet han
 Een veel makkelijkere manier is door \verb:NEW: in te typen.
 Wees hier wel voorzichtig mee, want er wordt geen waarschuwing gegeven!
 
-\problem Folkert heeft 6 appels gekocht van \euro 0,32 per stuk en 4 bananen van \euro 0,22 per stuk en zou de totale kosten van alle appels, alle bananen en het totaal willen uitprinten.
-Schrijf een programma wat dit uitrekent en print. Vergeet niet \verb:NEW: in te typen voordat je begint met programmeren!
-
-Als u het resultaat/programma wilt opslaan, kunt u ofwel de sectie Opslaan/Laden van Programma's lezen of uw oplossing overtypen in een teksteditor of op papier.
-
 \subsection{Peeks 'n Pokes}
 
-Herstart de emulator en typ `A' in de linkerbovenhoek van het scherm.
-Ga vervolgens naar een lege regel en typ \verb:PEEK(1024):.
+RUN het programma \verb:BORDERKLEUR: van de slides disk (\verb:roms/workshop/slides.d64:).
 
-\problem Vervang de `A' in de linkerbovenhoek met `B' en typ opnieuw \verb:PEEK(1024): in.
-Wat doet dit commando? Probeer een paar andere waarden om erachter te komen wat het getal betekent.
+\problem Wat doet het \verb:PEEK: commando op regel 20?
 
-Typ nu \verb:POKE1024,1: in en druk op enter. Vervang \verb:,1: met \verb:,2: en probeer een paar anderen waarden.
+Omdat we maar 16 kleuren hebben negeren we de bovenste vier bits met \verb:AND15:.
 
-\problem Wat doet dit commando?
+\problem Wat doet het \verb:POKE: commando op regel 50?
+
+\problem Wat bevat het magische adres \verb:VIC+32:?
 
 \subsection{Invoer/Uitvoer}
 
 Invoer kan opgevraagd worden met het \verb:INPUT: commando.
-Bijvoorbeeld met het onderstaande programma:
+Bijvoorbeeld met het programma:
 
 \begin{lstlisting}
 10 INPUT A$
@@ -241,61 +255,60 @@ Het programma zal u om gebruikersinvoer vragen en dit printen.
 
 \problem Schrijf een BASIC programma wat een gebruikersnaam vraagt en dit print naar het scherm.
 
-\section{Opslaan/Laden van Programma's}
+Nu is een goed moment om te kijken of het programma naar een floppydisk kan opslaan zodat u het programma later weer kan laden.
+Er is ook een cheatsheet voor het opslaan en laden van programma's in sectie 2.
 
-\subsection{Aanmaken en aansluiten van een floppydisk}
+\subsection{Programmeerhandleiding en Literatuur}
 
-Met het floppy hulpprogramma c1541 kunt u een disk maken.
-Als we bijvoorbeeld een disk genaamd `muziek' willen maken op linux kunnen we dit doen:
+Dit is een klein voorproefje van wat er allemaal in BASIC mogelijk is.
+Indien u meer programma's wilt schrijven kunt hoofdstuk 3 en verder bekijken van de \verb:User's Guide:.
+Als u meer uitdaging wilt of meer wilt weten over de details van de Commodore 64 kunt u naar de \verb:Programmer's Reference Guide: kijken.
+Beide documenten zijn inbegrepen als u de release versie van de githubpagina heeft gedownload.
 
-\begin{lstlisting}
-c1541 -format diskname,id d64 muziek.d64
-\end{lstlisting}
+\section{Appendix}
 
-Of op windows:
+\subsection{Commodore 64 programma's, spellen en demo's}
 
-\begin{lstlisting}
-c1541.exe -format diskname,id d64 muziek.d64
-\end{lstlisting}
+Er is heel veel software te vinden voor de Commodore 64.
+Sterker nog, er wordt nog steeds veel software gemaakt!
+De bekendste en volledigste website voor roms is \href{http://csdb.dk}{csdb}.
 
-Of op een mac:
+Een andere hele bekende, onder andere voor programmeerwedstrijden, is \href{https://www.pouet.net}{pouet}.
+Hier is nog veel meer te vinden dan alleen Commodore 64 software.
+Bijvoorbeeld 's werelds grootste en recentste programmeerwedstrijd van de C64 is X.
+\href{https://www.pouet.net/party.php?which=50&when=2016}{Hier} is een overzicht van alle software die toen is uitgebracht.
 
-% XXX make sure this is correct. It may be ./x64.app/.../c1541 but I'm not sure
-\begin{lstlisting}
-./c1541.app/Contents/MacOS/c1541 -format diskname,id d64 muziek.d64
-\end{lstlisting}
+\subsection{easy6502}
 
-Vervang `muziek' met de naam van de disk.
+Als u de BASIC opdrachten erg saai vond of benieuwd bent in programmeren in assembly dan kunt u \href{https://skilldrick.github.io/easy6502/}{deze introductie} eens proberen.
 
-Op windows en Linux kunt u de floppydisk aan de drive aansluiten zelfs nadat u de emulator gestart hebt met \verb:File->Attach disk image->Unit #8: of met \verb:ALT+8:.
+\subsection{KickAssembler}
 
-\subsection{Opslaan/Laden van programma's op Mac}
+Als u alles al afheeft of nog meer uitdaging zoekt kunt u kijken of u een programma in assembly kan schrijven met \href{http://theweb.dk/KickAssembler/Main.html#frontpage}{deze assembler}.
+Er zijn voorbeelden inbegrepen bij de assembler en er is goede documentatie.
 
-Als u programma's wil opslaan of laden moet u de floppydisk aansluiten \emph{voordat} u de emulator start. Bijvoorbeeld:
+Voor assembly programmeren zijn deze bronnen ook onmisbaar:
 
-\begin{lstlisting}
-./x64.app/Contents/MacOS/x64 pad/naar/uw/floppy.d64
-\end{lstlisting}
+\begin{tabular}{l|l|l}
+Link & Domein & Toelichting \\
+\href{http://codebase64.org}{codebase64} & D\'e Programmeerwiki & Programmeertips en -voorbeelden \\
+\href{http://sta.c64.org/cbm64mem.html}{cbm64mem.html} & Memory map van C64 & Elk geheugenadres met toelichting \\
+\href{https://www.c64-wiki.com}{c64-wiki} & Wikipedia voor C64 & Alles rondom Commodore \\
+\end{tabular}
 
-\subsection{Programma's opslaan}
+\subsection{Demoscene}
 
-Nadat u een BASIC programma heeft ingevoerd en de floppydisk aan drive 8 heeft aangesloten kunt u met \verb:SAVE"NAME",8: een programma opslaan.
-Als u het programma wilt overschrijven zult u dit in meerdere stappen moeten doen.
-Als eerste moet het programma als volgt verwijderd worden:
+De workshop laat kleine aspecten zien van de demoscene die voornamelijk ontstaan is door computerclubs van de eerste Personal Computers.
+Als u ge\"interesseerd bent geraakt in de demoscene of u wilt weten wat dit is zijn de volgende bronnen aan te raden om te kijken:
 
-\begin{lstlisting}
-OPEN1,8,15,"I":CLOSE1
-OPEN1,8,15,"S:NAAM":CLOSE1
-\end{lstlisting}
-
-Vervang \verb:NAAM: met het programma wat u wilt verwijderen.
-Nadat het verwijderd is, kunt u het opnieuw bewaren met \verb:SAVE"NAAM",8:.
-
-\subsection{Programma's laden}
-
-Nadat u de floppydisk heeft aangesloten kunt u het programma van drive 8 laden met \verb:LOAD"$",8: waarna u \verb:LIST: kan intypen om de lijst van alle programma's te zien.
-Een bestand laden kan met \verb:LOAD"NAME",8:.
-
-Als u het eerste programma van de disk wilt laden kunt u ook dit gebruiken: \verb:LOAD"*",8,1":.
+\begin{tabular}{l|l|l}
+Link & Domein & Toelichting \\
+\href{https://www.youtube.com/watch?v=AdTANxS-LHg}{YT: Polderpioniers - J. Tel} & Eerste gamemuzikanten & Tweakers interview \\
+\href{https://www.youtube.com/watch?v=5MexnBunH_g}{YT: The Art of Algorithms} & Geschiedenis Demoscene & Documentaire \\
+\href{https://www.youtube.com/watch?v=O-1zEo7DD8w}{YT: Rev2017 Shader Finals} & Programmeerwedstrijd & Stream \\
+\href{https://en.wikipedia.org/wiki/Demoscene}{Wikipedia: Demoscene} & Demoscene crash course & Wikipedia's blik \\
+\href{https://id.scene.org/}{Scene portal} & Demoscene portal & Account voor demoscene sites \\
+\href{https://www.youtube.com/watch?v=rFv7mHTf0nA}{Future Crew - Second Reality} & Winnaar Assembly 1993 & Een bekende jaren '90 demo \\
+\end{tabular}
 
 \end{document}

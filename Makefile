@@ -13,7 +13,7 @@ workshop_en.pdf: images/desk.jpg workshop_en.tex graphics_en.tex music_en.tex th
 	# Run multiple times to get page numbers, bibliography etc. right.
 	pdflatex workshop_en.tex
 	pdflatex workshop_en.tex
-exercises.pdf: exercises.tex
+exercises.pdf: exercises.tex load_save.tex
 	pdflatex exercises.tex
 exercises_en.pdf: exercises_en.tex
 	pdflatex exercises_en.tex
