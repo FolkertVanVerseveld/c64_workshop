@@ -116,6 +116,21 @@ Source: Duce
 
 \begin{lstlisting}
 10 VIC=53248
+20 C=PEEK(VIC+32)AND15
+30 PRINT"KLEURCODE=",C
+40 C=(C+3)AND15
+50 POKEVIC+32,C
+60 PRINT"KLEURCODE=",C
+\end{lstlisting}
+
+\end{frame}
+
+%----------------------------------------------
+
+\begin{frame}[fragile]{Simple Graphics Program - BASIC}
+
+\begin{lstlisting}
+10 VIC=53248
 20 FORC=0TO15
 20 POKEVIC+32,C
 40 FORT=1TO128:NEXT
@@ -152,28 +167,16 @@ Source: Duce
 \begin{frame}
 \frametitle{Welcome to the world of Sprites!}
 
-\begin{itemize}
-\item Movable Objects (MOBs)
-\item 8 sprites composed of 24*21 pixels
-\item 63 bytes per sprite
-\item X and Y position
-\end{itemize}
-
-\end{frame}
-
-%----------------------------------------------
-
-\begin{frame}
-\frametitle{Sprite scaling}
-
 \begin{figure}
 \includegraphics[width=0.5\linewidth]{images/sprdwh.png}
 \end{figure}
 
 \begin{itemize}
+\item Movable Objects (MOBs)
+\item 8 sprites composed of 24*21 pixels
+\item 63 bytes per sprite
+\item X and Y position
 \item Great Giana Sisters
-\item Like Super Mario Bros
-\item 33 stages
 \end{itemize}
 
 \end{frame}
