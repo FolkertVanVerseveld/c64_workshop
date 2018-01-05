@@ -27,8 +27,6 @@
 
 This bundle contains a set of exercises with increasing difficulty.
 The difficult exercises may be skipped.
-See the bundle of answers for solutions of some exercises.
-Some exercises (or variations) will also be discussed during the workshop.
 
 \subsection{VICE setup}
 This workshop uses the Versatile Commodore Emulator (VICE).
@@ -36,9 +34,10 @@ You can download the emulator \href{http://vice-emu.sourceforge.net/}{from this 
 Depending on your operating system, some additional setup may be required as will be discussed in the next section.
 
 \subsubsection{Linux}
-The easiest method is to run the included script \verb:vice.sh: as root:
+Setting up the emulator depends on your Linux distribution.
+If your Linux distro is derived from Debian (e.g. Ubuntu or Xubuntu) you can setup the emulator by running the script as root:
 \verb:sudo sh vice.sh:.
-If this does not work, you can try to change the variables in the document (e.g. Arch and CentOS use a different package manager).
+If this does not work, but you have a different package manager (e.g. \verb:yum: rather than \verb:apt:), you can modify the variables in the script and (re)run it.
 
 If this does not work either, but you have Wine installed, you can also use the Windows recipe.
 The die-hards may also try to compile the \href{http://sourceforge.net/projects/vice-emu/files/releases/vice-3.1.tar.gz/download}{source code}.
@@ -62,16 +61,22 @@ cd /Users/name/Desktop/vice-emu/
 
 Replace \verb:name: with your user name.
 
-\textbf{Note: If you want to save and load programs, you should read the `Saving/Loading programs' section first!}
-
 \subsection{Tips and Tricks}
 
-If you are stuck on an exercise you can try to look at the hints document.
 Please don't hesitate to try some things before giving up.
 Some exercises are designed with this in mind.
 
 If the emulator is haning you can try to reset it using \verb:File->Reset->Soft: to restart the C64.
 If this does not work, you can try to hard reset it using \verb:File->Reset->Hard: or restart the emulator if that does not work either.
+
+\emph{If you reset the emulator all BASIC programs are lost. Make sure that you save your BASIC program to disk first!
+The floppydisk has to be reattached if you reset the emulator!}
+
+You can speed up the emulator using \verb:ALT+W: and reduce program load time.
+The slow loading times must be emulated because many software depends on this!
+Use \verb:ALT+W: to start/stop speed up mode.
+
+\include{load_save_en}
 
 \section{Introduction BASIC}
 
@@ -94,8 +99,6 @@ It is possible to use both at the same time, but we are not going to use this.
 
 \subsection{Typing}
 
-\problem Try to type \verb:hello: and \verb:HELLO:. What happens if you hold shift while trying to type something?
-
 You can use the spacebar to place a space character on the screen or to `erase' the current character.
 
 \problem Try to change different portions of text on the screen and try to remove some text by overwriting them with spaces.
@@ -103,6 +106,32 @@ You can use the spacebar to place a space character on the screen or to `erase' 
 \problem What happens if we place the cursor to the far right and press the right arrow key?
 What happens if we place the cursor to the far left and press the left arrow key?
 And what happens if we place the cursor at the bottom and press the down arrow key?
+
+\subsection{Keyboardconfiguration}
+
+You may have noticed that the C64 keyboard layout is very different compared to a QWERTY keyboard.
+If you would type \verb:SHIFT+2: and \verb:]: you will probably see \verb:@]: on the screen.
+In case you see \verb:"@:, this means that the emulator uses the real C64 keyboard layout.
+You can change the layout using \verb:Settings->Keyboard settings->Keyboard mapping type:.
+A real C64 uses \verb:Positional mapping: and the emulator uses \verb:Symbolic mapping: by default.
+See also figure \ref{fig:changekbd} and \ref{fig:vicekbd}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\linewidth]{images/changekbd.png}
+\caption{Changing keyboard layout}
+\label{fig:changekbd}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{images/vicekbd.png}
+\caption{C64 Keyboard cheatsheet}
+\label{fig:vicekbd}
+\end{figure}
+
+If you need to type special characters from the BASIC examples that are not available on a QWERTY keyboard than you have to change the layout to \verb:Positional mapping:.
+Many exercises can be typed in using \verb:Symbolic mapping:.
 
 \subsection{Printing}
 
@@ -115,35 +144,25 @@ One example is \verb:PRINT "HELLO":.
 
 \problem Change the example to print \verb:HELLO WORLD:.
 
-\verb:PRINT: can also join multiple portions of text using either \verb:,: or \verb:;:. You can use these multiple times.
+\verb:PRINT: can also join multiple portions of text using either \verb:,: or \verb:;:.
+You can use these multiple times.
 
 \problem What is the difference between \verb:PRINT"HELLO","OLLEH": and \verb:PRINT"HELLO";"OLLEH":?
 
 \subsection{Calculations}
 
 Using BASIC we can compute some expressions.
-The basic math operators $+$,$-$,$*$ and $/$ can be used in expressions.
-But if we would type \verb:12 + 12: we don't get any result.
-This is because we did not instruct the C64 to also print the result.
+The basic math operators $+$,$-$,$*$, $/$, and $\uparrow$ (power) can be used in expressions.
+Please note that all numbers are stored as floating point numbers.
+For example, \verb:PRINT 2/3: prints $0.666666667$, rather than $0$ as some programmers would have expected.
 
-\problem Write a BASIC command that computes $12 + 12$ and prints the result.
-
-\problem Write a BASIC command that computes $2 - 3 * 4$ and prints the result.
-
-The only remaining operator is $/$.
-BASIC uses floating point numbers by default.
-This may suprise some programmers who would probably expect integers to be the default type.
-For example, $\verb:PRINT:\ 2/3$ does not print $0$, but $0.666666667$.
-
-If we want to perform integer division, this means `ignoring' the fractional part of the result, we can use the function \verb:INT():.
+If we want to perform integer division, this means `ignoring' the fractional part of the result,
+we can use the function \verb:INT():.
 For example, $\verb:PRINT:\ \verb:INT:(2/3)$ prints $0$.
 
 As you may have noticed is that the operator precedence is the same as in mathematics.
 Note that some calculators and computers from the same era did not have operator precedence at all!
 You can also use braces to change the order of computation.
-
-\problem Write a BASIC command that computes $3*3*3*3$ and prints the result.
-Can we replace the multiple multiplications with something else?
 
 \subsection{Variables}
 
@@ -154,8 +173,7 @@ For now, we will only look at the numeric variables.
 
 Back then, many programmers first wrote their program on tape before typing them in.
 This is one of the many reasons why variables had very short and cryptic names and why the C64 only supports short variable names.
-BASIC commands are illegal variable names.
-For example, \verb:PRINT: is an illegal variable name.
+BASIC commands are illegal variable names. For example, \verb:PRINT: is an illegal variable name.
 A variable may \emph{not be longer than two characters}.
 If it is longer than two characters, all characters after the second are ignored.
 For example, \verb:BANANA:, \verb:BA: and \verb:BAROMETER: are all considered to refer to the same variable!
@@ -209,22 +227,17 @@ We can reset the emulator to accomplish this, but this is unpractical.
 It is much easier to just type \verb:NEW: to start a NEW program.
 Be careful with this command, because it does not ask for confirmation!
 
-\problem Folkert has bought 6 apples for \$0.32 a piece and 4 banana's for \$0.22 a piece and he would like to determine the total price for all apples, all banana's and all apples and all banana's and print these to the screen.
-Write such a program that computes and prints the overal cost. Don't forget to type \verb:NEW: before you start writing the program!
-
-If you want to save the result, either read the section Saving/Loading programs or write your solution in your favorite text editor or even on paper.
-
 \subsection{Peeks 'n Pokes}
 
-Restart the emulator and type a `A' in the upper-left corner of the screen.
-Then go to an empty line and type \verb:PEEK(1024):.
+RUN the program \verb:BORDERKLEUR: located on the slides disk (\verb:roms/workshop/slides.d64:).
 
-\problem Replace the `A' in the upper-left corner of the screen with `B' and rerun \verb:PEEK(1024):.
-What does this command do? Try a couple of other values to figure out what the printed number represents.
+\problem What does the \verb:PEEK: commando do on line 20?
 
-Now type in \verb:POKE1024,1: and hit enter. Then replace \verb:,1: with \verb:,2: and try some other values as well.
+Because we have only 16 colors we ignore the upper 4 bits using \verb:AND15:.
 
-\problem What does this command do?
+\problem What does the \verb:POKE: commando do on line 50?
+
+\problem What information does the magic address \verb:VIC+32: store?
 
 \subsection{Input/Output}
 
@@ -236,65 +249,65 @@ For example, enter the following program:
 20 PRINT "YOU TYPED: "; A$
 \end{lstlisting}
 
-If you RUN the program, you can enter some text that will be printed to the screen.
+Typ and RUN the program.
+You can enter some text that will be printed to the screen.
 
 \problem Write a BASIC program that asks a username and prints it to the screen.
 
-\section{Saving/Loading programs}
+Now is a good moment to figure out how to save your program to floppydisk so you can load it when you need it.
+See section 2 for a cheatsheet for save and load commands.
 
-\subsection{Creating and attaching a floppy disk}
+\subsection{Programmer's Reference Guide and Literature}
 
-You can use c1541 (the floppy drive tools program) to create a disk.
-For example, if we want to create a disk named `music' we can use this on linux:
+This workshop provides a glimpse of BASIC programming and shows how easy it is.
+If you would like to write more programs you can start reading at chapter 3 of the \verb:User's Guide:.
+If you would like more challenging stuff or want to learn more details about the Commodore 64 you can also look at the \verb:Programmer's Reference Guide:.
+Both documents are included if you have downloaded the release version from the project's github page.
 
-\begin{lstlisting}
-c1541 -format diskname,id d64 music.d64
-\end{lstlisting}
+\section{Appendix}
 
-Or this on windows:
+\subsection{Commodore 64 programs, games and demo's}
 
-\begin{lstlisting}
-c1541.exe -format diskname,id d64 music.d64
-\end{lstlisting}
+There is a lot of software for the Commodore 64.
+In fact, many software is still being written to this day!
+The most famous and complete website for roms is \href{http://csdb.dk}{csdb}.
 
-Or this on a mac:
+Another real well known, also for programming contests, is \href{https://www.pouet.net}{pouet}.
+Lots of Commodore 64 software can be found on that website.
+For example, the world's biggest and most recent programming contest for the C64 is X.
+\href{https://www.pouet.net/party.php?which=50&when=2016}{Here} you can find an overview of all software that has been released at this party.
 
-% XXX make sure this is correct. It may be ./x64.app/.../c1541 but I'm not sure
-\begin{lstlisting}
-./c1541.app/Contents/MacOS/c1541 -format diskname,id d64 music.d64
-\end{lstlisting}
+\subsection{easy6502}
 
-Replace `music' with whatever you want to name the disk.
+If you thought the BASIC exercises were boring and are interested in programming in assembly, you can try out \href{https://skilldrick.github.io/easy6502/}{this introduction}.
 
-On windows and Linux, you can attach the drive even after you have started the emulator using \verb:File->Attach disk image->Unit #8: or using \verb:ALT+8:.
+\subsection{KickAssembler}
 
-\subsection{Saving/Loading programs on Mac}
+If you have completed all exercises and need more challenging problems you can try to start coding in assembly using \href{http://theweb.dk/KickAssembler/Main.html#frontpage}{this assembler}.
+A couple of examples and very good documentation is included as well.
 
-In order to be able to save and load programs, you have to attach a floppy disk \emph{before} starting the emulator like this:
+These sources are also very important for coding in assembly:
 
-\begin{lstlisting}
-./x64.app/Contents/MacOS/x64 path/to/your/floppy.d64
-\end{lstlisting}
+\begin{tabular}{l|l|l}
+Link & Domain & Notes \\
+\href{http://codebase64.org}{codebase64} & The Programmer's wiki & Tips and examples \\
+\href{http://sta.c64.org/cbm64mem.html}{cbm64mem.html} & C64 Memory map & Every memory address with notes \\
+\href{https://www.c64-wiki.com}{c64-wiki} & Wikipedia for C64 & Everything about Commodore \\
+\end{tabular}
 
-\subsection{Saving programs}
+\subsection{Demoscene}
 
-After you have typed in a BASIC program and attached a floppy disk to drive 8 you can save it by typing \verb:SAVE"NAME",8:.
-If you want to overwrite a program you have to do the following in multiple steps.
-First, you have to remove the program like this:
+This workshop shows a glimpse about the demoscene that originated primarily by computer clubs of the first Personal Computers.
+If you are interested in the demoscene or just want to learn what it really is, then we recommend to take a look at the following:
 
-\begin{lstlisting}
-OPEN1,8,15,"I":CLOSE1
-OPEN1,8,15,"S:NAME":CLOSE1
-\end{lstlisting}
-
-Replace \verb:NAME: with the program you want to overwrite.
-After you have removed the program, you can resave it using \verb:SAVE"NAME",8:.
-
-\subsection{Loading programs}
-
-After you have attached the floppy disk you want to read from to drive 8 you can load a listing of the drive using \verb:LOAD"$",8: and type \verb:LIST: to see the list of files.
-You can load a file using \verb:LOAD"NAME",8:.
-
-If you want to load the first program from disk you can use the short-hand \verb:LOAD"*",8,1":.
+\begin{tabular}{l|l|l}
+Link & Domain & Notes \\
+\href{https://www.youtube.com/watch?v=AdTANxS-LHg}{YT: Polderpioniers - J. Tel} & First game music composers & Dutch only! \\
+\href{https://www.youtube.com/watch?v=5MexnBunH_g}{YT: The Art of Algorithms} & History of Demoscene & Documentary \\
+\href{https://www.youtube.com/watch?v=O-1zEo7DD8w}{YT: Rev2017 Shader Finals} & Programming Contest & Stream \\
+\href{https://en.wikipedia.org/wiki/Demoscene}{Wikipedia: Demoscene} & Demoscene crash course & Wikipedia's view \\
+\href{https://id.scene.org/}{Scene portal} & Demoscene portal & Account for demoscene sites \\
+\href{https://www.youtube.com/watch?v=rFv7mHTf0nA}{Future Crew - Second Reality} & Winner Assembly 1993 & Very famous '90s demo \\
+\end{tabular}
 
 \end{document}

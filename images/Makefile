@@ -9,7 +9,8 @@ GFX=\
 	pouet.jpg raster.png rc3nes.png rekentabellen.jpg rev2017.jpg \
 	sbm_obey.png sbm_tuksu.png sprdwh.png sx64.jpg terminator.jpg \
 	trs80.jpg vcs.jpg vectrex.jpg vic20.jpg waveforms.png x.jpg \
-	zxspectrum.jpg
+	zxspectrum.jpg \
+	images.tar
 
 default: $(GFX)
 
@@ -109,6 +110,9 @@ x.jpg:
 	wget -O x.jpg http://www.vanverseveld.me/folkert/c64/workshop/gfx/x.jpg
 zxspectrum.jpg:
 	wget -O zxspectrum.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/ZXSpectrum48k.jpg/1024px-ZXSpectrum48k.jpg
+images.tar:
+	wget -O images.tar http://www.vanverseveld.me/folkert/c64/workshop/gfx/images.tar
+	tar xf images.tar
 
 clean:
-	rm -f *.jpg *.jpeg *.png *.gif
+	rm -f *.jpg *.jpeg *.png *.gif images.tar

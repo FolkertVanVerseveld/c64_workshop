@@ -1,0 +1,126 @@
+\section{Saving/Loading programs}
+
+First, we are going to look how to create a floppydisk and see if we can load and save some programs, games etc.
+
+It is important to check if the emulator is running in \verb:True drive emulation: mode, because many programs depend on this behavior.
+You can check this at \verb:Settings->Drive settings->True drive emulation: (see figure \ref{fig:true_c1541}).
+If you can't find this option it is probably setup up correctly and you can ignore this.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\linewidth]{images/true_c1541.png}
+\caption{Enabling True drive emulation}
+\label{fig:true_c1541}
+\end{figure}
+
+\subsection{Fast load programs}
+
+The emulator enables you to autostart a program from floppy, disk or cartridge without doing everything manually.
+You can autostart a program using \verb:File->Smart-attach disk/tape: or just \verb:ALT+A:.
+After you selected the file you can \verb:Open: or \verb:Autostart: the program.
+\verb:Autostart: will start the program immediately while \verb:Open: just connects/attaches the floppy.
+
+\problem Autostart the demo \verb:roms/cracktros/hotline/htl-41.prg: to make sure the emulator is working properly.
+
+In the appendix are multiple references to websites for more software you could try out as well (and also in \verb:roms/:).
+%Spellen kunt u vinden in \verb:roms/games: en demo's voor programmeerwedstrijden in \verb:roms/parties:.
+
+\subsection{Cheatsheet saving/loading programs}
+
+The following is a simple table with BASIC commands for loading and saving programs:
+
+\begin{tabular}{l|l}
+Task & Command \\ \hline
+Load program list & \verb:LOAD"$",8: \\
+Load program named \verb:TEST: & \verb:LOAD"TEST",8,1: \\
+Load first program from disk & \verb:LOAD"*",8,1: \\
+Save program & \verb:SAVE"NAME",8:
+\end{tabular}
+
+\verb:8: is the drive letter.
+With \verb:RUN: you can run a program and with \verb:LIST: you can print the program list or the BASIC code from a loaded BASIC program.
+
+In the next sections we will look how to create floppydisk and how to \verb:SAVE: and \verb:LOAD: programs in more detail and also provide some tips and troubleshooting.
+
+\subsection{Creating and attaching a floppydisk}
+
+The easiest way to create a floppydisk is by navigating through the options from the menu bar \verb:File->Create and attach an empty disk->Unit #8: and
+then type the program name in the \verb:Disk name: field and make sure the type is set \verb:d64: (see figure \ref{fig:create_d64}).
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\linewidth]{images/create_d64.png}
+\caption{Creating floppydisk for drive 8}
+\label{fig:create_d64}
+\end{figure}
+
+Now you should be able to load the floppy using \verb:LOAD"$",8: and the C64 will print \verb:READY: after a few seconds.
+Then you can \verb:LIST: the program list.
+The result should look similar to figure \ref{fig:d64dummy}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\linewidth]{images/d64dummy.png}
+\caption{Empty floppydisk}
+\label{fig:d64dummy}
+\end{figure}
+
+If this does not work, or you like using commmand-line tools, you can try out the following recipe.
+
+\subsection{Manually create floppydisk using c1541}
+
+You can create a floppy using a tool called c1541.
+If we would like to create a disk named for example `music' we can do this on linux using:
+
+\begin{lstlisting}
+c1541 -format diskname,id d64 muziek.d64
+\end{lstlisting}
+
+Or on windows:
+
+\begin{lstlisting}
+c1541.exe -format diskname,id d64 muziek.d64
+\end{lstlisting}
+
+Or on a mac:
+
+% XXX make sure this is correct. It may be ./x64.app/.../c1541 but I'm not sure
+\begin{lstlisting}
+./c1541.app/Contents/MacOS/c1541 -format diskname,id d64 muziek.d64
+\end{lstlisting}
+
+Change `music' with the name of your disk.
+
+On windows and Linux you can attach the floppydisk to the drive even after you have booted the emulator using \verb:File->Attach disk image->Unit #8: or just \verb:ALT+8:.
+
+\subsection{Save/Load programs on Mac}
+
+If you want to save or load programs you have to attach the floppydisk \emph{before} starting the emulator. For example:
+
+\begin{lstlisting}
+./x64.app/Contents/MacOS/x64 path/to/your/floppy.d64
+\end{lstlisting}
+
+\subsection{Saving programs}
+
+After typing in a BASIC program and attaching the floppydisk to drive 8 you can save the program using \verb:SAVE"NAME",8:.
+If you want to overwrite a program you have to overwrite it in multiple steps.
+First, we have to delete the program:
+
+\begin{lstlisting}
+OPEN1,8,15,"I":CLOSE1
+OPEN1,8,15,"S:NAME":CLOSE1
+\end{lstlisting}
+
+Replace \verb:NAME: with the name of your program.
+After deletion, you can resave the program using \verb:SAVE"NAME",8:.
+
+\subsection{Loading programs}
+
+After attaching the floppydisk you can load the program list from drive 8 using \verb:LOAD"$",8,1: and then \verb:LIST: the program list.
+You can load a program using \verb:LOAD"NAME",8,1:.
+
+If you want to load the first program from disk you can also use this: \verb:LOAD"*",8,1:.
+
+It is possible to remove \verb:,1: from the \verb:LOAD: command, but this is discouraged as some programs may not load correctly.
+Why this happens is out of scope of this workshop.
