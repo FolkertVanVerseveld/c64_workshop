@@ -15,7 +15,7 @@ GFX=\
 default: $(GFX)
 
 adsr.png:
-	wget -O adsr.png https://www.garnishmusicproduction.com/wp-content/uploads/2010/10/adsr_envelope_in_dance_music_production1.png
+	wget -O adsr.png http://www.vanverseveld.me/folkert/c64/workshop/gfx/adsr.png
 appleii.jpg:
 	wget -O appleii.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Apple_II_IMG_4212.jpg/1024px-Apple_II_IMG_4212.jpg
 bender.jpeg:
