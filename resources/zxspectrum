@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./mp '^<' &
+timeout 18 ffplay -autoexit -loop 1 zxspectrum.mp4

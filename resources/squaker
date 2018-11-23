@@ -1,0 +1,10 @@
+#!/bin/bash
+zenity --info --title='PC Speaker' --text='Simpele melodie' >&/dev/null
+#aplay pc_single.au
+ffplay -autoexit -loop 1 -showmode 1 pc_single.au
+zenity --info --title='PC Speaker' --text='Akkoordnabootsing met Arpeggio' >&/dev/null
+#aplay pc_arpeggio.au
+ffplay -autoexit -loop 1 -showmode 1 pc_arpeggio.au
+zenity --info --title='PC Speaker' --text='Muziek van MS-DOS spel' >&/dev/null
+#cvlc --no-loop --no-repeat --play-and-exit 'Paratrooper_(video_game_intro_music).ogg'
+ffplay -autoexit -loop 1 -showmode 1 'Paratrooper_(video_game_intro_music).ogg'

@@ -1,0 +1,60 @@
+#!/usr/bin/python3
+#
+# Quick and Dirty media player generating keyboard input.
+# See bash scripts in the same directory for examples how to use this script.
+
+import sys
+import time
+
+from pynput import keyboard
+
+def on_press(key):
+	if key == keyboard.KeyCode.from_char('q'):
+		sys.exit(0)
+
+def process(cmd):
+	lst = []
+	kbd = keyboard.Controller()
+	buf = []
+
+	for c in cmd:
+		if c == '<':
+			kbd.press(keyboard.Key.left)
+			time.sleep(.05)
+			kbd.release(keyboard.Key.left)
+		elif c == '^':
+			kbd.press(keyboard.Key.up)
+			time.sleep(.05)
+			kbd.release(keyboard.Key.up)
+		elif c == '>':
+			kbd.press(keyboard.Key.right)
+			time.sleep(.05)
+			kbd.release(keyboard.Key.right)
+		elif c == 'v':
+			kbd.press(keyboard.Key.down)
+			time.sleep(.05)
+			kbd.release(keyboard.Key.down)
+		elif (c >= '0' and c <= '9') or c == '.':
+			buf.append(c)
+		elif c == 's':
+			time.sleep(int(buf))
+			buf = []
+
+	time.sleep(.05)
+	kbd.press(keyboard.KeyCode.from_char('f'))
+	kbd.release(keyboard.KeyCode.from_char('f'))
+
+def parse(args):
+	if len(args) < 2:
+		print('usage: {} commands'.format(args[0]))
+		sys.exit(1)
+
+	# Process commands or exit if `q' has been pressed
+	with keyboard.Listener(on_press=on_press) as listener:
+		# Create some delay for ffplay or whatever to show up
+		time.sleep(.1)
+		process(args[1])
+		#listener.join()
+
+if __name__ == '__main__':
+	parse(sys.argv)
