@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./mp '^^>' &
+timeout 25 ffplay -autoexit -loop 1 nes.webm

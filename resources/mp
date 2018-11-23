@@ -16,6 +16,7 @@ def process(cmd):
 	lst = []
 	kbd = keyboard.Controller()
 	buf = []
+	fullscreen = False
 
 	for c in cmd:
 		if c == '<':
@@ -37,12 +38,19 @@ def process(cmd):
 		elif (c >= '0' and c <= '9') or c == '.':
 			buf.append(c)
 		elif c == 's':
-			time.sleep(int(buf))
+			time.sleep(int(''.join(buf)))
 			buf = []
+		else:
+			code = keyboard.KeyCode.from_char(c)
+			kbd.press(code)
+			time.sleep(.05)
+			kbd.release(code)
 
-	time.sleep(.05)
-	kbd.press(keyboard.KeyCode.from_char('f'))
-	kbd.release(keyboard.KeyCode.from_char('f'))
+		if not fullscreen:
+			time.sleep(.05)
+			kbd.press(keyboard.KeyCode.from_char('f'))
+			kbd.release(keyboard.KeyCode.from_char('f'))
+			fullscreen = True
 
 def parse(args):
 	if len(args) < 2:

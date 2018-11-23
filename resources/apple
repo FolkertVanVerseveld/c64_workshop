@@ -1,0 +1,10 @@
+#!/bin/bash
+
+./mp '5s^>10s>' &
+p=$!
+timeout 34 ffplay -autoexit -loop 1 -volume 80 karateka.webm
+kill -9 $p >&/dev/null
+./mp '^' &
+p=$!
+timeout 12 ffplay -autoexit -loop 1 -volume 80 loderunner.webm
+kill -9 $p >&/dev/null

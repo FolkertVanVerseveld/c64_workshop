@@ -1,0 +1,5 @@
+#!/bin/bash
+ffplay -autoexit -loop 1 arkanoid.mp4
+ffplay -autoexit -loop 1 turbo_outrun.mp4
+#vlc --no-loop --no-repeat --play-and-exit "C64 Martin Galway's \"Arkanoid\" oscilloscope view.mp4" \
+#"C64 Jeroen Tel's \"Turbo Outrun\" Oscilloscope view.mp4"

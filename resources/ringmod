@@ -1,0 +1,12 @@
+#!/bin/bash
+zenity --info --title='Ring Modulation' --text='Gewone toonladder' >&/dev/null
+#cvlc --no-loop --no-repeat --play-and-exit original.ogg
+ffplay -autoexit -loop 1 -showmode 1 original.ogg
+zenity --info --title='Ring Modulation' --text='Toonladder met ringmodulatie' >&/dev/null
+#cvlc --no-loop --no-repeat --play-and-exit ringmod.ogg
+ffplay -autoexit -loop 1 -showmode 1 ringmod.ogg
+zenity --info --title='Ring Modulation' --text='Toonladder met ringmodulatie en een sweep' >&/dev/null
+#cvlc --no-loop --no-repeat --play-and-exit ringmodsweep.ogg
+ffplay -autoexit -loop 1 -showmode 1 ringmodsweep.ogg
+zenity --info --title='Ring Modulation' --text='Voorbeeld uit spel van Rob Hubbard' >&/dev/null
+ffplay -autoexit -loop 1 zoids.mp4

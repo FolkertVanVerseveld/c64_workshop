@@ -1,0 +1,5 @@
+#!/bin/bash
+timeout 8 ffplay -autoexit -loop 1 castlevania_pc.mp4
+ffplay -autoexit -volume 130 castlevania_orig.mp4
+timeout 10 ffplay -autoexit -loop 1 castlevania_c64.mp4
+#vlc --no-loop --no-repeat --play-and-exit 'Castlevania - IBM-PC Speaker Soundtrack [Emulated].mp4' 'Castlevania - Intro.mp4' 'Castlevania - C64 Soundtrack [Emulated].mp4'

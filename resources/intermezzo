@@ -1,0 +1,23 @@
+#!/bin/bash
+
+play() {
+	./mp "$1" &
+	local p=$!
+	timeout $2 ffplay -autoexit -loop 1 -showmode 2 $3
+	kill -9 $p >&/dev/null
+}
+
+play 10sw 20 mm2_woodman.mp4
+play 11sw 21 last_ninja2_central_park.mp4
+play 8sw4sw 20 supaplex.mp4
+play 9sw 20 seventh.mp4
+play 12sw 24 savage_l2.mp4
+play 8sw4sw 17 xenon2.webm
+play 11sw 21 uninvited.webm
+play 10sw 20 giana.webm
+play 7sw4sw 17 lotus3.webm
+play 10sw 23 cybernoid.mp4
+play 4sw4sw 14 '-volume 70 monkey_island.webm'
+play 9sw 18 shadowgate.webm
+play 9sw 20 silver_surfer_stage1.mp4
+play 10sw 19 golden_axe_wilderness_title.mp4

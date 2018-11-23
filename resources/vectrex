@@ -1,0 +1,5 @@
+#!/bin/bash
+./mp '>>' &
+timeout 25 ffplay -autoexit -loop 1 -volume 90 very_vectight.mp4
+./mp '>' &
+timeout 60 ffplay -autoexit -loop 1 -volume 100 cmu.mp4
