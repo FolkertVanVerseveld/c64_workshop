@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -14,7 +15,10 @@
 static SDL_Window *win;
 static SDL_GLContext gl;
 
-#define TEXTURES 4
+#define TEXTURES 6
+
+#define TEX_BOMBE 4
+#define TEX_VECTREX 5
 
 #define MACHINES 4
 
@@ -27,7 +31,22 @@ static const char *machine_scripts[MACHINES] = {
 	"atari", "apple", "msdos", "zxspectrum"
 };
 
-static void display(void)
+#define MODE_MENU 0
+#define MODE_MACHINES 1
+
+static unsigned view_mode = MODE_MENU;
+
+static Uint32 timer;
+
+#define MODE_MENU_MACHINES 0
+#define MODE_MENU_VECTREX 1
+
+#define MENU_MODES 2
+
+static unsigned menu_select = 0;
+static float bombe_wobble = M_PI / 2;
+
+static void display_machines(void)
 {
 	if (machine_index == 1)
 		glClearColor(0, 0, 0, 0);
@@ -68,10 +87,150 @@ static void display(void)
 	glDisable(GL_TEXTURE_2D);
 }
 
+static void display_menu_bombe(Uint32 ticks)
+{
+	glClearColor(1, 1, 1, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0, WIDTH, HEIGHT, 0, -1, 1);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	bombe_wobble = fmodf(bombe_wobble + 0.005 * ticks, 2 * M_PI);
+
+	GLfloat x0, y0, x1, y1;
+	double aspect, w, h;
+
+	aspect = tex_w[TEX_BOMBE] / (double)tex_h[TEX_BOMBE];
+	h = HEIGHT - 100;
+	w = aspect * h;
+
+	x0 = WIDTH / 2 - w / 2 + 30 * sin(bombe_wobble);
+	x1 = x0 + w;
+	y0 = HEIGHT / 2 - h / 2;
+	y1 = y0 + h;
+
+	glBindTexture(GL_TEXTURE_2D, tex[TEX_BOMBE]);
+	glEnable(GL_TEXTURE_2D);
+	glColor3f(1, 1, 1);
+	glBegin(GL_QUADS);
+		glTexCoord2f(0, 0); glVertex2f(x0, y0);
+		glTexCoord2f(1, 0); glVertex2f(x1, y0);
+		glTexCoord2f(1, 1); glVertex2f(x1, y1);
+		glTexCoord2f(0, 1); glVertex2f(x0, y1);
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+static void display_menu_vectrex(Uint32 ticks)
+{
+	glClearColor(1, 1, 1, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	GLfloat x0, y0, x1, y1;
+	double aspect, w, h;
+
+	aspect = tex_w[TEX_VECTREX] / (double)tex_h[TEX_VECTREX];
+	h = HEIGHT - 10;
+	w = aspect * h;
+
+	x0 = WIDTH / 2 - w / 2;
+	x1 = x0 + w;
+	y0 = HEIGHT / 2 - h / 2;
+	y1 = y0 + h;
+
+	glBindTexture(GL_TEXTURE_2D, tex[TEX_VECTREX]);
+	glEnable(GL_TEXTURE_2D);
+	glColor3f(1, 1, 1);
+	glBegin(GL_QUADS);
+		glTexCoord2f(0, 0); glVertex2f(x0, y0);
+		glTexCoord2f(1, 0); glVertex2f(x1, y0);
+		glTexCoord2f(1, 1); glVertex2f(x1, y1);
+		glTexCoord2f(0, 1); glVertex2f(x0, y1);
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+static void display_menu(Uint32 ticks)
+{
+	switch (menu_select) {
+	case MODE_MENU_MACHINES: display_menu_bombe(ticks); break;
+	case MODE_MENU_VECTREX: display_menu_vectrex(ticks); break;
+	}
+}
+
+static void display(Uint32 ticks)
+{
+	switch (view_mode) {
+	case MODE_MENU: display_menu(ticks); break;
+	case MODE_MACHINES: display_machines(); break;
+	}
+}
+
+static int kbd_machines(unsigned key)
+{
+	switch (key) {
+	case 'q':
+		view_mode = MODE_MENU;
+		break;
+	case ' ':
+		machine_index = (machine_index + 1) % MACHINES;
+		if (!machine_index)
+			view_mode = MODE_MENU;
+		break;
+	case '\r':
+	case '\n': {
+		char buf[80];
+		snprintf(buf, sizeof buf, "bash ./%s", machine_scripts[machine_index]);
+		system(buf);
+		break;
+	}
+	}
+	return 1;
+}
+
+static int kbd_menu(unsigned key)
+{
+	switch (key) {
+	case 'q':
+		return 0;
+	case ' ':
+		menu_select = (menu_select + 1) % MENU_MODES;
+		break;
+	case '\r':
+	case '\n':
+		switch (menu_select) {
+		case MODE_MENU_MACHINES:
+			machine_index = 0;
+			view_mode = MODE_MACHINES;
+			break;
+		case MODE_MENU_VECTREX:
+			system("bash ./vectrex");
+			break;
+		}
+		break;
+	}
+	return 1;
+}
+
+static int kbd(unsigned key)
+{
+	switch (view_mode) {
+	case MODE_MENU: return kbd_menu(key); break;
+	case MODE_MACHINES: return kbd_machines(key); break;
+	default: return 0;
+	}
+}
+
 static int mainloop(void)
 {
 	glViewport(0, 0, WIDTH, HEIGHT);
 	glClearColor(0, 0, 0, 0);
+
+	timer = SDL_GetTicks();
 
 	while (1) {
 		SDL_Event ev;
@@ -80,28 +239,17 @@ static int mainloop(void)
 			switch (ev.type) {
 			case SDL_QUIT:
 				return 0;
-			case SDL_KEYDOWN: {
-				unsigned virt = ev.key.keysym.sym;
-				switch (virt) {
-				case 'q':
+			case SDL_KEYDOWN:
+				if (kbd(ev.key.keysym.sym) == 0)
 					return 0;
-				case ' ':
-					machine_index = (machine_index + 1) % MACHINES;
-					break;
-				case '\r':
-				case '\n': {
-					char buf[80];
-					snprintf(buf, sizeof buf, "bash ./%s", machine_scripts[machine_index]);
-					system(buf);
-					break;
-				}
-				}
 				break;
-			}
 			}
 		}
 
-		display();
+		Uint32 next = SDL_GetTicks();
+		display(next - timer);
+		timer = next;
+
 		SDL_GL_SwapWindow(win);
 	}
 
@@ -123,8 +271,6 @@ static void gfx_load(unsigned i, const char *name)
 		fprintf(stderr, "Bogus dimensions: %d, %d\n", surf->w, surf->h);
 		exit(1);
 	}
-
-	printf("%s: %u\n", name, texture);
 
 	glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -152,6 +298,8 @@ static void gfx_init(void)
 	gfx_load(1, "../images/appleii.jpg");
 	gfx_load(2, "../images/ibm5150.jpg");
 	gfx_load(3, "../images/zxspectrum.jpg");
+	gfx_load(4, "../images/bombe.jpg");
+	gfx_load(5, "../images/vectrex.jpg");
 }
 
 static void gfx_free(void)
