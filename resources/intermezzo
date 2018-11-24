@@ -7,17 +7,19 @@ play() {
 	kill -9 $p >&/dev/null
 }
 
-play 10sw 20 mm2_woodman.mp4
-play 11sw 21 last_ninja2_central_park.mp4
-play 8sw4sw 20 supaplex.mp4
-play 9sw 20 seventh.mp4
-play 12sw 24 savage_l2.mp4
-play 8sw4sw 17 xenon2.webm
-play 11sw 21 uninvited.webm
-play 10sw 20 giana.webm
-play 7sw4sw 17 lotus3.webm
-play 10sw 23 cybernoid.mp4
-play 4sw4sw 14 '-volume 70 monkey_island.webm'
-play 9sw 18 shadowgate.webm
-play 9sw 20 silver_surfer_stage1.mp4
-play 10sw 19 golden_axe_wilderness_title.mp4
+./castlevania
+
+play 15sw 25 mm2_woodman.mp4
+play 16sw 26 last_ninja2_central_park.mp4
+play 13sw4sw 26 supaplex.mp4
+play 14sw 25 seventh.mp4
+play 15sw 29 savage_l2.mp4
+play 12sw4sw 22 xenon2.webm
+play 16sw 26 uninvited.webm
+play 14sw 25 giana.webm
+play 11sw4sw 23 '-volume 75 lotus3.webm'
+play 15sw 28 cybernoid.mp4
+play 8sw4sw 19 '-volume 65 monkey_island.webm'
+play 14sw 23 '-volume 90 shadowgate.webm'
+play 12sw 27 silver_surfer_stage1.mp4
+play 15sw 27 golden_axe_wilderness_title.mp4

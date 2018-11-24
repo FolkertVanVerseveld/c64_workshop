@@ -1,5 +1,5 @@
 #!/bin/bash
-timeout 30 ffplay -autoexit -loop 1 driller.mp4
-ffplay -autoexit -loop 1 last_ninja2_the_mansion.mp4
+timeout 25 ffplay -autoexit -loop 1 driller.mp4
+timeout 20 ffplay -autoexit -loop 1 last_ninja2_the_mansion.mp4
 #vlc --no-loop --no-repeat --play-and-exit "C64 Matt Gray's Driller loader theme oscilloscope view.mp4" \
 #"C64 Matt gray's \"Last Ninja 2 The Mansion\" oscilloscope view (improved).mp4"
