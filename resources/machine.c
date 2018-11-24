@@ -15,13 +15,13 @@
 static SDL_Window *win;
 static SDL_GLContext gl;
 
-#define TEXTURES 7
+#define TEXTURES 8
 
-#define TEX_BOMBE 4
-#define TEX_VECTREX 5
-#define TEX_CRT 6
+#define TEX_BOMBE 5
+#define TEX_VECTREX 6
+#define TEX_CRT 7
 
-#define MACHINES 4
+#define MACHINES 5
 
 #define CRT_LINES 8
 
@@ -31,7 +31,7 @@ static unsigned tex_w[TEXTURES], tex_h[TEXTURES];
 static unsigned machine_index = 0;
 
 static const char *machine_scripts[MACHINES] = {
-	"atari", "apple", "msdos", "zxspectrum"
+	"atari", "apple", "msdos", "zxspectrum", "nes"
 };
 
 #define MODE_MENU 0
@@ -319,6 +319,28 @@ static int kbd_menu(unsigned key)
 			break;
 		}
 		break;
+	case 'w':
+	case 'h':
+		system("helm");
+		break;
+	case 's':
+		system("bash ./samples");
+		break;
+	case 'i':
+		system("bash ./intermezzo");
+		break;
+	case 'p':
+		system("bash ./pwm");
+		break;
+	case 'r':
+		system("bash ./ringmod");
+		break;
+	case 'x':
+		system("bash ./squaker");
+		break;
+	case 'z':
+		system("bash ./zelda");
+		break;
 	}
 	return 1;
 }
@@ -405,9 +427,10 @@ static void gfx_init(void)
 	gfx_load(1, "../images/appleii.jpg");
 	gfx_load(2, "../images/ibm5150.jpg");
 	gfx_load(3, "../images/zxspectrum.jpg");
-	gfx_load(4, "../images/bombe.jpg");
-	gfx_load(5, "../images/vectrex.jpg");
-	gfx_load(6, "../images/crt.jpg");
+	gfx_load(4, "../images/nes.jpg");
+	gfx_load(5, "../images/bombe.jpg");
+	gfx_load(6, "../images/vectrex.jpg");
+	gfx_load(7, "../images/crt.jpg");
 }
 
 static void gfx_free(void)

@@ -1,2 +1,2 @@
 #!/bin/bash
-timeout 20 ffplay -autoexit -loop 1 "legend_of_zelda.mp4"
+timeout 24 ffplay -autoexit -loop 1 "legend_of_zelda.mp4"

@@ -9,4 +9,4 @@ zenity --info --title='Ring Modulation' --text='Toonladder met ringmodulatie en 
 #cvlc --no-loop --no-repeat --play-and-exit ringmodsweep.ogg
 ffplay -autoexit -loop 1 -showmode 1 ringmodsweep.ogg
 zenity --info --title='Ring Modulation' --text='Voorbeeld uit spel van Rob Hubbard' >&/dev/null
-ffplay -autoexit -loop 1 zoids.mp4
+timeout 20 ffplay -autoexit -loop 1 zoids.mp4
