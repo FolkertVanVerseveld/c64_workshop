@@ -223,12 +223,13 @@ static void display_menu_crt(Uint32 ticks)
 	// Compute position of raster beam
 	glPointSize(12);
 
-	glColor3f(0, 1, 1);
+	glColor3f(0, 0, 0);
 	glBegin(GL_POINTS);
 
 	if (raster_trace >= 1.0) {
+		raster_trace = 1.0;
 		if (raster_line == CRT_LINES - 1) {
-			raster_vert_trace += 0.001 * ticks;
+			raster_vert_trace += 0.0005 * ticks;
 
 			if (raster_vert_trace >= 1.0) {
 				raster_trace = raster_hor_trace = raster_vert_trace = 0;
@@ -246,6 +247,7 @@ static void display_menu_crt(Uint32 ticks)
 				glVertex2f(600 - (600 - 200) * raster_hor_trace, 110 + 40 * (raster_line + raster_hor_trace));
 		}
 	} else {
+		glColor3f(0, 1, 1);
 		raster_trace += 0.002 * ticks;
 		glVertex2f(200 + (600 - 200) * raster_trace, 110 + 40 * raster_line);
 	}
@@ -279,13 +281,13 @@ static int kbd_machines(unsigned key)
 	case 'q':
 		view_mode = MODE_MENU;
 		break;
-	case ' ':
+	case SDLK_RIGHT:
 		machine_index = (machine_index + 1) % MACHINES;
-		if (!machine_index)
-			view_mode = MODE_MENU;
 		break;
-	case '\r':
-	case '\n': {
+	case SDLK_LEFT:
+		machine_index = (machine_index + MACHINES - 1) % MACHINES;
+		break;
+	case ' ': {
 		char buf[80];
 		snprintf(buf, sizeof buf, "bash ./%s", machine_scripts[machine_index]);
 		system(buf);
@@ -300,11 +302,13 @@ static int kbd_menu(unsigned key)
 	switch (key) {
 	case 'q':
 		return 0;
-	case ' ':
+	case SDLK_RIGHT:
 		menu_select = (menu_select + 1) % MENU_MODES;
 		break;
-	case '\r':
-	case '\n':
+	case SDLK_LEFT:
+		menu_select = (menu_select + MENU_MODES - 1) % MENU_MODES;
+		break;
+	case ' ':
 		switch (menu_select) {
 		case MODE_MENU_MACHINES:
 			machine_index = 0;
