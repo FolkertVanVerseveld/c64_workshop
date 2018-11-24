@@ -15,12 +15,15 @@
 static SDL_Window *win;
 static SDL_GLContext gl;
 
-#define TEXTURES 6
+#define TEXTURES 7
 
 #define TEX_BOMBE 4
 #define TEX_VECTREX 5
+#define TEX_CRT 6
 
 #define MACHINES 4
+
+#define CRT_LINES 8
 
 static GLuint tex[TEXTURES];
 static unsigned tex_w[TEXTURES], tex_h[TEXTURES];
@@ -40,11 +43,17 @@ static Uint32 timer;
 
 #define MODE_MENU_MACHINES 0
 #define MODE_MENU_VECTREX 1
+#define MODE_MENU_CRT 2
 
-#define MENU_MODES 2
+#define MENU_MODES 3
 
 static unsigned menu_select = 0;
 static float bombe_wobble = M_PI / 2;
+
+static unsigned raster_line = 0;
+static float raster_trace = 0;
+static float raster_hor_trace = 0;
+static float raster_vert_trace = 0;
 
 static void display_machines(void)
 {
@@ -125,10 +134,17 @@ static void display_menu_bombe(Uint32 ticks)
 	glDisable(GL_TEXTURE_2D);
 }
 
-static void display_menu_vectrex(Uint32 ticks)
+static void display_menu_vectrex()
 {
 	glClearColor(1, 1, 1, 0);
 	glClear(GL_COLOR_BUFFER_BIT);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0, WIDTH, HEIGHT, 0, -1, 1);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 
 	GLfloat x0, y0, x1, y1;
 	double aspect, w, h;
@@ -154,11 +170,98 @@ static void display_menu_vectrex(Uint32 ticks)
 	glDisable(GL_TEXTURE_2D);
 }
 
+static void display_menu_crt(Uint32 ticks)
+{
+	glClearColor(1, 1, 1, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0, WIDTH, HEIGHT, 0, -1, 1);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	GLfloat x0, y0, x1, y1;
+	double aspect, w, h;
+
+	aspect = tex_w[TEX_CRT] / (double)tex_h[TEX_CRT];
+	h = HEIGHT;
+	w = aspect * h;
+
+	x0 = WIDTH / 2 - w / 2;
+	x1 = x0 + w;
+	y0 = HEIGHT / 2 - h / 2;
+	y1 = y0 + h;
+
+	glBindTexture(GL_TEXTURE_2D, tex[TEX_CRT]);
+	glEnable(GL_TEXTURE_2D);
+	glColor3f(1, 1, 1);
+	glBegin(GL_QUADS);
+		glTexCoord2f(0, 0); glVertex2f(x0, y0);
+		glTexCoord2f(1, 0); glVertex2f(x1, y0);
+		glTexCoord2f(1, 1); glVertex2f(x1, y1);
+		glTexCoord2f(0, 1); glVertex2f(x0, y1);
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+
+	glLineWidth(4);
+
+	glBegin(GL_LINES);
+	for (unsigned i = 0; i < CRT_LINES; ++i) {
+		glColor3f(1, 0, 0);
+		glVertex2f(200, 110 + 40 * i); glVertex2f(600, 110 + 40 * i);
+		if (i < CRT_LINES - 1) {
+			glColor3f(1, 0, 1);
+			glVertex2f(200, 110 + 40 * (i + 1)); glVertex2f(600, 110 + 40 * i);
+		}
+	}
+	glColor3f(0, 0, 1);
+	glVertex2f(200, 110); glVertex2f(600, 110 + 40 * (CRT_LINES - 1));
+	glEnd();
+
+	// Compute position of raster beam
+	glPointSize(12);
+
+	glColor3f(0, 1, 1);
+	glBegin(GL_POINTS);
+
+	if (raster_trace >= 1.0) {
+		if (raster_line == CRT_LINES - 1) {
+			raster_vert_trace += 0.001 * ticks;
+
+			if (raster_vert_trace >= 1.0) {
+				raster_trace = raster_hor_trace = raster_vert_trace = 0;
+				raster_line = 0;
+			} else
+				glVertex2f(200 + (600 - 200) * (1 - raster_vert_trace), 110 + 40 * (CRT_LINES - 1) * (1 - raster_vert_trace));
+		} else {
+			raster_hor_trace += 0.01 * ticks;
+
+			if (raster_hor_trace >= 1.0) {
+				raster_hor_trace = 0;
+				raster_trace = 0;
+				raster_line = (raster_line + 1) % CRT_LINES;
+			} else
+				glVertex2f(600 - (600 - 200) * raster_hor_trace, 110 + 40 * (raster_line + raster_hor_trace));
+		}
+	} else {
+		raster_trace += 0.002 * ticks;
+		glVertex2f(200 + (600 - 200) * raster_trace, 110 + 40 * raster_line);
+	}
+
+	glEnd();
+
+	glLineWidth(1);
+	glPointSize(1);
+}
+
 static void display_menu(Uint32 ticks)
 {
 	switch (menu_select) {
 	case MODE_MENU_MACHINES: display_menu_bombe(ticks); break;
-	case MODE_MENU_VECTREX: display_menu_vectrex(ticks); break;
+	case MODE_MENU_VECTREX : display_menu_vectrex(); break;
+	case MODE_MENU_CRT     : display_menu_crt(ticks); break;
 	}
 }
 
@@ -300,6 +403,7 @@ static void gfx_init(void)
 	gfx_load(3, "../images/zxspectrum.jpg");
 	gfx_load(4, "../images/bombe.jpg");
 	gfx_load(5, "../images/vectrex.jpg");
+	gfx_load(6, "../images/crt.jpg");
 }
 
 static void gfx_free(void)

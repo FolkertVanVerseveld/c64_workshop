@@ -3,7 +3,7 @@
 GFX=\
 	adsr.png appleii.jpg bender.jpeg bleeding.png bombe.jpg boot.png \
 	breadbin.jpg c1541.jpg c64.jpg c64back.png c64c.jpg c64c_garage.jpg \
-	c64schema.jpg c64schema2.jpg datasette.jpg desk.jpg edsac.jpg \
+	c64schema.jpg c64schema2.jpg crt.jpg datasette.jpg desk.jpg edsac.jpg \
 	edsac_crts.jpg farts.png gary.png hvsc.jpg ibm5150.jpg nes.jpg \
 	nyan.png oxo.jpg palette.png pdp8.jpg performance.png pet.jpg \
 	pouet.jpg raster.png rc3nes.png rekentabellen.jpg rev2017.jpg \
@@ -46,6 +46,8 @@ c64schema.jpg:
 	wget -O c64schema.jpg http://www.vanverseveld.me/folkert/c64/workshop/gfx/c64schema.jpg
 c64schema2.jpg:
 	wget -O c64schema2.jpg http://www.vanverseveld.me/folkert/c64/workshop/gfx/c64schema2.jpg
+crt.jpg:
+	wget -O crt.jpg https://www.richardlagendijk.nl/foto/cip/monitor_1701_02.jpg
 datasette.jpg:
 	wget -O datasette.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Commodore-Datasette-C2N-Mk2-Front.jpg/1024px-Commodore-Datasette-C2N-Mk2-Front.jpg
 desk.jpg:
