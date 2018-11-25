@@ -15,11 +15,12 @@
 static SDL_Window *win;
 static SDL_GLContext gl;
 
-#define TEXTURES 8
+#define TEXTURES 9
 
 #define TEX_BOMBE 5
 #define TEX_VECTREX 6
 #define TEX_CRT 7
+#define TEX_AAAH 8
 
 #define MACHINES 5
 
@@ -44,8 +45,9 @@ static Uint32 timer;
 #define MODE_MENU_MACHINES 0
 #define MODE_MENU_VECTREX 1
 #define MODE_MENU_CRT 2
+#define MODE_MENU_POUET 3
 
-#define MENU_MODES 3
+#define MENU_MODES 4
 
 static unsigned menu_select = 0;
 static float bombe_wobble = M_PI / 2;
@@ -258,12 +260,73 @@ static void display_menu_crt(Uint32 ticks)
 	glPointSize(1);
 }
 
+unsigned roto_angle;
+float roto_x, roto_y, roto_length;
+float roto_xs = 1.0f, roto_ys = 1.0f;
+float roto_xd = 0.0f, roto_yd = 0.0f;
+unsigned roto_xp = 0, roto_yp = 0;
+
+#define X_P 0.3
+#define Y_P 0.6
+#define ZOOMPERIOD 21
+#define XPERIOD 6
+#define YPERIOD 5
+
+static void display_menu_pouet(Uint32 ticks)
+{
+	double ang, dx, dy;
+
+	roto_angle = (roto_angle + ticks) % (360 * ZOOMPERIOD);
+	roto_xp = (roto_xp + ticks) % (360 * XPERIOD);
+	roto_yp = (roto_yp + ticks) % (360 * YPERIOD);
+
+	ang = (double)roto_angle / ZOOMPERIOD;
+	dx = (double)roto_xp / XPERIOD;
+	dy = (double)roto_yp / YPERIOD;
+
+	roto_xs = roto_ys = 1.3f + 0.8f * sin(ang / 180.0 * M_PI);
+	roto_xd = tex_w[TEX_AAAH]  * (X_P + sin(dx / 180.0 * M_PI));
+	roto_yd = tex_h[TEX_AAAH] * (Y_P + cos(dy / 180.0 * M_PI));
+
+	glClearColor(0, 0, 0, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-WIDTH / 2, WIDTH / 2, -HEIGHT / 2, HEIGHT / 2, -1, 1);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	glBindTexture(GL_TEXTURE_2D, tex[TEX_AAAH]);
+	glEnable(GL_TEXTURE_2D);
+	glColor3f(1, 1, 1);
+	glTranslatef(-roto_xd, -roto_yd, 0);
+	glScalef(roto_xs, roto_ys, 1.0f);
+	glRotatef(((double)roto_angle / ZOOMPERIOD), 0, 0, 1);
+
+	GLfloat tx0, tx1, ty0, ty1;
+
+	tx0 = roto_x - 20 * tex_w[TEX_AAAH] / 2;
+	tx1 = roto_x + 20 * tex_w[TEX_AAAH] / 2;
+	ty0 = roto_y - 20 * tex_h[TEX_AAAH] / 2;
+	ty1 = roto_y + 20 * tex_h[TEX_AAAH] / 2;
+
+	glBegin(GL_QUADS);
+		glTexCoord2f(-10, 10); glVertex2f(tx0, ty0);
+		glTexCoord2f(10, 10); glVertex2f(tx1, ty0);
+		glTexCoord2f(10, -10); glVertex2f(tx1, ty1);
+		glTexCoord2f(-10, -10); glVertex2f(tx0, ty1);
+	glEnd();
+}
+
 static void display_menu(Uint32 ticks)
 {
 	switch (menu_select) {
 	case MODE_MENU_MACHINES: display_menu_bombe(ticks); break;
 	case MODE_MENU_VECTREX : display_menu_vectrex(); break;
 	case MODE_MENU_CRT     : display_menu_crt(ticks); break;
+	case MODE_MENU_POUET   : display_menu_pouet(ticks); break;
 	}
 }
 
@@ -317,6 +380,12 @@ static int kbd_menu(unsigned key)
 		case MODE_MENU_VECTREX:
 			system("bash ./vectrex");
 			break;
+		case MODE_MENU_CRT:
+			system("bash ./debug");
+			break;
+		case MODE_MENU_POUET:
+			system("firefox https://pouet.net");
+			break;
 		}
 		break;
 	case 'w':
@@ -340,6 +409,9 @@ static int kbd_menu(unsigned key)
 		break;
 	case 'z':
 		system("bash ./zelda");
+		break;
+	case 'a':
+		system("bash ./amiga");
 		break;
 	}
 	return 1;
@@ -431,6 +503,7 @@ static void gfx_init(void)
 	gfx_load(5, "../images/bombe.jpg");
 	gfx_load(6, "../images/vectrex.jpg");
 	gfx_load(7, "../images/crt.jpg");
+	gfx_load(8, "../images/sbm_obey.png");
 }
 
 static void gfx_free(void)

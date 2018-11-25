@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Update this path if you have it located elsewhere.
+wine $HOME/c64/C64Debugger/C64Debugger.exe
