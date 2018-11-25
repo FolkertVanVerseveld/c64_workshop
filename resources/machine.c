@@ -119,9 +119,9 @@ static void display_menu_bombe(Uint32 ticks)
 	h = HEIGHT - 100;
 	w = aspect * h;
 
-	x0 = WIDTH / 2 - w / 2 + 30 * sin(bombe_wobble);
+	x0 = WIDTH / 2 - w / 2;
 	x1 = x0 + w;
-	y0 = HEIGHT / 2 - h / 2;
+	y0 = HEIGHT / 2 - h / 2 + 30 * sin(bombe_wobble);
 	y1 = y0 + h;
 
 	glBindTexture(GL_TEXTURE_2D, tex[TEX_BOMBE]);
@@ -136,7 +136,14 @@ static void display_menu_bombe(Uint32 ticks)
 	glDisable(GL_TEXTURE_2D);
 }
 
-static void display_menu_vectrex()
+#define VECTREX_SEGMENTS 40
+#define VECTREX_PHASE_DIFF 0.2
+#define VECTREX_SPEED 0.005
+#define VECTREX_WIDTH 64
+
+static float vectrex_offset = 0;
+
+static void display_menu_vectrex(Uint32 ticks)
 {
 	glClearColor(1, 1, 1, 0);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -160,14 +167,34 @@ static void display_menu_vectrex()
 	y0 = HEIGHT / 2 - h / 2;
 	y1 = y0 + h;
 
+	vectrex_offset = fmodf(vectrex_offset + VECTREX_SPEED * ticks, 2 * M_PI);
+
 	glBindTexture(GL_TEXTURE_2D, tex[TEX_VECTREX]);
 	glEnable(GL_TEXTURE_2D);
 	glColor3f(1, 1, 1);
 	glBegin(GL_QUADS);
-		glTexCoord2f(0, 0); glVertex2f(x0, y0);
-		glTexCoord2f(1, 0); glVertex2f(x1, y0);
-		glTexCoord2f(1, 1); glVertex2f(x1, y1);
-		glTexCoord2f(0, 1); glVertex2f(x0, y1);
+	for (unsigned i = 0; i < VECTREX_SEGMENTS; ++i) {
+		GLfloat s0, s1, t0, t1, sx0, sy0, sx1, sy1, sx2, sx3;
+
+		s0 = 0;
+		s1 = 1;
+
+		t0 = (1.0f / VECTREX_SEGMENTS) * i;
+		t1 = (1.0f / VECTREX_SEGMENTS) * (i + 1);
+
+		sx0 = x0 + VECTREX_WIDTH * sin(vectrex_offset + i * VECTREX_PHASE_DIFF);
+		sx1 = x1 + VECTREX_WIDTH * sin(vectrex_offset + i * VECTREX_PHASE_DIFF);
+		sx2 = x0 + VECTREX_WIDTH * sin(vectrex_offset + (i + 1) * VECTREX_PHASE_DIFF);
+		sx3 = x1 + VECTREX_WIDTH * sin(vectrex_offset + (i + 1) * VECTREX_PHASE_DIFF);
+
+		sy0 = y0 + ((double)i / VECTREX_SEGMENTS) * h;
+		sy1 = y0 + ((double)(i + 1) / VECTREX_SEGMENTS) * h;
+
+		glTexCoord2f(s0, t0); glVertex2f(sx0, sy0);
+		glTexCoord2f(s1, t0); glVertex2f(sx1, sy0);
+		glTexCoord2f(s1, t1); glVertex2f(sx3, sy1);
+		glTexCoord2f(s0, t1); glVertex2f(sx2, sy1);
+	}
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 }
@@ -324,7 +351,7 @@ static void display_menu(Uint32 ticks)
 {
 	switch (menu_select) {
 	case MODE_MENU_MACHINES: display_menu_bombe(ticks); break;
-	case MODE_MENU_VECTREX : display_menu_vectrex(); break;
+	case MODE_MENU_VECTREX : display_menu_vectrex(ticks); break;
 	case MODE_MENU_CRT     : display_menu_crt(ticks); break;
 	case MODE_MENU_POUET   : display_menu_pouet(ticks); break;
 	}
