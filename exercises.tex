@@ -26,6 +26,7 @@
 \section{Inleiding}
 
 Deze opgavenbundel bevat een verzameling aan opgaven van langzaam toenemende moeilijkheidsgraad.
+U hoeft niet de opgaven van begin tot eind door te werken, maar u kunt gewoon ergens beginnen en kijken hoever u komt.
 Een deel van de opgaven zullen we ook tijdens de workshop klassikaal doornemen en variaties van laten zien.
 
 \emph{Let op dat het document links bevat waar u op kan klikken.
@@ -63,13 +64,21 @@ Sommige opgaven zijn juist gemaakt met het idee dat u dingen moet proberen.
 
 Als de emulator lijkt te zijn vastgelopen dan kunt u via \verb:File->Reset->Soft: de computer herstarten.
 Als dit niet werkt kunt u via \verb:File->Reset->Hard: het forceren en als dat ook niet werkt de emulator sluiten en opnieuw openen.
-
-\emph{Let wel op dat uw BASIC programma en alles wat niet op een floppydisk is opgeslagen verloren gaat als u de emulator reset!
-De floppydisk moet u ook opnieuw aansluiten om uw programma weer van te laden!}
+\emph{Let wel op dat uw BASIC programma en alles wat niet op een floppydisk of tape is opgeslagen verloren gaat als u de emulator reset!
+De floppydisk en/of tape moet u ook opnieuw aansluiten om uw programma weer van te laden!}
 
 De emulator kan ook versneld worden met \verb:ALT+W: om zo de laadtijd van programma's te verkorten.
 De originele laadtijd wordt namelijk ook nagebootst omdat veel software hiervan afhankelijk is!
 Met \verb:ALT+W: kunt u de snelheid ook weer herstellen.
+
+\section{Games}
+
+Voor de C64 zijn ook talloze spelletjes te vinden die zowel via tape, floppy als cartridge verkocht werden.
+Als u geen zin heeft om te programmeren in BASIC of gewoon even iets anders wil doen kunt u wat spellen laden.
+Sommige spellen dienen uitsluitend met het toetsenbord of een joystick gespeeld te worden en dit wordt meestal in het spel aangegeven.
+\emph{De standaardjoystick voor veel spellen moet in port 2!}
+
+Tip: zie ook figuur \ref{fig:vicekbd} hoe het toetsenbord er uitziet en in de emulator werkt en zie appendix 6.1 voor het vinden van software, demo's en spellen.
 
 \include{load_save}
 
@@ -156,7 +165,7 @@ dan kunnen we dit doen met de functie \verb:INT():.
 Bijvoorbeeld $\verb:PRINT:\ \verb:INT:(2/3)$ zal $0$ printen.
 
 Zoals u waarschijnlijk al is opgevallen is dat de basisoperatoren dezelfde prioriteit hebben als in de wiskunde.
-Let op dat er rekenmachines en computers waren stammend uit dezelfde tijd die de prioriteit van operatoren kompleet negeerden!
+Dit is best luxe, want er waren rekenmachines en computers uit dezelfde tijd die de prioriteit van operatoren kompleet negeerden!
 Met behulp van haakjes kunt u berekeningen in een andere volgorde uitvoeren.
 
 \subsection{Variabelen}
@@ -249,13 +258,13 @@ Het programma zal u om gebruikersinvoer vragen en dit printen.
 
 \problem Schrijf een BASIC programma wat een gebruikersnaam vraagt en dit print naar het scherm.
 
-Nu is een goed moment om te kijken of het programma naar een floppydisk kan opslaan zodat u het programma later weer kan laden.
-Er is ook een cheatsheet voor het opslaan en laden van programma's in sectie 2.
+Nu is een goed moment om te kijken of u het programma naar een floppydisk kunt opslaan zodat u het programma later weer kunt laden.
+Zie ook het cheatsheet voor het opslaan en laden van programma's in sectie 3.5 en 3.6.
 
 \subsection{Programmeerhandleiding en Literatuur}
 
 Dit is een klein voorproefje van wat er allemaal in BASIC mogelijk is.
-Indien u meer programma's wilt schrijven kunt hoofdstuk 3 en verder bekijken van de \verb:User's Guide:.
+Indien u meer programma's wilt schrijven kunt u hoofdstuk 3 en verder bekijken van de \verb:User's Guide:.
 Als u meer uitdaging wilt of meer wilt weten over de details van de Commodore 64 kunt u naar de \verb:Programmer's Reference Guide: kijken.
 Beide documenten zijn inbegrepen als u de release versie van de githubpagina heeft gedownload.
 
@@ -265,12 +274,13 @@ Beide documenten zijn inbegrepen als u de release versie van de githubpagina hee
 
 Er is heel veel software te vinden voor de Commodore 64.
 Sterker nog, er wordt nog steeds veel software gemaakt!
-De bekendste en volledigste website voor roms is \href{http://csdb.dk}{csdb}.
+De bekendste en volledigste website is \href{http://csdb.dk}{csdb}.
 
 Een andere hele bekende, onder andere voor programmeerwedstrijden, is \href{https://www.pouet.net}{pouet}.
 Hier is nog veel meer te vinden dan alleen Commodore 64 software.
 Bijvoorbeeld 's werelds grootste en recentste programmeerwedstrijd van de C64 is X.
-\href{https://www.pouet.net/party.php?which=50&when=2016}{Hier} is een overzicht van alle software die toen is uitgebracht.
+\href{https://www.pouet.net/party.php?which=50&when=2018}{Hier} is een overzicht van alle software die toen is uitgebracht.
+En een paar voorgaande jaren: \href{https://www.pouet.net/party.php?which=50&when=2010}{2010}, \href{https://www.pouet.net/party.php?which=50&when=2012}{2012}, \href{https://www.pouet.net/party.php?which=50&when=2014}{2014}, \href{https://www.pouet.net/party.php?which=50&when=2016}{2016}
 
 \subsection{easy6502}
 
@@ -296,7 +306,7 @@ De workshop laat kleine aspecten zien van de demoscene die voornamelijk ontstaan
 Als u ge\"interesseerd bent geraakt in de demoscene of u wilt weten wat dit is zijn de volgende bronnen aan te raden om te kijken:
 
 \begin{tabular}{l|l|l}
-Link & Domein & Toelichting \\
+Link & Omschrijving & Toelichting \\
 \href{https://www.youtube.com/watch?v=AdTANxS-LHg}{YT: Polderpioniers - J. Tel} & Eerste gamemuzikanten & Tweakers interview \\
 \href{https://www.youtube.com/watch?v=5MexnBunH_g}{YT: The Art of Algorithms} & Geschiedenis Demoscene & Documentaire \\
 \href{https://www.youtube.com/watch?v=O-1zEo7DD8w}{YT: Rev2017 Shader Finals} & Programmeerwedstrijd & Stream \\
