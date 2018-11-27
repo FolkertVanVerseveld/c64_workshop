@@ -1,0 +1,2 @@
+#!/bin/bash
+timeout 30 ffplay -autoexit -loop 1 hifisky.mp4

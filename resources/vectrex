@@ -2,4 +2,4 @@
 ./mp '>>' &
 timeout 25 ffplay -autoexit -loop 1 -volume 80 very_vectight.mp4
 ./mp '>' &
-timeout 75 ffplay -autoexit -loop 1 -volume 90 cmu.mp4
+timeout 100 ffplay -autoexit -loop 1 -volume 90 cmu.mp4

@@ -440,6 +440,9 @@ static int kbd_menu(unsigned key)
 	case 'a':
 		system("bash ./amiga");
 		break;
+	case 'l':
+		system("bash ./lman");
+		break;
 	}
 	return 1;
 }

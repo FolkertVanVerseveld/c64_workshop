@@ -9,7 +9,7 @@ play() {
 
 ./castlevania
 
-play 15sw 25 mm2_woodman.mp4
+play 15sw 27 mm2_dr_wily_s12.mp4
 play 16sw 26 last_ninja2_central_park.mp4
 play 13sw4sw 26 supaplex.mp4
 play 14sw 25 seventh.mp4
@@ -22,4 +22,4 @@ play 15sw 28 cybernoid.mp4
 play 8sw4sw 19 '-volume 65 monkey_island.webm'
 play 14sw 23 '-volume 90 shadowgate.webm'
 play 12sw 27 silver_surfer_stage1.mp4
-play 15sw 27 golden_axe_wilderness_title.mp4
+play 15sw 34 golden_axe_wilderness_title.mp4

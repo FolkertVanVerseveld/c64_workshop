@@ -1,4 +1,4 @@
 #!/bin/bash
 
 ./mp '^<' &
-timeout 20 ffplay -autoexit -loop 1 -volume 70 atari.webm
+timeout 34 ffplay -autoexit -loop 1 -volume 70 atari.webm
