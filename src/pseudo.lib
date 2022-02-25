@@ -1,0 +1,149 @@
+#importonce
+
+// Some hardcoded constants
+.const colram = $d800
+
+//------------------------------------
+// Basic commands
+//------------------------------------
+.pseudocommand add arg {
+	clc
+	adc arg
+}
+
+.pseudocommand sub arg {
+	sec
+	sbc arg
+}
+
+.pseudocommand add8 arg:v {
+	lda arg
+	clc
+	adc v
+	sta arg
+	lda _16bit_nextArgument(arg)
+	adc v
+	sta _16bit_nextArgument(arg)
+}
+
+.pseudocommand sub8 arg:v {
+	sec
+	lda arg
+	sbc v
+	sta arg
+	lda _16bit_nextArgument(arg)
+	sbc v
+	sta _16bit_nextArgument(arg)
+}
+
+.pseudocommand mov arg1:arg2 {
+	lda arg1
+	sta arg2
+}
+
+.pseudocommand mov16 src:tar {
+	lda src
+	sta tar
+	lda _16bit_nextArgument(src)
+	sta _16bit_nextArgument(tar)
+}
+
+.function _16bit_nextArgument(arg) {
+	.if (arg.getType()==AT_IMMEDIATE) .return CmdArgument(arg.getType(),>arg.getValue())
+	.return CmdArgument(arg.getType(),arg.getValue()+1)
+}
+
+//------------------------------------
+// Irq commands
+//------------------------------------
+.pseudocommand cia_nmi {
+	pha
+	txa
+	pha
+	tya
+	pha
+}
+
+.pseudocommand imn_aic {
+	pla
+	tay
+	pla
+	tax
+
+	lda $dd0d
+	pla
+	rti
+}
+
+.pseudocommand irq {
+	pha // 3, 3
+	txa // 2, 5
+	pha // 3, 8
+	tya // 2, 10
+	pha // 3, 13
+	mov #$ff : $d019 // 8, 21
+}
+
+.pseudocommand qri line : addr {
+	.if (line.getType()!=AT_NONE) 	mov line : $d012
+	.if (addr.getType()!=AT_NONE) 	mov16 addr : $fffe
+	pla
+	tay
+	pla
+	tax
+	pla
+	rti
+}
+
+.pseudocommand set_irq line : addr {
+	lda line
+	sta $d012
+	
+	.if (line.getValue() > 255) {
+		lda $d011
+		ora #$80
+		sta $d011
+	} else {
+		lda $d011
+		and #$7f
+		sta $d011
+	}
+}
+
+.pseudocommand qri2 line : addr {
+	mov line : $d012
+
+	.if (line.getValue() > 255) {
+		lda $d011
+		ora #$80
+		sta $d011
+	} else {
+		lda $d011
+		and #$7f
+		sta $d011
+	}
+
+	mov16 addr : $fffe
+	pla
+	tay
+	pla
+	tax
+	pla
+	rti
+}
+
+// border color stuff
+
+.macro borderColor(color) {
+	lda #color
+	sta $d020
+}
+
+.macro backgroundColor(color) {
+	lda #color
+	sta $d021
+}
+
+.function coordToAddr(x, y) {
+	.return y*40 + x
+}
