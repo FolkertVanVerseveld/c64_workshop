@@ -174,7 +174,7 @@ irq_dummy:
 	rti
 
 fade_ctl:
-	// TODO use jumptable
+	// use jumptable
 	ldx zp_fade_mode
 	lda fade_vec_lo, x
 	sta !j+ + 1

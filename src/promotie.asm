@@ -9,15 +9,6 @@ BasicUpstart2(start)
 .var debug = false
 
 start:
-/*
-	// set to 25 line text mode and turn on the screen
-	lda #$1B
-	sta $D011
-
-	// disable SHIFT-Commodore
-	lda #$80
-	sta $0291
-*/
 	jsr init
 	
 	// set screen memory ($0400) and charset bitmap offset ($2000)

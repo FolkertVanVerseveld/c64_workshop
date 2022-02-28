@@ -1,6 +1,10 @@
 #importonce
 
 // Some hardcoded constants
+.const vic = $d000
+.const vic_size = $2f
+.const sid = $d400
+.const sid_size = $1d
 .const colram = $d800
 
 //------------------------------------
