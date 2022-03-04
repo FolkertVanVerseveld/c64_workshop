@@ -7,6 +7,10 @@ BasicUpstart2(start)
 .var music = LoadSid(sidpath)
 
 .var irq_line = $f0
+
+.var irq_line_init = $eb
+.var irq_line_main = $ff
+
 .var debug = true
 
 .var zp_start = $80
@@ -29,6 +33,7 @@ BasicUpstart2(start)
 .const time_delay = $4
 .const time_delay_init = $40
 
+.pc=* "code 1"
 start:
 	jsr zp_init
 
@@ -114,7 +119,34 @@ start:
 	stx colram + 6
 	}
 
+	// wait for irq to signal it's done running
+!wait:
+	lda zp_fade_mode
+	cmp #3
+	bne !wait-
+
+	jsr copy_screen
+
+	jsr wait_vblank
+
+	// restart, do this before promo_init!
+	jsr sid_clear
+	lda #3 - 1
+	jsr music.init
+
+	jsr promo_init
+
 	jmp *
+
+wait_vblank:
+!l:
+	bit $d011
+	bpl !l-
+	lda $d012
+!l:
+	cmp $d012
+	bmi !l-
+	rts
 
 zp_init:
 	// zero out vars
@@ -365,12 +397,17 @@ fade_out:
 	rts
 
 !done:
+	lda #3
+	sta zp_fade_mode
+	rts
+
+wait:
 	rts
 
 fade_vec_lo:
-	.byte <fade_step, <fade_row, <fade_out
+	.byte <fade_step, <fade_row, <fade_out, <wait
 fade_vec_hi:
-	.byte >fade_step, >fade_row, >fade_out
+	.byte >fade_step, >fade_row, >fade_out, >wait
 
 fade_col:
 	.byte $e, $3, $d, $1, $d, $f, $e, $6, $ff
@@ -407,3 +444,321 @@ fade_col2:
 	.print "startpage="+music.startpage
 	.print "pagelength="+music.pagelength
 // music end
+
+
+// screen color data orig at 2be8
+// screen character data orig at 2800
+// character bitmap definitions at 2000
+
+.pc=* "code 2"
+
+copy_screen:
+	// set screen memory ($2400) and charset bitmap offset ($1000)
+	lda #$94
+	sta $D018
+
+	// set border color
+	lda #$00
+	sta $D020
+	sta $D021
+
+	ldx #0
+!l:
+	lda coldata + 0 * $100, x
+	sta colram + 0 * $100, x
+	lda coldata + 1 * $100, x
+	sta colram + 1 * $100, x
+	lda coldata + 2 * $100, x
+	sta colram + 2 * $100, x
+	lda coldata + 3 * $100 - 24, x
+	sta colram + 3 * $100 - 24, x
+	dex
+	bne !l-
+
+	rts
+
+promo_init:
+	sei
+	lda #$35		// Disable KERNAL and BASIC ROM
+	sta $01			// Enable all RAM
+
+	lda #<irq_init		// Setup IRQ vector
+	sta $fffe
+	lda #>irq_init
+	sta $ffff
+
+	lda #<dummy
+	sta $fffa
+	sta $fffc
+	lda #>dummy
+	sta $fffb
+	sta $fffd
+
+	lda #%00011011		// Load screen control:
+				// Vertical scroll    : 3
+				// Screen height      : 25 rows
+				// Screen             : ON
+				// Mode               : TEXT
+				// Extended background: OFF
+	sta $d011       	// Set screen control
+
+	set_irq #irq_line_init : #irq_init
+
+	lda #$01		// Enable mask
+	sta $d01a		// IRQ interrupt ON
+
+	lda #%01111111		// Load interrupt control CIA 1:
+				// Timer A underflow : OFF
+				// Timer B underflow : OFF
+				// TOD               : OFF
+				// Serial shift reg. : OFF
+				// Pos. edge FLAG pin: OFF
+	sta $dc0d		// Set interrupt control CIA 1
+	sta $dd0d		// Set interrupt control CIA 2
+
+	lda $dc0d		// Clear pending interrupts CIA 1
+	lda $dd0d		// Clear pending interrupts CIA 2
+
+	lda #$00
+	sta $dc0e
+
+	lda #$01
+	sta $d019		// Acknowledge pending interrupts
+
+	cli			// Start firing interrupts
+	rts
+
+irq_init:
+	irq
+	.if (debug) {
+	inc $d020
+	}
+	// pas horizontale verplaatsing toe
+	lda #$c0
+	ora scroll_xpos
+	sta $d016
+	.if (debug) {
+	dec $d020
+	}
+	qri2 #irq_line_main : #irq_main
+
+irq_main:
+	irq
+	.if (debug) {
+	inc $d020
+	}
+
+	// herstel horizontale verplaatsing
+	lda #$c8
+	sta $d016
+
+	jsr scroll
+	jsr music.play
+	.if (debug) {
+	dec $d020
+	}
+	qri2 #irq_line_init : #irq_init
+
+dummy:
+	asl $d019
+	rti
+
+.var scroll_screen = $2400 + 24 * 40
+
+set_scroll:
+	rts
+
+// screen character data
+*=$2400 "promo screen"
+	.byte	$20, $20, $20, $20, $20, $20, $E9, $DF, $20, $20, $E9, $DF, $20, $20, $20, $20, $20, $A0, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $51, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20
+	.byte	$20, $20, $20, $20, $20, $20, $5F, $A0, $DF, $E9, $A0, $69, $20, $20, $20, $20, $20, $A0, $20, $20, $20, $E9, $A0, $DF, $20, $A0, $A0, $A0, $20, $A0, $20, $A0, $A0, $DF, $20, $E9, $A0, $A0, $20, $20
+	.byte	$20, $20, $20, $E9, $A0, $20, $20, $5F, $A0, $A0, $69, $20, $20, $A0, $DF, $20, $20, $A0, $20, $20, $20, $A0, $79, $69, $20, $20, $E9, $69, $20, $A0, $20, $A0, $20, $A0, $20, $A0, $20, $A0, $20, $20
+	.byte	$20, $20, $E9, $69, $20, $20, $20, $E9, $A0, $A0, $DF, $20, $20, $20, $5F, $DF, $20, $A0, $20, $20, $20, $A0, $63, $20, $20, $E9, $69, $20, $20, $A0, $20, $A0, $20, $A0, $20, $5F, $A0, $A0, $20, $20
+	.byte	$20, $20, $A0, $20, $20, $20, $E9, $A0, $69, $5F, $A0, $DF, $20, $20, $20, $A0, $20, $A0, $A0, $A0, $20, $5F, $A0, $69, $20, $A0, $A0, $A0, $20, $A0, $20, $A0, $20, $A0, $20, $20, $20, $A0, $20, $20
+	.byte	$20, $20, $A0, $20, $20, $20, $5F, $69, $20, $20, $5F, $69, $20, $20, $20, $A0, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $E9, $A0, $69, $20, $20
+	.byte	$20, $20, $A0, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $A0, $20, $20, $0F, $16, $05, $12, $20, $04, $05, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20
+	.byte	$20, $20, $A0, $20, $20, $20, $E9, $DF, $20, $20, $E9, $DF, $20, $20, $20, $A0, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20
+	.byte	$20, $20, $A0, $20, $20, $20, $5F, $A0, $DF, $E9, $A0, $69, $20, $20, $20, $A0, $20, $20, $20, $20, $20, $20, $03, $0F, $0D, $0D, $0F, $04, $0F, $12, $05, $20, $36, $34, $20, $20, $20, $20, $20, $20
+	.byte	$20, $E9, $69, $20, $20, $20, $20, $5F, $A0, $A0, $69, $20, $20, $20, $20, $5F, $DF, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20
+	.byte	$20, $5F, $DF, $20, $20, $20, $20, $E9, $A0, $A0, $DF, $20, $20, $20, $20, $E9, $69, $20, $04, $0F, $0F, $12, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20
+	.byte	$20, $20, $A0, $20, $20, $20, $E9, $A0, $69, $5F, $A0, $DF, $20, $20, $20, $A0, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20
+	.byte	$20, $20, $A0, $20, $20, $20, $5F, $69, $20, $20, $5F, $69, $20, $20, $20, $A0, $20, $20, $20, $20, $20, $20, $06, $0F, $0C, $0B, $05, $12, $14, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20
+	.byte	$20, $20, $A0, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $A0, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20
+	.byte	$20, $20, $A0, $20, $20, $20, $E9, $DF, $20, $20, $E9, $DF, $20, $20, $20, $A0, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20
+	.byte	$20, $20, $A0, $20, $20, $20, $5F, $A0, $DF, $E9, $A0, $69, $20, $20, $20, $A0, $20, $20, $20, $6D, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $31, $30, $20, $0D, $01, $01, $12, $14, $20, $20
+	.byte	$20, $20, $5F, $DF, $20, $20, $20, $5F, $A0, $A0, $69, $20, $20, $20, $E9, $69, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $40, $40, $40, $40, $40, $40, $40, $40, $73, $20
+	.byte	$20, $20, $20, $5F, $A0, $20, $20, $E9, $A0, $A0, $DF, $20, $20, $A0, $69, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $31, $37, $3A, $30, $30, $20, $20
+	.byte	$20, $20, $20, $20, $20, $20, $E9, $A0, $69, $5F, $A0, $DF, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $40, $40, $40, $40, $40, $40, $40, $40, $73, $20
+	.byte	$20, $20, $20, $20, $20, $20, $5F, $69, $20, $20, $5F, $69, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $03, $30, $2E, $30, $35, $20, $20
+	.byte	$20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $40, $40, $40, $40, $40, $40, $40, $40, $73, $20
+	.byte	$20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20
+	.byte	$20, $28, $0C, $05, $1A, $09, $0E, $07, $20, $09, $13, $20, $31, $20, $03, $0F, $0C, $2E, $10, $15, $0E, $14, $20, $17, $01, $01, $12, $04, $29, $20, $20, $31, $39, $38, $32, $40, $32, $30, $32, $32
+	.byte	$20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20
+	.byte	$20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20
+
+// screen color data
+*=$2800 "promo color"
+coldata:
+	.byte	$0E, $0E, $0E, $0E, $0E, $0E, $06, $06, $0E, $0E, $06, $06, $0E, $0E, $0E, $0E, $0E, $02, $06, $06, $0E, $02, $02, $02, $02, $06, $06, $06, $0E, $02, $06, $06, $0E, $06, $06, $02, $02, $02, $06, $06
+	.byte	$0E, $0E, $0E, $0E, $0E, $0E, $06, $06, $06, $06, $06, $06, $0E, $0E, $0E, $0E, $0E, $0A, $06, $0E, $0E, $0A, $0A, $0A, $0E, $0A, $0A, $0A, $0E, $0A, $06, $0A, $0A, $0A, $06, $0A, $0A, $0A, $06, $06
+	.byte	$0E, $0E, $06, $06, $06, $0E, $0E, $06, $06, $06, $06, $0E, $0E, $06, $06, $06, $0E, $07, $06, $0E, $0E, $07, $07, $07, $0E, $0E, $07, $07, $0E, $07, $06, $07, $0E, $07, $06, $07, $06, $07, $06, $06
+	.byte	$0E, $06, $06, $06, $06, $0E, $0E, $06, $06, $06, $06, $0E, $0E, $06, $06, $06, $06, $0D, $06, $06, $0E, $0D, $0D, $06, $0E, $0D, $0D, $0E, $0E, $0D, $06, $0D, $06, $0D, $06, $0D, $0D, $0D, $06, $06
+	.byte	$0E, $06, $06, $06, $06, $0E, $06, $06, $06, $06, $06, $06, $0E, $06, $06, $06, $06, $0E, $0E, $0E, $06, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $06, $0E, $06, $0E, $06, $06, $06, $0E, $06, $06
+	.byte	$0E, $0E, $06, $0E, $0E, $0E, $06, $06, $0E, $0E, $06, $06, $0E, $0E, $0E, $06, $0E, $0E, $06, $06, $0E, $06, $06, $06, $06, $0E, $06, $06, $0E, $0E, $0E, $0E, $0E, $06, $0E, $04, $04, $04, $06, $0E
+	.byte	$06, $06, $06, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $06, $06, $01, $01, $01, $01, $01, $06, $01, $01, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $06, $0E, $0E, $0E, $0E
+	.byte	$0E, $06, $06, $0E, $0E, $0E, $06, $06, $0E, $0E, $06, $06, $0E, $0E, $0E, $06, $06, $0E, $06, $06, $0E, $0E, $06, $06, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E
+	.byte	$06, $06, $06, $0E, $0E, $0E, $06, $06, $06, $06, $06, $06, $0E, $0E, $0E, $06, $06, $06, $06, $06, $0E, $0E, $01, $01, $01, $01, $01, $01, $01, $01, $01, $0E, $01, $01, $0E, $0E, $0E, $0E, $0E, $0E
+	.byte	$06, $06, $06, $0E, $0E, $0E, $0E, $06, $06, $06, $06, $0E, $0E, $0E, $0E, $06, $06, $06, $06, $06, $0E, $0E, $0E, $06, $06, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E
+	.byte	$06, $06, $06, $0E, $0E, $0E, $0E, $06, $06, $06, $06, $0E, $0E, $0E, $0E, $06, $06, $06, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E
+	.byte	$06, $06, $06, $0E, $0E, $0E, $06, $06, $06, $06, $06, $06, $0E, $0E, $0E, $06, $06, $06, $06, $06, $0E, $0E, $0E, $06, $06, $06, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E
+	.byte	$0E, $06, $06, $0E, $0E, $0E, $06, $06, $0E, $0E, $06, $06, $0E, $0E, $0E, $06, $06, $0E, $06, $06, $0E, $0E, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $0E, $0E, $0E, $0E, $0E, $0E
+	.byte	$0E, $06, $06, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $06, $06, $06, $06, $06, $0E, $0E, $0E, $06, $06, $06, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E
+	.byte	$0E, $0E, $06, $0E, $0E, $0E, $06, $06, $0E, $0E, $06, $06, $0E, $0E, $0E, $06, $0E, $06, $06, $06, $0E, $0E, $0E, $06, $06, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E
+	.byte	$0E, $06, $06, $06, $06, $0E, $06, $06, $06, $06, $06, $06, $0E, $06, $06, $06, $06, $06, $06, $00, $0E, $0E, $0E, $06, $06, $0E, $0E, $0E, $0E, $0E, $01, $01, $01, $01, $01, $01, $01, $01, $0E, $0E
+	.byte	$0E, $06, $06, $06, $06, $0E, $0E, $06, $06, $06, $06, $0E, $0E, $06, $06, $06, $06, $06, $06, $06, $0E, $0E, $0E, $06, $0E, $0E, $0E, $0E, $0E, $0E, $01, $01, $01, $01, $01, $01, $01, $01, $01, $0E
+	.byte	$0E, $0E, $06, $06, $06, $0E, $0E, $06, $06, $06, $06, $0E, $0E, $06, $06, $06, $0E, $06, $06, $06, $0E, $06, $06, $06, $06, $0E, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $0E, $0E
+	.byte	$0E, $0E, $0E, $0E, $0E, $0E, $06, $06, $06, $06, $06, $06, $0E, $0E, $0E, $0E, $0E, $0E, $06, $06, $0E, $06, $06, $06, $06, $0E, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $0E
+	.byte	$0E, $0E, $0E, $0E, $0E, $0E, $06, $06, $0E, $0E, $06, $06, $0E, $0E, $0E, $0E, $0E, $0E, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $0E, $0E, $01, $01, $01, $01, $01, $0E, $0E
+	.byte	$0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $06, $06, $06, $0E, $06, $0E, $0E, $0E, $0E, $01, $01, $0E, $01, $01, $01, $01, $01, $01, $01, $01, $01, $0E
+	.byte	$0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $06, $06, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E
+	.byte	$0E, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $0E, $0E, $01, $01, $01, $01, $01, $01, $01, $01, $01
+	.byte	$0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $0E, $01, $01, $01, $01, $01, $01, $0E, $0E, $0E, $01, $01, $01, $01, $01, $01, $01, $01, $01
+	.byte	$0B, $09, $08, $02, $07, $0D, $0E, $0F, $01, $01, $01, $01, $01, $01, $0F, $0E, $0D, $07, $0A, $02, $02, $0A, $07, $0D, $0E, $0F, $01, $01, $01, $01, $01, $01, $0F, $0E, $0D, $07, $02, $08, $09, $0B
+
+.pc=* "code 3"
+
+scroll:
+	// verplaats horizontaal
+	lda scroll_xpos
+	sec
+!spdptr:
+	sbc scroll_speed_tbl
+	and #$07
+	sta scroll_xpos
+	bcc !move+
+	jmp !klaar+
+!move:
+	// verplaats alles één naar links
+	ldx #$00
+!l:
+	lda scroll_screen + 1, x
+	sta scroll_screen, x
+	inx
+	cpx #40
+	bne !l-
+
+	// haal eentje op uit de rij
+!textptr:
+	lda scroll_text
+	cmp #$ff
+	bne !nowrap+
+	jsr scroll_herstel
+!nowrap:
+	sta scroll_screen + 39
+	// werk textptr bij
+	inc !textptr- + 1
+	bne * + 5
+	inc !textptr- + 2
+	// werk timer bij
+	inc scroll_timer
+	// kijk of hij verlopen is
+	lda scroll_timer
+!timeptr:
+	cmp scroll_time_tbl
+	bcc !klaar+
+	// hij is verlopen
+.if (debug) {
+	// laat het op het scherm zien
+	inc $0500
+}
+	lda #0
+	sta scroll_timer
+	// werk timer ptr bij
+	inc !timeptr- + 1
+	bne * + 5
+	inc !timeptr- + 2
+	// werk speed ptr bij
+	inc !spdptr- + 1
+	bne * + 5
+	inc !spdptr- + 2
+	// kijk nu of de speedptr op het einde is
+	// zo ja, herstel de timers
+	lda !spdptr- + 1
+	sta !ptr+ + 1
+	lda !spdptr- + 2
+	sta !ptr+ + 2
+!ptr:
+	lda scroll_speed_tbl
+	cmp #$ff
+	bne !klaar+
+	jsr scroll_time_herstel
+!klaar:
+	rts
+
+scroll_time_herstel:
+	// herstel timer
+	lda #0
+	sta scroll_timer
+.if (debug) {
+	lda #' '
+	sta $0500
+}
+	// herstel time ptr
+	lda #<scroll_time_tbl
+	sta !timeptr- + 1
+	lda #>scroll_time_tbl
+	sta !timeptr- + 2
+	// herstel speed ptr
+	lda #<scroll_speed_tbl
+	sta !spdptr- + 1
+	lda #>scroll_speed_tbl
+	sta !spdptr- + 2
+	rts
+
+scroll_herstel:
+	// haal dit uit commentaar als je de snelheid
+	// ook wil herstellen als de tekst rondgaat:
+	//jsr scroll_time_herstel
+	// herstel ptr
+	lda #<scroll_text
+	sta !textptr- + 1
+	sta !ptr+ + 1
+	lda #>scroll_text
+	sta !textptr- + 2
+	sta !ptr+ + 2
+!ptr:
+	lda scroll_text
+	rts
+
+scroll_xpos:
+	.byte 0
+scroll_text:
+	.text " heb je altijd willen weten hoe mensen vroeger software konden maken die in 64 kilobytes of minder past? of heb je nog nooit een 40 jaar oude computer gezien? "
+	.text "woon dan deze lezing bij waarin we gaan kijken hoe personal computers er vroeger uitzagen, wat je er mee kan doen en waarom het gewoon heel leuk is om er mee te spelen! "
+	.text "de lezing duurt 1 uur en we gaan op een speelse wijze kijken naar verschillende uitdagingen die men vroeger tegenkwam. jullie worden ook gestimuleerd om zelf vragen te stellen! "
+	.text "deze lezing is 1 colloquiumpunt waard. voor deze lezing hoef je je niet aan te melden."
+	.byte $ff
+
+/*
+
+Heb je altijd al willen weten hoe mensen vroeger software konden maken die in 64 kilobytes of minder past? Of heb je nog nooit een 40 jaar oude computer gezien?
+
+Woon dan deze lezing bij waarin we gaan kijken hoe personal computers er vroeger uitzagen, wat je er mee kon doen en waarom het gewoon heel leuk is om er mee te spelen!
+
+De lezing duurt één uur en we gaan op een speelse wijze kijken naar verschillende uitdagingen die men vroeger tegenkwam. Jullie worden ook gestimuleerd om zelf vragen te stellen!
+
+Deze lezing is 1 colloquiumpunt waard.
+
+Voor deze lezing hoef je je niet aan te melden.
+
+*/
+
+scroll_timer:
+	.byte 0
+
+// tafels voor het scrollen met variërende snelheid
+// de speed tafel moet eindigen met $ff en dus eentje langer zijn dan time_tbl
+scroll_time_tbl:
+	.byte 2, 2, 2, 2, 2, 4
+scroll_speed_tbl:
+	.byte 2, 3, 4, 3, 2, 1, $ff
